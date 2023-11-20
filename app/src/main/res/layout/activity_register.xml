@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="380dp"
+            android:layout_height="779dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="723dp">
+
+                <TextView
+                    android:id="@+id/heading_register"
+                    android:layout_width="283dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="30dp"
+                    android:text="@string/heading_register"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/header_description_register"
+                    android:layout_width="260dp"
+                    android:layout_height="81dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="43dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginEnd="39dp"
+                    android:text="@string/content_1"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/voornaam_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginEnd="78dp"
+                    android:layout_marginBottom="411dp"
+                    android:autofillHints="name"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/voornaam_register"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cyan"
+                    android:textColorHint="@color/black"
+                    android:textColorLink="@color/cyan" />
+
+                <EditText
+                    android:id="@+id/email_register"
+                    android:layout_width="248dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="59dp"
+                    android:layout_marginEnd="73dp"
+                    android:layout_marginBottom="215dp"
+                    android:autofillHints="emailAddress"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/email_register"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="256dp"
+                    android:layout_marginBottom="42dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+
+                <TextView
+                    android:id="@+id/switch_description_register"
+                    android:layout_width="193dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="139dp"
+                    android:layout_marginEnd="38dp"
+                    android:layout_marginBottom="9dp"
+                    android:text="@string/switch_description_register"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+
+
+                <EditText
+                    android:id="@+id/regio_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="57dp"
+                    android:layout_marginEnd="75dp"
+                    android:layout_marginBottom="347dp"
+                    android:autofillHints="name"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/regio_register"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cyan"
+                    android:textColorHint="@color/black"
+                    android:textColorLink="@color/cyan" />
+
+                <EditText
+                    android:id="@+id/werkfunctie_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="59dp"
+                    android:layout_marginEnd="73dp"
+                    android:layout_marginBottom="276dp"
+                    android:autofillHints="name"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/werkfunctie_register"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/add_photo_button_register"
+                    android:layout_width="73dp"
+                    android:layout_height="77dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="124dp"
+                    android:layout_marginEnd="154dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/round_button"
+                    android:contentDescription="@string/add_photo_button_register"
+                    android:elevation="5dp"
+                    android:padding="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/pluscircle"
+                    android:text="@string/add_photo_button_description_register" />
+
+                <TextView
+                    android:id="@+id/add_photo_button_description_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/add_photo_button_register"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="128dp"
+                    android:text="@string/add_photo_button_description_register"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/password_register"
+                    android:layout_width="248dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginEnd="72dp"
+                    android:layout_marginBottom="154dp"
+                    android:autofillHints="password"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="@string/wachtwoord_register"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/cyan"
+                    android:textColorHint="@color/black"
+                    android:textColorLink="@color/cyan" />
+
+                <ImageView
+                    android:id="@+id/image_preview_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="138dp"
+                    android:layout_marginTop="111dp"
+                    android:layout_marginEnd="137dp"
+                    android:layout_marginBottom="512dp"
+                    android:contentDescription="@string/preview_image_content_description_register"
+                    android:background="#00FFFFFF"
+                    android:elevation="6dp"
+                    app:srcCompat="@drawable/square" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/finish_button_register"
+                android:layout_width="320dp"
+                android:layout_height="71dp"
+                android:enabled="false"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="700dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/cyan"
+                android:text="@string/button_register"
+                app:rippleColor="@color/cyan" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="312dp"
+        android:layout_height="52dp"
+        android:background="@color/background_black"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/prime_header"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

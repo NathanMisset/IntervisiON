@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.IntervisiON" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:background">@color/light_gray</item>
+        <item name="colorAccent">@android:color/black</item>
+
+    </style>
+</resources>
