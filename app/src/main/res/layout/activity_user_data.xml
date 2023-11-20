@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/header_personalData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Instellingen"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/imageview_user_3_eleborate_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/temp_profile_picture_96x96" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="781dp"
+        app:columnCount="2"
+        app:orientation="horizontal"
+        app:rowCount="4"
+        app:rowOrderPreserved="false">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:text="@string/voornaam_settings"
+            android:textColor="@color/gray_blue"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/voornaam_settings_temp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/werk_mail_settings"
+            android:textColor="@color/gray_blue"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/werk_mail_settings_temp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/regio_settings"
+            android:textColor="@color/gray_blue"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/regio_settings_temp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/werkfunctie_settings"
+            android:textColor="@color/gray_blue"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/werkfunctie_settings_temp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_gravity="fill_horizontal" />
+    </androidx.gridlayout.widget.GridLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="333dp"
+        android:layout_height="71dp"
+        android:layout_gravity="center"
+        android:text="Opgeslagen" />
+</LinearLayout>

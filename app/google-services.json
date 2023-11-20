@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "788983613302",
+    "project_id": "intervision-1be7c",
+    "storage_bucket": "intervision-1be7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788983613302:android:84bcfecae862b936c99c57",
+        "android_client_info": {
+          "package_name": "com.example.intervision"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz4f2XhUhictayViNyy1Rh8owUTfksgeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

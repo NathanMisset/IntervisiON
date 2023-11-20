@@ -1,0 +1,78 @@
+<resources>
+    <string name="name_app">IntervisiON</string>
+    <string name="quit_button_app">Sluit</string>
+    <string name="save_button_app">Opgeslagen</string>
+    <string name="back_button_app">Terug</string>
+    <string name="next_button_app">Volgende</string>
+
+    <!--   Login    -->
+    <string name="login_button">Login</string>
+    <string name="password">Wachtwoord</string>
+    <string name="email">Email</string>
+    <string name="forgot_password">Wachtwoord vergeten?</string>
+
+    <!-- Tutorial   -->
+    <string name="prime_header">HOE WERKT DE APP?</string>
+    <string name="heading_1">1. Elke maand\n een nieuwe stelling</string>
+    <string name="heading_2">2. Eens of Oneens?</string>
+    <string name="heading_3">3. Online intervisie</string>
+    <string name="content_1">Elke eerste maandag van de maand om 16:00 ontvang je een stelling van de app met betrekking tot een bezwaarprocedure.</string>
+    <string name="content_2">"Na het openen van de stelling geef je aan of je het eens of oneens ben met de stelling.\n \n Optioneel: Iedereen mag nieuwe stellingen in de app toevoegen"</string>
+    <string name="content_3">"Na het stemmen heb je de optie om een online intervisie te houden over de desbetreffende stelling samen met jouw collega’s of andere juridische experts binnen of buiten jouw regio via Microsoft Teams.\n \nWij zorgen ervoor dat jij direct een Teams-uitnodiging ontvangt na het deelnemen aan een intervisie."</string>
+    <string name="content_register">"Om deel te kunnen nemen aan de intervisies hebben wij uw gegevens nodig, zodat onze systeem u kunt koppelen aan de intervisiegroepen."</string>
+    <string name="photo_description_1">voorbeeld van notificatie</string>
+    <string name="photo_description_2">voorbeeld van een stelling in de app</string>
+    <string name="photo_description_3">foto van een teams gesprek op een scherm plus mobiel met de intervisie open</string>
+    <!--  Register  -->
+    <string name="heading_register">4. Account</string>
+    <string name="voornaam_register">Voornaam*</string>
+    <string name="email_register">Werk Email*</string>
+    <string name="regio_register">Regio*</string>
+    <string name="werkfunctie_register">Werkfunctie*</string>
+    <string name="wachtwoord_register">Wachtwoord*</string>
+    <string name="switch_register">Switch</string>
+    <string name="switch_description_register">Ik verleen toestemming voor het anoniem bewaren van mijn stemmen op de stellingen ten behoeve van onderzoeksdoeleinden van het lectoraat Legal Management</string>
+    <string name="add_photo_button_register">+</string>
+    <string name="add_photo_button_description_register">Voeg profiel foto toe</string>
+    <string name="button_register">Aan de slag</string>
+    <string name="preview_image_content_description_register">profiel foto voorbeeld</string>
+    <!--  Settings  -->
+    <string name="header_settings">Instellingen</string>
+    <string name="voornaam_settings">Voornaam</string>
+    <string name="werk_mail_settings">Werk Mail</string>
+    <string name="regio_settings">Regio</string>
+    <string name="werkfunctie_settings">Functie</string>
+    <string name="voornaam_settings_temp">Monica</string>
+    <string name="werk_mail_settings_temp">Moniva@gemeente-z.nl</string>
+    <string name="regio_settings_temp">Almere</string>
+    <string name="werkfunctie_settings_temp">Juridisch adviseur</string>
+
+    <!--    Home    -->
+    <string name="top_background_content_description_home">zwarter boven achtergrond</string>
+    <string name="bot_background_content_description_home">zwarter onder achtergrond</string>
+    <string name="button_to_setting_content_description">knop naar instellingen</string>
+    <string name="greeting_home">Goedemiddag,</string>
+    <string name="hipotesis_home">Nieuwe stelling over\n 28:21:34:09</string>
+    <string name="create_group_button_home">Maak intervisie groep</string>
+    <string name="join_group_button_home">Intervisie groep bijwonen</string>
+
+    <!--    Group Assembly  -->
+    <string name="do_not_join_button_group_assembly">Ik kan niet meedoen vandaag</string>
+    <string name="sub_header_group_assembly">De intervisie groepen starten over _ _ minuten</string>
+    <string name="header_group_assembly">Kies een interviesie groep</string>
+    <string name="header_group_group_assembly">Eigen collega\'s</string>
+    <string name="name_user_group_assembly">Naam</string>
+    <string name="join_button_group_assembly">Deelnemen</string>
+
+    <!--    Intervision    -->
+    <string name="round_text_intervision">Ronde 1 van 5</string>
+    <string name="header_1_intervision">Introductie</string>
+    <string name="header_2_intervision">Stelling</string>
+    <string name="header_3_intervision">Licht jouw\nkeuze toe</string>
+    <string name="header_4_intervision">Discussie</string>
+    <string name="header_5_intervision">Wat ga je\nanders doen?</string>
+    <string name="status_intervision">status</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
