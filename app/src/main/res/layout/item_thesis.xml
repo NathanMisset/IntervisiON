@@ -23,12 +23,11 @@
             android:src="@drawable/image_quotations_48x48" />
 
         <TextView
-            android:id="@+id/instructions_eleborate_choice"
+            android:id="@+id/tv_thesis_item_thesis"
             android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Ik wil onbevoordeeld naar het bezwaar kijken.\n Ik zie wel ze wel op de hoorzitting."
             android:textColor="@color/black"
             android:textStyle="italic" />
 
@@ -38,23 +37,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_InFavour_item_thesis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="20%\nEens"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/tv_Against_item_thesis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="80%\nOneens"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="34sp"

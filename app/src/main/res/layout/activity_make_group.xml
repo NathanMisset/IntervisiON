@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:autofillHints="name"
-            android:background="@drawable/button_square_rounded_corners"
+            android:background="@drawable/button_roundcorner"
             android:backgroundTint="@color/yellow_30"
             android:ems="10"
             android:hint="Groep Naam"

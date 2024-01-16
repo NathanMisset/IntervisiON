@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 /**
  * A simple [Fragment] subclass.
@@ -21,21 +21,21 @@ import com.google.firebase.firestore.FirebaseFirestore
  */
 class Fragment_Home : Fragment() {
 
-    private val mParam1: String? = null
-    private val mParam2: String? = null
     private var user: FirebaseUser? = null
     private var db: FirebaseFirestore? = null
     private var Statements: ArrayList<String>? = null
     private var Questions: ArrayList<String>? = null
-    private var viewPager2: ViewPager2? = null
+    private var statementId: ArrayList<String>? = null
+    private var voteItemLocation: ViewGroup? = null
     private var greeting: TextView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     fun SetName(data: Map<String?, Any>) {
         greeting!!.text = """Goedemiddag,
- ${data["Voornaam"]}"""
+        ${data["Voornaam"]}"""
     }
 
     private val username: Unit
@@ -45,17 +45,17 @@ class Fragment_Home : Fragment() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result) {
-                            Log.d(TAG, " => UserID " + document.data["User UID"])
-                            Log.d(TAG, user!!.uid)
+                            //Log.d(TAG, " => UserID " + document.data["User UID"])
+                            //Log.d(TAG, user!!.uid)
                             val u = user!!.uid
                             val d = document.data["User UID"] as String?
                             if (u == d) {
-                                Log.d(TAG, "Inside if")
+                                //Log.d(TAG, "Inside if")
                                 //SetName(document.getData());
                             }
                         }
                     } else {
-                        Log.w(TAG, "Error getting documents.", task.exception)
+                        //Log.w(TAG, "Error getting documents.", task.exception)
                     }
                 }
         }
@@ -66,35 +66,83 @@ class Fragment_Home : Fragment() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         for (document in task.result) {
+                            //Log.d(TAG, "Statements : $Statements")
+                            statementId!!.add(document.id)
                             Statements!!.add(document.data["Statement"].toString())
                             Questions!!.add(document.data["Question"].toString())
-                            Log.d(TAG, "Statements : $Statements")
                         }
-                        Log.d(TAG, "MakeThesisViewPager")
-                        MakeThesisViewPager()
+                        //Log.d(TAG, "MakeThesisViewPager")
+                        getIfVoted()
                     } else {
-                        Log.w(TAG, "Error getting documents.", task.exception)
+                        //Log.w(TAG, "Error getting documents.", task.exception)
                     }
                 }
         }
-
-    private fun MakeThesisViewPager() {
-        Log.d(TAG, "Start MakeThesisViewPager")
-        Log.d(TAG, "viewPager2: $viewPager2")
-        val viewPagerItemArrayList: ArrayList<Item_View_Pager_Small>
-        viewPagerItemArrayList = ArrayList()
-        Log.d(TAG, "viewPagerItemArrayList: $viewPagerItemArrayList")
-        for (i in Statements!!.indices) {
-            val viewPagerItem = Item_View_Pager_Small(Questions!![i], Statements!![i])
-            viewPagerItemArrayList.add(viewPagerItem)
+    private fun InitVoteItem(result: Boolean){
+        if(!result){
+            val item_Vote = Item_Vote(voteItemLocation, activity, Statements!![0], Questions!![0], statementId!![0], user!!, db!!)
+        } else{
+            val item_Result = Item_Result(voteItemLocation, activity, Statements!![0], user!!, db!!, requireContext())
         }
-        val vpAdapter = Adapter_View_Pager_Small(viewPagerItemArrayList)
-        viewPager2!!.adapter = vpAdapter
-        viewPager2!!.clipToPadding = false
-        viewPager2!!.clipChildren = false
-        viewPager2!!.offscreenPageLimit = 2
-        viewPager2!!.getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+
+
+
     }
+
+    private fun getIfVoted() {
+        var AgainstArray = ArrayList<String>()
+        AgainstArray = arrayListOf()
+        var ForArray = ArrayList<String>()
+        ForArray = arrayListOf()
+        var voted = false
+
+
+        db!!.collection("Votes")
+            .orderBy("uploaded",Query.Direction.DESCENDING)
+            .limit(1)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result) {
+                        //Log.d(TAG, "Statements : $Statements")
+                        AgainstArray = document.data["Against"] as java.util.ArrayList<String>
+                        ForArray = document.data["In Favour"] as java.util.ArrayList<String>
+                    }
+
+                    voted = AgainstArray.contains(user!!.uid)
+                    if(!voted){
+                        voted = ForArray.contains(user!!.uid)
+                    }
+                    Log.d(TAG, "voted : $voted")
+                    InitVoteItem(voted)
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.exception)
+                }
+
+            }
+
+
+    }
+//    private fun MakeThesisViewPager() {
+//        Log.d(TAG, "Start MakeThesisViewPager")
+//        Log.d(TAG, "viewPager2: $viewPager2")
+//        val viewPagerItemArrayList: ArrayList<Item_View_Pager_Small>
+//        viewPagerItemArrayList = ArrayList()
+//
+//        Log.d(TAG, "viewPagerItemArrayList: $viewPagerItemArrayList")
+//
+//        for (i in Statements!!.indices) {
+//            val viewPagerItem = Item_View_Pager_Small(Questions!![i], Statements!![i])
+//            viewPagerItemArrayList.add(viewPagerItem)
+//        }
+//
+//        val vpAdapter = Adapter_View_Pager_Small(viewPagerItemArrayList)
+//        viewPager2!!.adapter = vpAdapter
+//        viewPager2!!.clipToPadding = false
+//        viewPager2!!.clipChildren = false
+//        viewPager2!!.offscreenPageLimit = 2
+//        viewPager2!!.getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
+//    }
 
     private fun ToTutorial() {
         val i = Intent(activity, Activity_Tutorial::class.java)
@@ -118,16 +166,23 @@ class Fragment_Home : Fragment() {
         db = FirebaseFirestore.getInstance()
         Statements = ArrayList()
         Questions = ArrayList()
-        username
-        thesis
+        statementId = ArrayList()
+
+
+
         val Layout = getView()
         val toTutorialButton = Layout!!.findViewById<View>(R.id.tutorial_button_home) as Button
         toTutorialButton.setOnClickListener {
             Log.d("BUTTONS", "User tapped $toTutorialButton")
             ToTutorial()
+
         }
-        viewPager2 = Layout.findViewById(R.id.thesis_home)
+        voteItemLocation = Layout.findViewById(R.id.vote_item_location_home)
+
         greeting = Layout.findViewById(R.id.greeting_home)
+
+        username
+        thesis
         // Inflate the layout for this fragment
     }
 

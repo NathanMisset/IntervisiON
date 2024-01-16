@@ -29,7 +29,7 @@ class Item_Notification(//Firebase
             parent as ViewGroup,
             false
         )
-        Log.d(TAG, "layout => $layout")
+        //Log.d(TAG, "layout => $layout")
         GetView()
         SetImage()
         SetText()

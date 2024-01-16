@@ -128,20 +128,24 @@ class Item_Group_Preview(
     }
 
     private fun ToIntervision() {
-        val i = Intent(activity, Activity_Intervision::class.java)
+        val i = Intent(activity, Activity_Waiting_Room::class.java)
         Log.d(TAG, "SessionId ")
         Log.d(TAG, "SessionId $SessionId")
         i.putExtra("SessionID", SessionId)
+        i.putExtra("Leader", false)
         activity!!.startActivity(i)
     }
 
     private fun ToIntervisionLeader() {
-        val i = Intent(activity, Activity_Intervision_Leader::class.java)
+        val i = Intent(activity, Activity_Waiting_Room::class.java)
         Log.d(TAG, "SessionId ")
         Log.d(TAG, "SessionId $SessionId")
         i.putExtra("SessionID", SessionId)
+        i.putExtra("Leader", true)
         activity!!.startActivity(i)
     }
+
+
 
     companion object {
         private const val TAG = "GroupPreviewItem"

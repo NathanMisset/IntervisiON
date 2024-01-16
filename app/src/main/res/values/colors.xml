@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow_100">#FFC40A</color>
+    <color name="yellow_100">#FFFFC40A</color>
     <color name="yellow_30">#4DFFC40A</color>
+    <color name="green_100">#34A761</color>
+    <color name="red_100">#C1564C</color>
     <color name="gray">#FCFCFC</color>
     <color name="gray_blue">#A8B1B8</color>
     <color name="light_gray">#F1F1F6</color>
@@ -10,5 +12,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_black">#373634</color>
     <color name="red">#BD5C57</color>
+    <color name="blue_100">#006978</color>
 
 </resources>

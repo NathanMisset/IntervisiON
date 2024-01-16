@@ -14,8 +14,11 @@ import com.google.firebase.storage.FirebaseStorage
 
 class Activity_Intervision : Activity_Intervision_Leader() {
     protected var turnItem: Item_Turn? = null
+    protected var PreviousValue: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "load " + TAG)
         super.onCreate(savedInstanceState)
+
     }
 
     override fun InitLayout() {
@@ -28,48 +31,62 @@ class Activity_Intervision : Activity_Intervision_Leader() {
     }
 
     override fun InitConnection() {
+        Log.d(TAG, "InitConnection ")
         database =
             FirebaseDatabase.getInstance("https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app")
         myRef = database!!.getReference(sessionID!!)
-        // Read from the database
-        myRef!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, "data type: " + dataSnapshot.value!!.javaClass)
-                val value: String?
-                value = if (dataSnapshot.value is String) {
-                    dataSnapshot.getValue(String::class.java)
-                } else {
-                    val valueGot = dataSnapshot.getValue(Long::class.java)
-                    valueGot.toString()
-                }
-                Log.d(TAG, "Value = $value")
-                Log.d(TAG, "Value 1 = " + value!![0])
-                if (value.length > 1) {
-                    Log.d(TAG, "Value 2 = " + value[1])
-                }
-                currentRound = if (value.length > 1) {
-                    value[0].toString().toInt()
-                } else {
-                    value.toInt()
-                }
-                ChangeRound(
-                    intervisionRounds[currentRound]!!.roundTitle,
-                    intervisionRounds[currentRound]!!.round,
-                    "statusText",
-                    intervisionRounds[currentRound]!!.roundSpecific
-                )
-                if (value.length > 1) {
-                    turnItem!!.GiveTurn(value[1])
-                }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
+            // Read from the database
+            firebaseevent = myRef!!.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    Log.d(TAG, "data type: " + dataSnapshot.value!!.javaClass)
+                    val value: String?
+                    value = if (dataSnapshot.value is String) {
+                        dataSnapshot.getValue(String::class.java)
+                    } else {
+                        val valueGot = dataSnapshot.getValue(Long::class.java)
+                        valueGot.toString()
+                    }
+                    Log.d(TAG, "Value = $value")
+                    Log.d(TAG, "PreviousValue = $PreviousValue")
+                    if (value.toString() == PreviousValue.toString()) {
+                        Log.d(TAG, "EventCanceled")
+                        myRef!!.removeEventListener(this)
+                    }
+
+                    Log.d(TAG, "Value = $value")
+                    Log.d(TAG, "Value 1 = " + value!![0])
+                    if (value.length > 1) {
+                        Log.d(TAG, "Value 2 = " + value[1])
+                    }
+
+                    if (value!!.length > 1) {
+                        currentRound = value[0].toString().toInt()
+                    } else {
+                        currentRound = value.toInt()
+                    }
+                    ChangeRound(
+                        intervisionRounds[currentRound]!!.roundTitle,
+                        intervisionRounds[currentRound]!!.round,
+                        "statusText",
+                        intervisionRounds[currentRound]!!.roundSpecific
+                    )
+                    if (value.length > 1) {
+                        turnItem!!.GiveTurn(value[1])
+                    }
+
+                    PreviousValue = value
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                }
+
+            })
+
         firestore = FirebaseFirestore.getInstance()
         firestore!!.collection("Sessions")
             .document(sessionID!!)
@@ -79,7 +96,6 @@ class Activity_Intervision : Activity_Intervision_Leader() {
                     val document = task.result
                     partisipantsIdS = document.data!!["Participant Sid"] as ArrayList<String>?
                     Log.d(TAG, "List of users: " + document.data!!["Participant Sid"])
-                    FillContent()
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
@@ -87,6 +103,7 @@ class Activity_Intervision : Activity_Intervision_Leader() {
     }
 
     override fun FillContent() {
+        Log.d(TAG, "FillConent ")
         val headers = arrayOf(
             getString(R.string.header_1_intervision),
             getString(R.string.header_2_intervision),
@@ -97,6 +114,15 @@ class Activity_Intervision : Activity_Intervision_Leader() {
         user = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
+        val itemThesis = Item_thesis(
+            storage!!,
+            firestore!!,
+            this.special!!,
+            this,
+            partisipantsIdS!!,
+            this.special,
+            this.ThesesID
+        )
         turnItem = Item_Turn(storage!!, firestore!!, special!!, this, partisipantsIdS!!, special)
         val Specials = arrayOf(
             LayoutInflater.from(special!!.context).inflate(
@@ -104,11 +130,7 @@ class Activity_Intervision : Activity_Intervision_Leader() {
                 special as ViewGroup,
                 false
             ),
-            LayoutInflater.from(special!!.context).inflate(
-                R.layout.item_thesis,
-                special as ViewGroup,
-                false
-            ),
+            itemThesis.layout,
             LayoutInflater.from(special!!.context).inflate(
                 R.layout.item_single_image,
                 special as ViewGroup,
@@ -130,6 +152,7 @@ class Activity_Intervision : Activity_Intervision_Leader() {
         }
         //        ((ViewGroup) special).addView(intervisionRounds[0].roundSpecific);
         InitProgressButton()
+        InitConnection()
     }
 
     companion object {

@@ -39,6 +39,7 @@
         <activity android:name=".Activity_Group_Assembly"></activity>
         <activity android:name=".Activity_Navigation"></activity>
         <activity android:name=".Activity_Jetpack_Compose"></activity>
+        <activity android:name=".Activity_Waiting_Room"></activity>
 
     </application>
 

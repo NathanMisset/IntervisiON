@@ -16,7 +16,7 @@
         app:layout_constraintVertical_bias="0.863">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_InFavour_item_thesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Intervisie rondes"
@@ -26,7 +26,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/instructions_eleborate_choice"
+            android:id="@+id/tv_thesis_item_thesis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="1. De stelling introduceren\n\n2. Toelichting keuzes van de deelnermers\n\n 3. Discussie met elkaar over stelling\n\n 4. Wat gaan de deelnemers anders doen?\n\n 5. Mogelijkheid voor het behandelen van nieuwe stelling"

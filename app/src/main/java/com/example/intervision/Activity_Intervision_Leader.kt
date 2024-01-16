@@ -1,5 +1,6 @@
 package com.example.intervision
 
+import android.animation.LayoutTransition
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -27,11 +28,14 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
     protected var statusText: TextView? = null
     protected var special: View? = null
     protected var partisipantsIdS: ArrayList<String>? = null
+    protected var ThesesID: String? = null
     protected var ROUNDNUMBERS = 5
     protected var intervisionManager: IntervisionManager? = null
     protected lateinit var intervisionRounds: Array<IntervisionRound?>
     protected var currentRound = 0
     protected var data: String? = null
+    protected var firebaseevent: ValueEventListener? = null
+
 
     //Firebase
     protected var database: FirebaseDatabase? = null
@@ -41,6 +45,7 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
     protected var user: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        intervisionRounds = arrayOfNulls(ROUNDNUMBERS)
         Log.d(TAG, "Start IntervisionsLeader")
         sessionID = intent.extras!!.getString("SessionID")
         init()
@@ -49,7 +54,6 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
     protected fun init() {
         getData()
         InitLayout()
-        InitConnection()
         currentRound = 0
     }
 
@@ -63,6 +67,9 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
                     val document = task.result
                     partisipantsIdS = document.data!!["Participant Sid"] as ArrayList<String>?
                     Log.d(TAG, "List of users: " + document.data!!["Participant Sid"])
+
+                    ThesesID = document.data!!["ThesisID"].toString()
+                    Log.d(TAG, "ThesesID " + ThesesID)
                     FillContent()
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
@@ -71,45 +78,57 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
     }
 
     protected open fun InitConnection() {
+
         database =
             FirebaseDatabase.getInstance("https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app")
         myRef = database!!.getReference(sessionID!!)
-        // Read from the database
-        myRef!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, "data type: " + dataSnapshot.value!!.javaClass)
-                val value: String?
-                value = if (dataSnapshot.value is String) {
-                    dataSnapshot.getValue(String::class.java)
-                } else {
-                    val valueGot = dataSnapshot.getValue(Long::class.java)
-                    valueGot.toString()
-                }
-                Log.d(TAG, "Value = $value")
-                Log.d(TAG, "Value 1 = " + value!![0])
-                if (value.length > 1) {
-                    Log.d(TAG, "Value 2 = " + value[1])
-                }
-                currentRound = if (value.length > 1) {
-                    value[0].toString().toInt()
-                } else {
-                    value.toInt()
-                }
-                ChangeRound(
-                    intervisionRounds[currentRound]!!.roundTitle,
-                    intervisionRounds[currentRound]!!.round,
-                    "statusText",
-                    intervisionRounds[currentRound]!!.roundSpecific
-                )
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
+            // Read from the database
+            firebaseevent = myRef!!.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    Log.d(TAG, "data type: " + dataSnapshot.value!!.javaClass)
+                    val value: String?
+                    value = if (dataSnapshot.value is String) {
+                        dataSnapshot.getValue(String::class.java)
+                    } else {
+                        val valueGot = dataSnapshot.getValue(Long::class.java)
+                        valueGot.toString()
+                    }
+                    Log.d(TAG, "Value = $value")
+                    Log.d(TAG, "Value 1 = " + value!![0])
+                    if (value.length > 1) {
+                        Log.d(TAG, "Value 2 = " + value[1])
+                    }
+                    if (value!!.length > 1) {
+                        currentRound = value[0].toString().toInt()
+                    } else if (value == "W") {
+                        currentRound = 0
+                        myRef!!.setValue(currentRound.toString())
+                    } else {
+                        currentRound = value.toInt()
+                    }
+
+                    Log.d(TAG, "currentRound = $currentRound")
+                    Log.d(
+                        TAG,
+                        "intervisionRounds[currentRound]!!.roundTitle," + intervisionRounds[currentRound]!!.roundTitle,
+                    )
+                    ChangeRound(
+                        intervisionRounds[currentRound]!!.roundTitle,
+                        intervisionRounds[currentRound]!!.round,
+                        "statusText",
+                        intervisionRounds[currentRound]!!.roundSpecific
+                    )
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                }
+            })
+
     }
 
     protected inner class IntervisionManager(
@@ -138,6 +157,15 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
+        val itemThesis = Item_thesis(
+            storage!!,
+            firestore!!,
+            this.special!!,
+            this,
+            partisipantsIdS!!,
+            this.special,
+            this.ThesesID
+        )
         val eleborateChoiceItem = Item_Eleborate_Choice(
             this,
             special,
@@ -153,11 +181,7 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
                 special as ViewGroup?,
                 false
             ),
-            LayoutInflater.from(special!!.context).inflate(
-                R.layout.item_thesis,
-                special as ViewGroup?,
-                false
-            ),
+            itemThesis.layout,
             LayoutInflater.from(special!!.context).inflate(
                 R.layout.item_single_image,
                 special as ViewGroup?,
@@ -170,7 +194,7 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
                 false
             )
         )
-        intervisionRounds = arrayOfNulls(ROUNDNUMBERS)
+
         for (i in 0 until ROUNDNUMBERS) {
             intervisionRounds[i] = IntervisionRound(
                 headers[i],
@@ -186,6 +210,7 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
 //                intervisionRounds[currentRound].round,
 //                "statusText",
 //                intervisionRounds[currentRound].roundSpecific);
+        InitConnection()
     }
 
     protected fun InitProgressButton() {
@@ -211,27 +236,27 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
     protected fun InitButtons() {
         val nextRoundButton = findViewById<View>(R.id.next_button_intervision_leaderView) as Button
         nextRoundButton.setOnClickListener {
-            Log.d("BUTTONS", "User tapped the RegisterButton")
-            currentRound++
-            myRef!!.setValue(currentRound.toString())
-            ChangeRound(
-                intervisionRounds[currentRound]!!.roundTitle,
-                intervisionRounds[currentRound]!!.round,
-                "statusText",
-                intervisionRounds[currentRound]!!.roundSpecific
-            )
+            Log.d("BUTTONS", "User tapped the nextRoundButton")
+            var newval = currentRound + 1
+            myRef!!.setValue(newval.toString())
+//            ChangeRound(
+//                intervisionRounds[currentRound]!!.roundTitle,
+//                intervisionRounds[currentRound]!!.round,
+//                "statusText",
+//                intervisionRounds[currentRound]!!.roundSpecific
+//            )
         }
         val previousRoundButton = findViewById<View>(R.id.back_intervision_leaderView) as Button
         previousRoundButton.setOnClickListener {
-            Log.d("BUTTONS", "User tapped the RegisterButton")
-            currentRound--
-            myRef!!.setValue(currentRound.toString())
-            ChangeRound(
-                intervisionRounds[currentRound]!!.roundTitle,
-                intervisionRounds[currentRound]!!.round,
-                "statusText",
-                intervisionRounds[currentRound]!!.roundSpecific
-            )
+            Log.d("BUTTONS", "User tapped the previousRoundButton")
+            var newval = currentRound - 1
+            myRef!!.setValue(newval.toString())
+//            ChangeRound(
+//                intervisionRounds[currentRound]!!.roundTitle,
+//                intervisionRounds[currentRound]!!.round,
+//                "statusText",
+//                intervisionRounds[currentRound]!!.roundSpecific
+//            )
         }
     }
 
@@ -241,13 +266,14 @@ open class Activity_Intervision_Leader : AppCompatActivity() {
         statusText: String?,
         special: View?
     ) {
-        roundText!!.text = "Ronder $roundNumber van 5"
+        roundText!!.text = "Ronde $roundNumber van 5"
         headerText!!.text = roundTitle
         (this.special as ViewGroup?)!!.removeAllViews()
         if (special!!.parent != null) {
             (special as ViewGroup?)!!.removeAllViews()
         }
         (this.special as ViewGroup?)!!.addView(special)
+
     }
 
     fun ChangeValue(a: Char) {

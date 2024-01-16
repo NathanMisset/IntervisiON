@@ -20,6 +20,7 @@ class Activity_Make_Group : AppCompatActivity() {
     private var database: FirebaseDatabase? = null
     private var fireStoreDatabase: FirebaseFirestore? = null
     private var mainSpinner: Item_Spinner? = null
+    private var thesis = ArrayList<String>()
     var spinners: ArrayList<Item_Spinner>? = null
     private lateinit var users: ArrayList<String>
     private var UIDs: ArrayList<String?>? = null
@@ -80,6 +81,8 @@ class Activity_Make_Group : AppCompatActivity() {
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
+        GetThesis()
+
     }
 
     fun SetName(data: Map<String?, Any>) {
@@ -87,6 +90,30 @@ class Activity_Make_Group : AppCompatActivity() {
         leader!!.setText("Groepsleider: " + data["Voornaam"].toString())
     }
 
+    fun GetThesis(){
+        var firestore = fireStoreDatabase
+        thesis = ArrayList()
+        firestore!!.collection("Theses")
+            .limit(1)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result) {
+                        Log.d(TAG, document.id + " => " + document.data)
+
+                        thesis!!.add(document.data["Statement"].toString() + document.id)
+
+                    }
+                    Log.d(TAG, "thesis $thesis")
+                    var ThesisSpinner = Item_Spinner(thesis, findViewById(R.id.layout_make_group), this)
+                    ThesisSpinner!!.init()
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.exception)
+                }
+            }
+
+
+    }
     private val data: Unit
         private get() {
             fireStoreDatabase!!.collection("User Data")
@@ -117,7 +144,7 @@ class Activity_Make_Group : AppCompatActivity() {
     private fun MakeGroup() {
         val participants = ArrayList<String?>()
         participants.add(user!!.uid)
-        for (i in 0 until mainSpinner!!.dropdown!!.selectedItem as Int) {
+        for (i in 0 until mainSpinner!!.dropdown!!.selectedItemPosition as Int) {
             if (spinners!![i].dropdown!!.selectedItem !== "Gebruiker") {
                 participants.add(UIDs!![spinners!![i].dropdown!!.selectedItemPosition])
             }
@@ -126,6 +153,7 @@ class Activity_Make_Group : AppCompatActivity() {
         session["Leader Sid"] = user!!.uid
         session["Participant Sid"] = participants
         session["Group Name"] = groupName!!.text.toString()
+        session["ThesisID"] = thesis[0].takeLast(20)
         fireStoreDatabase!!.collection("Sessions")
             .add(session)
             .addOnSuccessListener { documentReference ->
@@ -134,7 +162,7 @@ class Activity_Make_Group : AppCompatActivity() {
                 val database =
                     FirebaseDatabase.getInstance("https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app")
                 val myRef = database.getReference(documentReference.id)
-                myRef.setValue(0)
+                myRef.setValue("W")
                 ToHome()
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }

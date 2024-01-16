@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button_square_rounded_corners"
+        android:background="@drawable/button_roundcorner"
         android:backgroundTint="@color/background_black"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/button_square_rounded_corners">
+            android:background="@android:color/transparent">
 
             <TextView
                 android:id="@+id/user_and_icon_4_group_preview"
@@ -131,7 +131,7 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/join_group_group_preview"
             android:layout_width="298dp"
             android:layout_height="59dp"
@@ -140,8 +140,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="15dp"
+            android:background="@drawable/button_roundcorner"
             android:backgroundTint="@color/ic_launcher_background"
-            android:backgroundTintMode="screen"
             android:text="@string/join_button_group_assembly"
             android:textColor="@color/background_black" />
 
