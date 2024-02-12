@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.IntervisiON" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:background">@color/light_gray</item>
+        <item name="android:windowBackground">@color/light_gray</item>
         <item name="android:navigationBarColor">@color/light_gray</item>
         <item name="android:statusBarColor">@color/light_gray</item>
         <item name="android:windowLightNavigationBar">true</item>

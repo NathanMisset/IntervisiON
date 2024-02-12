@@ -9,10 +9,10 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
-class Activity_Reset_Password : AppCompatActivity() {
+open class ActivityResetPassword : AppCompatActivity() {
     private var auth: FirebaseAuth? = null
-    var emailText: EditText? = null
-    var sendButton: Button? = null
+    private var emailText: EditText? = null
+    private var sendButton: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
@@ -20,35 +20,35 @@ class Activity_Reset_Password : AppCompatActivity() {
 
 //      Button
         sendButton = findViewById(R.id.send_button_reset_password)
-        sendButton!!.setOnClickListener(View.OnClickListener {
+        sendButton!!.setOnClickListener {
             Log.d("BUTTONS", "User tapped the SendButton")
-            ResetPassword("nl")
-        })
+            resetPassword()
+        }
         val backButton = findViewById<Button>(R.id.back_button_reset_password)
         backButton.setOnClickListener {
             Log.d("BUTTONS", "User tapped the backButton")
-            ToLogin()
+            toLogin()
         }
         emailText = findViewById(R.id.email_reset_password)
     }
 
-    private fun ToLogin() {
-        val i = Intent(this, Activity_Login::class.java)
+    private fun toLogin() {
+        val i = Intent(this, ActivityLogin::class.java)
         startActivity(i)
     }
 
-    protected fun ResetPassword(languageCode: String?) {
-        auth!!.setLanguageCode(languageCode!!)
+    private fun resetPassword() {
+        auth!!.setLanguageCode("nl")
         auth!!.sendPasswordResetEmail(emailText!!.text.toString())
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "Email sent to: " + emailText!!.text.toString())
-                    MailSend()
+                    mailSend()
                 }
             }
     }
 
-    protected fun MailSend() {
+    private fun mailSend() {
         val button = findViewById<Button>(R.id.back_button_reset_password)
         button.visibility = View.VISIBLE
         sendButton!!.visibility = View.GONE

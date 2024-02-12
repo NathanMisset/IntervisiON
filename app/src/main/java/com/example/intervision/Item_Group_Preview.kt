@@ -2,9 +2,6 @@ package com.example.intervision
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +20,6 @@ class Item_Group_Preview(
     private var header: TextView? = null
     private var button: Button? = null
     private val participantsTextView: ArrayList<TextView>
-    private val dataSession: Map<String, Any>? = null
-    private val dataUsers: Map<String, Any>? = null
     private val storage: FirebaseStorage
 
     init {
@@ -52,8 +47,8 @@ class Item_Group_Preview(
         participantsTextView.add(layout.findViewById(R.id.user_and_icon_4_group_preview))
         participantsTextView.add(layout.findViewById(R.id.user_and_icon_5_group_preview))
         participantsTextView.add(layout.findViewById(R.id.user_and_icon_6_group_preview))
-        val participantN: Int
-        participantN = participantsSiD?.size ?: 0
+//        val participantN: Int
+//        participantN = participantsSiD?.size ?: 0
         for (i in participantsTextView.indices) {
             participantsTextView[i].text = null
             participantsTextView[i].setCompoundDrawables(null, null, null, null)
@@ -61,7 +56,7 @@ class Item_Group_Preview(
     }
 
     private val userData: Unit
-        private get() {
+        get() {
             dataBase!!.collection("User Data")
                 .whereIn("User UID", participantsSiD!!)
                 .get()
@@ -93,30 +88,30 @@ class Item_Group_Preview(
     private fun SetParticipant(i: Int, data: Map<String, Any>) {
         Log.d(TAG, "$data => ")
         participantsTextView[i].text = data["Voornaam"] as String?
-        getImage(data["User UID"].toString(), participantsTextView[i])
+        //getImage(data["User UID"].toString(), participantsTextView[i])
     }
 
-    private fun getImage(Uid: String, view: TextView) {
-        val storageRef = storage.reference
-
-        // Create a reference with an initial file path and name
-        val pathReference = storageRef.child("ProfilePictures/$Uid")
-        //Log.d(TAG, "pathReference " + pathReference);
-        val ONE_MEGABYTE = (1024 * 1024).toLong()
-        pathReference.getBytes(ONE_MEGABYTE)
-            .addOnSuccessListener { bytes -> // Data for "images/island.jpg" is returns, use this as needed
-                var bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                bitmap = Bitmap.createScaledBitmap(bitmap!!, 180, 180, false)
-                view.setCompoundDrawablesWithIntrinsicBounds(
-                    null,
-                    BitmapDrawable(view.resources, bitmap),
-                    null,
-                    null
-                )
-            }.addOnFailureListener {
-            // Handle any errors
-        }
-    }
+//    private fun getImage(Uid: String, view: TextView) {
+//        val storageRef = storage.reference
+//
+//        // Create a reference with an initial file path and name
+//        val pathReference = storageRef.child("ProfilePictures/$Uid")
+//        //Log.d(TAG, "pathReference " + pathReference);
+//        val ONE_MEGABYTE = (1024 * 1024).toLong()
+//        pathReference.getBytes(ONE_MEGABYTE)
+//            .addOnSuccessListener { bytes -> // Data for "images/island.jpg" is returns, use this as needed
+//                var bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+//                bitmap = Bitmap.createScaledBitmap(bitmap!!, 180, 180, false)
+//                view.setCompoundDrawablesWithIntrinsicBounds(
+//                    null,
+//                    BitmapDrawable(view.resources, bitmap),
+//                    null,
+//                    null
+//                )
+//            }.addOnFailureListener {
+//            // Handle any errors
+//        }
+//    }
 
     private fun CheckIfLeader() {
         Log.d(TAG, "leaderId " + leaderId + " userid " + user!!.uid.toString())
@@ -128,7 +123,7 @@ class Item_Group_Preview(
     }
 
     private fun ToIntervision() {
-        val i = Intent(activity, Activity_Waiting_Room::class.java)
+        val i = Intent(activity, ActivityWaitingRoom::class.java)
         Log.d(TAG, "SessionId ")
         Log.d(TAG, "SessionId $SessionId")
         i.putExtra("SessionID", SessionId)
@@ -137,7 +132,7 @@ class Item_Group_Preview(
     }
 
     private fun ToIntervisionLeader() {
-        val i = Intent(activity, Activity_Waiting_Room::class.java)
+        val i = Intent(activity, ActivityWaitingRoom::class.java)
         Log.d(TAG, "SessionId ")
         Log.d(TAG, "SessionId $SessionId")
         i.putExtra("SessionID", SessionId)

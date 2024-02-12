@@ -9,15 +9,14 @@ import android.widget.TextView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
-class Item_thesis (
+class Itemthesis(
     storage: FirebaseStorage,
     firestore: FirebaseFirestore,
     parent: View,
     activity: Activity,
     partisipantsIdS: ArrayList<String>,
-    layout: View?,
     stellingID: String?
-    ) : Manager_Basic_Item() {
+) : Manager_Basic_Item() {
         //Firebase
         private val storage: FirebaseStorage
         private val firestore: FirebaseFirestore
@@ -27,7 +26,7 @@ class Item_thesis (
         private val activity: Activity
 
         //Variables
-        public var layout: View
+        var layout: View
         private val partisipantsIdS: ArrayList<String>
         private var Against: ArrayList<String>? = null
         private var InFavour: ArrayList<String>? = null
@@ -86,7 +85,6 @@ class Item_thesis (
                     }
                 }
         }
-
 
         companion object {
             private const val TAG = "Thesis Item"

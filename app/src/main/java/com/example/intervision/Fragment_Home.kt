@@ -14,53 +14,46 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Fragment_Home.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Fragment_Home : Fragment() {
+
+class FragmentHome : Fragment() {
 
     private var user: FirebaseUser? = null
     private var db: FirebaseFirestore? = null
-    private var Statements: ArrayList<String>? = null
-    private var Questions: ArrayList<String>? = null
+    private var statements: ArrayList<String>? = null
+    private var questions: ArrayList<String>? = null
     private var statementId: ArrayList<String>? = null
     private var voteItemLocation: ViewGroup? = null
     private var greeting: TextView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
-    fun SetName(data: Map<String?, Any>) {
-        greeting!!.text = """Goedemiddag,
-        ${data["Voornaam"]}"""
-    }
+//    fun setName(data: Map<String?, Any>) {
+//        greeting!!.text = """Goedemiddag,
+//        ${data["Voornaam"]}"""
+//    }
 
-    private val username: Unit
-        private get() {
-            db!!.collection("User Data")
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result) {
-                            //Log.d(TAG, " => UserID " + document.data["User UID"])
-                            //Log.d(TAG, user!!.uid)
-                            val u = user!!.uid
-                            val d = document.data["User UID"] as String?
-                            if (u == d) {
-                                //Log.d(TAG, "Inside if")
-                                //SetName(document.getData());
-                            }
-                        }
-                    } else {
-                        //Log.w(TAG, "Error getting documents.", task.exception)
-                    }
-                }
-        }
+//    private val username: Unit
+//        get() {
+//            db!!.collection("User Data")
+//                .get()
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        for (document in task.result) {
+//                                Log.d(TAG, " => UserID " + document.data["User UID"])
+//                                Log.d(TAG, user!!.uid)
+//                            val u = user!!.uid
+//                            val d = document.data["User UID"] as String?
+//                            if (u == d) {
+//                                Log.d(TAG, "Inside if")
+//                                SetName(document.getData());
+//                            }
+//                        }
+//                    } else {
+//                        Log.w(TAG, "Error getting documents.", task.exception)
+//                    }
+//                }
+//        }
     private val thesis: Unit
-        private get() {
+        get() {
             db!!.collection("Theses")
                 .get()
                 .addOnCompleteListener { task ->
@@ -68,8 +61,8 @@ class Fragment_Home : Fragment() {
                         for (document in task.result) {
                             //Log.d(TAG, "Statements : $Statements")
                             statementId!!.add(document.id)
-                            Statements!!.add(document.data["Statement"].toString())
-                            Questions!!.add(document.data["Question"].toString())
+                            statements!!.add(document.data["Statement"].toString())
+                            questions!!.add(document.data["Question"].toString())
                         }
                         //Log.d(TAG, "MakeThesisViewPager")
                         getIfVoted()
@@ -78,23 +71,23 @@ class Fragment_Home : Fragment() {
                     }
                 }
         }
-    private fun InitVoteItem(result: Boolean){
-        if(!result){
-            val item_Vote = Item_Vote(voteItemLocation, activity, Statements!![0], Questions!![0], statementId!![0], user!!, db!!)
-        } else{
-            val item_Result = Item_Result(voteItemLocation, activity, Statements!![0], user!!, db!!, requireContext())
-        }
-
-
-
-    }
+//    private fun InitVoteItem(result: Boolean){
+//        if(!result){
+//            //val item_Vote = Item_Vote(voteItemLocation, activity, Statements!![0], Questions!![0], statementId!![0], user!!, db!!)
+//        } else{
+//            //val item_Result = Item_Result(voteItemLocation, activity, Statements!![0], user!!, db!!, requireContext())
+//        }
+//
+//
+//
+//    }
 
     private fun getIfVoted() {
-        var AgainstArray = ArrayList<String>()
-        AgainstArray = arrayListOf()
-        var ForArray = ArrayList<String>()
-        ForArray = arrayListOf()
-        var voted = false
+        var againstArray: ArrayList<String>
+        againstArray = arrayListOf()
+        var forArray: ArrayList<String>
+        forArray = arrayListOf()
+        var voted: Boolean
 
 
         db!!.collection("Votes")
@@ -105,16 +98,18 @@ class Fragment_Home : Fragment() {
                 if (task.isSuccessful) {
                     for (document in task.result) {
                         //Log.d(TAG, "Statements : $Statements")
-                        AgainstArray = document.data["Against"] as java.util.ArrayList<String>
-                        ForArray = document.data["In Favour"] as java.util.ArrayList<String>
+                        @Suppress("UNCHECKED_CAST")
+                        againstArray = document.data["Against"] as ArrayList<String>
+                        @Suppress("UNCHECKED_CAST")
+                        forArray = document.data["In Favour"] as ArrayList<String>
                     }
 
-                    voted = AgainstArray.contains(user!!.uid)
+                    voted = againstArray.contains(user!!.uid)
                     if(!voted){
-                        voted = ForArray.contains(user!!.uid)
+                        voted = forArray.contains(user!!.uid)
                     }
                     Log.d(TAG, "voted : $voted")
-                    InitVoteItem(voted)
+                    //InitVoteItem(voted)
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
@@ -144,15 +139,15 @@ class Fragment_Home : Fragment() {
 //        viewPager2!!.getChildAt(0).overScrollMode = View.OVER_SCROLL_NEVER
 //    }
 
-    private fun ToTutorial() {
+    private fun toTutorial() {
         val i = Intent(activity, Activity_Tutorial::class.java)
         startActivity(i)
     }
 
-    private fun reload() {
-        val i = Intent(activity, Activity_Login::class.java)
-        startActivity(i)
-    }
+//    private fun reload() {
+//        val i = Intent(activity, ActivityLogin::class.java)
+//        startActivity(i)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -164,24 +159,24 @@ class Fragment_Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         user = FirebaseAuth.getInstance().currentUser
         db = FirebaseFirestore.getInstance()
-        Statements = ArrayList()
-        Questions = ArrayList()
+        statements = ArrayList()
+        questions = ArrayList()
         statementId = ArrayList()
 
 
 
-        val Layout = getView()
-        val toTutorialButton = Layout!!.findViewById<View>(R.id.tutorial_button_home) as Button
+        val layout = getView()
+        val toTutorialButton = layout!!.findViewById<View>(R.id.tutorial_button_home) as Button
         toTutorialButton.setOnClickListener {
             Log.d("BUTTONS", "User tapped $toTutorialButton")
-            ToTutorial()
+            toTutorial()
 
         }
-        voteItemLocation = Layout.findViewById(R.id.vote_item_location_home)
+        voteItemLocation = layout.findViewById(R.id.vote_item_location_home)
 
-        greeting = Layout.findViewById(R.id.greeting_home)
+        greeting = layout.findViewById(R.id.greeting_home)
 
-        username
+        //username
         thesis
         // Inflate the layout for this fragment
     }
@@ -189,24 +184,15 @@ class Fragment_Home : Fragment() {
     companion object {
 
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
         private const val TAG = "Home"
 
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment algorithm_fragment.
-         */
 
-        fun newInstance(param1: String?, param2: String?): Fragment_Home {
-            val fragment = Fragment_Home()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+
+//        fun newInstance(): FragmentHome {
+//            val fragment = FragmentHome()
+//            val args = Bundle()
+//            fragment.arguments = args
+//            return fragment
+//        }
     }
 }

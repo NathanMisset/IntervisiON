@@ -1,5 +1,7 @@
 package com.example.intervision
 
-open class Manager_Basic_Item {
+import androidx.activity.ComponentActivity
+
+open class Manager_Basic_Item : ComponentActivity() {
     protected open fun Init() {}
 }

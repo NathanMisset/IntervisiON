@@ -1,4 +1,4 @@
-2
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.intervision"
-        minSdk = 21
+        minSdk = 27
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -49,15 +49,14 @@ android {
 
 
 dependencies {
-    val compose_version = "1.5.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.activity:activity:1.8.1")
+    implementation("androidx.activity:activity:1.8.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.vectordrawable:vectordrawable:1.1.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
@@ -68,7 +67,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-storage:20.3.0")
-    implementation("com.google.firebase:firebase-firestore:24.10.0")
+    implementation("com.google.firebase:firebase-firestore:24.10.2")
     implementation("com.google.firebase:firebase-database")
 
     val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
@@ -97,9 +96,9 @@ dependencies {
     implementation("androidx.compose.material3:material3-window-size-class")
 
     // Optional - Integration with activities
-    implementation("androidx.activity:activity-compose:1.8.1")
+    implementation("androidx.activity:activity-compose:1.8.2")
     // Optional - Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     // Optional - Integration with LiveData
     implementation("androidx.compose.runtime:runtime-livedata")
     // Optional - Integration with RxJava

@@ -1,30 +1,15 @@
 package com.example.intervision
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 
-class Activity_Main : AppCompatActivity() {
+class ActivityMain : AppCompatActivity() {
     var loginType = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
-        }
-        if (Build.VERSION.SDK_INT >= 19) {
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
-        //make fully Android Transparent Status bar
-        if (Build.VERSION.SDK_INT >= 21) {
-            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-            window.statusBarColor = Color.TRANSPARENT
-        }
+        window.statusBarColor = Color.TRANSPARENT
         setContentView(R.layout.activity_login)
         when (loginType) {
             0 -> launchRegister()
@@ -36,6 +21,7 @@ class Activity_Main : AppCompatActivity() {
             6 -> launchHome()
             7 -> launchFragmentTest()
             8 -> launchJetpackCompose()
+            9 -> launchCompose()
         }
     }
 
@@ -50,6 +36,11 @@ class Activity_Main : AppCompatActivity() {
         val i = Intent(this, Activity_Register::class.java)
         startActivity(i)
     }
+    fun launchCompose() {
+        //Launch register activity
+        val i = Intent(this, ActivityJetpackCompose::class.java)
+        startActivity(i)
+    }
 
     fun launchTutorial() {
         //Launch Tutorial activity
@@ -58,7 +49,7 @@ class Activity_Main : AppCompatActivity() {
     }
 
     fun launchLogin() {
-        val i = Intent(this, Activity_Login::class.java)
+        val i = Intent(this, ActivityLogin::class.java)
         startActivity(i)
     }
 
@@ -83,20 +74,9 @@ class Activity_Main : AppCompatActivity() {
     }
 
     fun launchJetpackCompose() {
-        val i = Intent(this, Activity_Jetpack_Compose::class.java)
+        val i = Intent(this, ActivityJetpackCompose::class.java)
         startActivity(i)
     }
 
-    companion object {
-        fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
-            val win = activity.window
-            val winParams = win.attributes
-            if (on) {
-                winParams.flags = winParams.flags or bits
-            } else {
-                winParams.flags = winParams.flags and bits.inv()
-            }
-            win.attributes = winParams
-        }
-    }
+
 }

@@ -11,15 +11,9 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Fragment_Groups.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Fragment_Groups : Fragment() {
+@Suppress("UNCHECKED_CAST")
+class FragmentGroups : Fragment() {
 
-    private val mParam1: String? = null
-    private val mParam2: String? = null
     protected var scrollLayout: ViewGroup? = null
     protected var availableGroups: ArrayList<Item_Group_Preview>? = null
     protected var user: FirebaseAuth? = null
@@ -52,7 +46,7 @@ class Fragment_Groups : Fragment() {
     }
 
     protected val data: Unit
-        protected get() {
+        get() {
             dataBase = FirebaseFirestore.getInstance()
             dataBase!!.collection("Sessions")
                 .get()
@@ -84,32 +78,24 @@ class Fragment_Groups : Fragment() {
         startActivity(i)
     }
 
-    private fun toHome() {
-        val i = Intent(activity, Activity_Login::class.java)
-        startActivity(i)
-    }
+//    private fun toHome() {
+//        val i = Intent(activity, ActivityLogin::class.java)
+//        startActivity(i)
+//    }
 
     companion object {
 
         // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
+
         private const val TAG = "GroupAssemblyActivity"
 
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment profile.
-         */
 
-        fun newInstance(param1: String?, param2: String?): Fragment_Groups {
-            val fragment = Fragment_Groups()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
+
+//        fun newInstance(): FragmentGroups {
+//            val fragment = FragmentGroups()
+//            val args = Bundle()
+//            fragment.arguments = args
+//            return fragment
+//        }
     }
 }

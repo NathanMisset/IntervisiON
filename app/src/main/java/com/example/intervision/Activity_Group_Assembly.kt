@@ -1,6 +1,5 @@
 package com.example.intervision
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
@@ -8,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+@Suppress("UNCHECKED_CAST")
 class Activity_Group_Assembly : AppCompatActivity() {
     protected var scrollLayout: ViewGroup? = null
     protected var availableGroups: ArrayList<Item_Group_Preview>? = null
@@ -23,7 +23,7 @@ class Activity_Group_Assembly : AppCompatActivity() {
     }
 
     protected val data: Unit
-        protected get() {
+        get() {
             dataBase = FirebaseFirestore.getInstance()
             dataBase!!.collection("Sessions")
                 .get()
@@ -50,10 +50,10 @@ class Activity_Group_Assembly : AppCompatActivity() {
         )
     }
 
-    private fun toHome() {
-        val i = Intent(this, Activity_Login::class.java)
-        startActivity(i)
-    }
+//    private fun toHome() {
+//        val i = Intent(this, ActivityLogin::class.java)
+//        startActivity(i)
+//    }
 
     companion object {
         private const val TAG = "GroupAssemblyActivity"

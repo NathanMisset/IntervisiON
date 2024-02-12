@@ -26,13 +26,13 @@ class Activity_Test_Connection : AppCompatActivity() {
 
     private fun launchIntervisionLeader() {
         //Launch Image activity
-        val i = Intent(this, Activity_Intervision_Leader::class.java)
+        val i = Intent(this, ActivityIntervisionLeader::class.java)
         startActivity(i)
     }
 
     private fun launchIntervision() {
         //Launch Image activity
-        val i = Intent(this, Activity_Intervision::class.java)
+        val i = Intent(this, ActivityIntervision::class.java)
         startActivity(i)
     }
 }

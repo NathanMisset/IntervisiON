@@ -12,13 +12,62 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="Test" />
+    <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="Test2">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemAction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionLeader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionUser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemRoundsExplained.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemVote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/itemRoundThird.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ui/Color.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ui/Shape.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ui/Spacing.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ui/Theme.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ui/Type.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_picture_blue_024x024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_picture_blue_048x048.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_picture_blue_072x072.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_picture_blue_096x096.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_picture_blue_192x192.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Group_Assembly.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Group_Assembly.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Intervision.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Intervision_Leader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Intervision_Leader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Jetpack_Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Jetpack_Compose.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Login.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Reset_Password.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Reset_Password.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Test_Connection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Test_Connection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Waiting_Room.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Waiting_Room.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Profile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Profile.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Eleborate_Choice.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Group_Preview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Group_Preview.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Notification.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Turn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Turn.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_thesis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_thesis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Manager_Basic_Item.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Manager_Basic_Item.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-v27/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-v27/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RF8M509V4SZ]" />
+  <component name="ChangesViewManager" show_ignored="true">
+    <option name="groupingKeys">
+      <option value="directory" />
+      <option value="module" />
+    </option>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\natha\.android\avd\Iphone_API_34.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -65,10 +114,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="valueResourceFile" />
         <option value="resourceFile" />
         <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="valueResourceFile" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -80,6 +129,19 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="af94f7e2-391c-4a73-954f-087f1750f850" />
+        <option name="url" value="https://github.com/NathanMisset/IntervisiON.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -100,15 +162,14 @@
     &quot;ScreenshotViewer.SavePath&quot;: &quot;C:/Users/natha/Pictures/Saved Pictures&quot;,
     &quot;android-custom-viewC:/Users/natha/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED&quot;: &quot;RecyclerView&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.android.tools.idea.devicemanager.tab&quot;: &quot;Physical&quot;,
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable-v24&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Build Variants&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
   }
 }</component>
   <component name="PsdUISettings">
@@ -118,13 +179,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res\drawable" />
+      <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res\drawable-v24" />
       <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res\layout" />
       <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res\drawable" />
+      <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app\src\main\res\layout" />
       <recent name="C:\Users\natha\AndroidStudioProjects\IntervisiON\app" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
@@ -222,7 +284,14 @@
       <option name="project" value="LOCAL" />
       <updated>1705412096782</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Test2">
+      <created>1705488655389</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705488655389</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -239,6 +308,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test" />
+    <MESSAGE value="Test2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test2" />
   </component>
 </project>

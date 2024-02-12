@@ -23,23 +23,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Tutorial"></activity>
-        <activity android:name=".Activity_Register"></activity>
-        <activity android:name=".Activity_Main"
-            android:exported="false"></activity>
-        <activity android:name=".Activity_Login"></activity>
+        <activity android:name=".Activity_Tutorial" />
+        <activity android:name=".Activity_Register" />
+        <activity
+            android:name=".ActivityMain"
+            android:exported="false" />
+        <activity android:name=".ActivityLogin" />
 
-        <activity android:name=".Activity_Image_From_User"></activity>
+        <activity android:name=".Activity_Image_From_User" />
 
-        <activity android:name=".Activity_Reset_Password"></activity>
-        <activity android:name=".Activity_Intervision_Leader"></activity>
-        <activity android:name=".Activity_Intervision"></activity>
-        <activity android:name=".Activity_Test_Connection"></activity>
-        <activity android:name=".Activity_Make_Group"></activity>
-        <activity android:name=".Activity_Group_Assembly"></activity>
-        <activity android:name=".Activity_Navigation"></activity>
-        <activity android:name=".Activity_Jetpack_Compose"></activity>
-        <activity android:name=".Activity_Waiting_Room"></activity>
+        <activity android:name=".ActivityResetPassword" />
+        <activity android:name=".ActivityIntervisionLeader" />
+        <activity android:name=".ActivityIntervision" />
+        <activity android:name=".Activity_Test_Connection" />
+        <activity android:name=".Activity_Make_Group" />
+        <activity android:name=".Activity_Group_Assembly" />
+        <activity android:name=".Activity_Navigation" />
+        <activity android:name=".ActivityJetpackCompose" />
+        <activity android:name=".ActivityWaitingRoom" />
 
     </application>
 

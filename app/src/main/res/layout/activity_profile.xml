@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="10dp"
@@ -13,16 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:text="Profile"
+        android:text="@string/profile"
         android:textColor="@color/background_black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/button_settings_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:contentDescription="@string/random"
+        android:layout_gravity="end"
         android:layout_margin="5dp"
         android:background="@drawable/button_roundcorner"
         android:backgroundTint="@color/yellow_100"
@@ -38,44 +38,27 @@
 
     <ImageView
         android:id="@+id/profile_picture_settings"
+        android:contentDescription="@string/random"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp" />
+
+    <View
+        android:id="@+id/view"
+        style="@style/Divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/background_black" />
 
     <TextView
         android:id="@+id/username_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Monica"
+        android:text="@string/monica"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/persenal_data_button_settings"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/light_gray"
-        android:gravity="center"
-        android:text="Persoonlijke gegevens"
-        android:textColor="@color/yellow_100" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/mystandses_button_settings"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/light_gray"
-        android:text="Mijn stellingen"
-        android:textColor="@color/yellow_100" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/messages_button_settings"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/light_gray"
-        android:text="Meldingen"
-        android:textColor="@color/yellow_100" />
 </LinearLayout>
