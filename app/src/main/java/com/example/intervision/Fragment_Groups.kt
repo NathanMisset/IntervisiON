@@ -74,7 +74,7 @@ class FragmentGroups : Fragment() {
     }
 
     private fun ToMakeGroup() {
-        val i = Intent(activity, Activity_Make_Group::class.java)
+        val i = Intent(activity, ActivityMakeGroup::class.java)
         startActivity(i)
     }
 

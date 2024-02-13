@@ -13,7 +13,7 @@
         android:theme="@style/Theme.IntervisiON"
         tools:targetApi="31">
         <activity
-            android:name=".Activity_Splash"
+            android:name=".ActivitySplash"
 
             android:exported="true"
             android:label="@string/name_app">
@@ -23,22 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity_Tutorial" />
-        <activity android:name=".Activity_Register" />
+        <activity android:name=".ActivityTutorial" />
+        <activity android:name=".ActivityRegister" />
         <activity
             android:name=".ActivityMain"
             android:exported="false" />
         <activity android:name=".ActivityLogin" />
 
-        <activity android:name=".Activity_Image_From_User" />
+        <activity android:name=".ActivityImageFromUser" />
 
         <activity android:name=".ActivityResetPassword" />
         <activity android:name=".ActivityIntervisionLeader" />
         <activity android:name=".ActivityIntervision" />
-        <activity android:name=".Activity_Test_Connection" />
-        <activity android:name=".Activity_Make_Group" />
-        <activity android:name=".Activity_Group_Assembly" />
-        <activity android:name=".Activity_Navigation" />
+        <activity android:name=".ActivityTestConnection" />
+        <activity android:name=".ActivityMakeGroup" />
+        <activity android:name=".ActivityGroupAssembly" />
+        <activity android:name=".ActivityNavigation" />
         <activity android:name=".ActivityJetpackCompose" />
         <activity android:name=".ActivityWaitingRoom" />
 

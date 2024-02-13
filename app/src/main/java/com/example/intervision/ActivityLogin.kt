@@ -10,9 +10,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -36,20 +37,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.MyApplicationTheme
-import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class ActivityLogin : ComponentActivity() {
     private var mAuth: FirebaseAuth? = null
-
-    private lateinit var username : MutableState<String>
-    private lateinit var password : MutableState<String>
+    private var username: MutableState<String> = mutableStateOf("")
+    private var password: MutableState<String> = mutableStateOf("")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
-        username = mutableStateOf("")
-        password = mutableStateOf("")
         setContent {
             DefaultPreview()
         }
@@ -83,12 +80,12 @@ class ActivityLogin : ComponentActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
+                    Log.d("dasda", "signInWithEmail:success")
                     val user = mAuth!!.currentUser
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Log.w("tads", "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         this@ActivityLogin, "Login failed.",
                         Toast.LENGTH_SHORT
@@ -105,12 +102,12 @@ class ActivityLogin : ComponentActivity() {
     }
 
     private fun toRegister() {
-        val i = Intent(this, Activity_Register::class.java)
+        val i = Intent(this, ActivityRegister::class.java)
         startActivity(i)
     }
 
     private fun reload() {
-        val i = Intent(this, Activity_Navigation::class.java)
+        val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
 
@@ -118,42 +115,45 @@ class ActivityLogin : ComponentActivity() {
         if (user == null) return
         reload()
     }
-    @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
+
+    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
+    //@Preview(device = "spec:width=1080px,height=540px,dpi=400")
     @Composable
     fun DefaultPreview() {
         MyApplicationTheme {
-            Column (
+            Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .background(color = MaterialTheme.colorScheme.background),
-
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround
+                verticalArrangement = Arrangement.SpaceEvenly
 
-                ){
-                Image(
-                    painter = painterResource(id = R.drawable.image_main_icon),
-                    contentDescription = stringResource(id = R.string.content_1),
-                    Modifier.fillMaxWidth()
-                        .padding(top = spacing.medium)
-                        .weight(.3f)
-                )
-                Column(
+            ) {
+                Column (
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top,
-                    modifier = Modifier.weight(.7f)
-                        .padding(horizontal = spacing.extraLarge, vertical = spacing.default),
-
-                ) {
-
-                    Text("Login",
+                    verticalArrangement = Arrangement.SpaceEvenly
+                ){
+                    Image(
+                        painter = painterResource(id = R.drawable.image_main_icon),
+                        contentDescription = stringResource(id = R.string.content_1),
+                        Modifier
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        "Login",
                         fontSize = 30.sp,
                         fontWeight = Bold,
-                        modifier = Modifier
-                            .padding(horizontal = spacing.default, vertical = spacing.medium),
+                    )
+                }
 
-                        )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .fillMaxHeight(0.3f),
+                )
+                {
                     TextField(
                         value = username.value,
                         onValueChange = { username.value = it },
@@ -166,9 +166,9 @@ class ActivityLogin : ComponentActivity() {
                         ),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
+                            .defaultMinSize(minHeight = 50.dp)
                             .fillMaxWidth()
-                            .padding(horizontal = spacing.default, vertical = spacing.small),
-                        )
+                    )
                     TextField(
                         value = password.value,
                         onValueChange = { password.value = it },
@@ -185,59 +185,63 @@ class ActivityLogin : ComponentActivity() {
                         ),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
+                            .defaultMinSize(minHeight = 50.dp)
                             .fillMaxWidth()
-                            .padding(horizontal = spacing.default, vertical = spacing.small),
+                    )
+                }
 
-                        )
-                    Button(onClick = {
+                Button(
+                    onClick = {
                         Log.d("BUTTONS", "User tapped the LoginButton")
-
                         if (checkAllFields()) {
                             signIn(username.value, password.value)
                         }
                     },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                top = spacing.small,
-                                bottom = spacing.extraLarge,
-                                start = spacing.default,
-                                end = spacing.default)
-                    )
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .defaultMinSize(minHeight = 50.dp)
 
-                    {
-                        Text(text = "Login",
-                            modifier = Modifier.padding(horizontal = spacing.default, vertical = spacing.small),
-                        )
-                    }
-                    OutlinedButton(onClick = {
-                        toRegister()
-                    },
+                )
+                {
+                    Text(
+                        text = "Login",
+                    )
+                }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                            modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                            .fillMaxHeight(0.35f),
+                ) {
+                    OutlinedButton(
+                        onClick = {
+                            toRegister()
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = spacing.default, vertical = spacing.small),
+                            .defaultMinSize(minHeight = 50.dp)
                     )
                     {
                         Text(text = "Registeren")
                     }
-                    OutlinedButton(onClick = {
-                        toRestPassword()
-                    },
+                    OutlinedButton(
+                        onClick = {
+                            toRestPassword()
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = spacing.default, vertical = spacing.small),
+                            .defaultMinSize(minHeight = 50.dp)
                     )
                     {
                         Text(text = "Wachtwoord vergeten?")
                     }
-
                 }
-
-
             }
         }
     }
-    companion object {
-        private const val TAG = "Login"
-    }
 }
+
+
+

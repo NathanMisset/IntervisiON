@@ -1,5 +1,6 @@
 package com.example.intervision
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Activity_Make_Group : AppCompatActivity() {
+class ActivityMakeGroup : AppCompatActivity() {
     private var leader: TextView? = null
     private var groupName: TextView? = null
     private var user: FirebaseAuth? = null
@@ -23,7 +24,7 @@ class Activity_Make_Group : AppCompatActivity() {
     private var thesis = ArrayList<String>()
     var spinners: ArrayList<Item_Spinner>? = null
     private lateinit var users: ArrayList<String>
-    private var UIDs: ArrayList<String?>? = null
+    private var uIDs: ArrayList<String?>? = null
     var activity: Activity? = null
     var postionMainSpinner = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,19 +36,19 @@ class Activity_Make_Group : AppCompatActivity() {
         fireStoreDatabase = FirebaseFirestore.getInstance()
         groupName = findViewById(R.id.group_name_make_group)
         users = ArrayList()
-        UIDs = ArrayList()
-        users!!.add("Gebruiker")
-        UIDs!!.add(null)
+        uIDs = ArrayList()
+        users.add("Gebruiker")
+        uIDs!!.add(null)
         postionMainSpinner = 0
         val makeGroupButton = findViewById<View>(R.id.make_group_button) as Button
         makeGroupButton.setOnClickListener {
             Log.d("BUTTONS", "User tapped the makeGroupButton")
-            MakeGroup()
+            makeGroup()
         }
         data
     }
 
-    fun setSpinner() {
+    private fun setSpinner() {
         val listOfNUmbers: ArrayList<String> = arrayListOf("0","1","2","3","4","5" )
 
         mainSpinner = Item_Spinner(listOfNUmbers, findViewById(R.id.layout_make_group), this)
@@ -81,17 +82,18 @@ class Activity_Make_Group : AppCompatActivity() {
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-        GetThesis()
+        getThesis()
 
     }
 
-    fun SetName(data: Map<String?, Any>) {
+    @SuppressLint("SetTextI18n")
+    private fun setName(data: Map<String?, Any>) {
         leader = findViewById(R.id.leader_name_make_group)
-        leader!!.setText("Groepsleider: " + data["Voornaam"].toString())
+        leader!!.text = "Groepsleider: ${data["Voornaam"].toString()}"
     }
 
-    fun GetThesis(){
-        var firestore = fireStoreDatabase
+    private fun getThesis(){
+        val firestore = fireStoreDatabase
         thesis = ArrayList()
         firestore!!.collection("Theses")
             .limit(1)
@@ -101,12 +103,12 @@ class Activity_Make_Group : AppCompatActivity() {
                     for (document in task.result) {
                         Log.d(TAG, document.id + " => " + document.data)
 
-                        thesis!!.add(document.data["Statement"].toString() + document.id)
+                        thesis.add(document.data["Statement"].toString() + document.id)
 
                     }
                     Log.d(TAG, "thesis $thesis")
-                    var ThesisSpinner = Item_Spinner(thesis, findViewById(R.id.layout_make_group), this)
-                    ThesisSpinner!!.init()
+                    val thesisSpinner = Item_Spinner(thesis, findViewById(R.id.layout_make_group), this)
+                    thesisSpinner.init()
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
@@ -115,7 +117,7 @@ class Activity_Make_Group : AppCompatActivity() {
 
     }
     private val data: Unit
-        private get() {
+        get() {
             fireStoreDatabase!!.collection("User Data")
                 .get()
                 .addOnCompleteListener { task ->
@@ -125,13 +127,13 @@ class Activity_Make_Group : AppCompatActivity() {
                             Log.d(TAG, user!!.uid!!)
                             val u = user!!.uid
                             val d = document.data["User UID"] as String?
-                            if (document.data["Voornaam"].toString().length > 0) {
-                                users!!.add(document.data["Voornaam"].toString())
-                                UIDs!!.add(d)
+                            if (document.data["Voornaam"].toString().isNotEmpty()) {
+                                users.add(document.data["Voornaam"].toString())
+                                uIDs!!.add(d)
                             }
                             if (u == d) {
                                 Log.d(TAG, "Inside if")
-                                SetName(document.data)
+                                setName(document.data)
                             }
                         }
                         setSpinner()
@@ -141,12 +143,12 @@ class Activity_Make_Group : AppCompatActivity() {
                 }
         }
 
-    private fun MakeGroup() {
+    private fun makeGroup() {
         val participants = ArrayList<String?>()
         participants.add(user!!.uid)
-        for (i in 0 until mainSpinner!!.dropdown!!.selectedItemPosition as Int) {
+        for (i in 0 until mainSpinner!!.dropdown!!.selectedItemPosition) {
             if (spinners!![i].dropdown!!.selectedItem !== "Gebruiker") {
-                participants.add(UIDs!![spinners!![i].dropdown!!.selectedItemPosition])
+                participants.add(uIDs!![spinners!![i].dropdown!!.selectedItemPosition])
             }
         }
         val session: MutableMap<String, Any?> = HashMap()
@@ -163,13 +165,13 @@ class Activity_Make_Group : AppCompatActivity() {
                     FirebaseDatabase.getInstance("https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app")
                 val myRef = database.getReference(documentReference.id)
                 myRef.setValue("W")
-                ToHome()
+                toHome()
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
     }
 
-    private fun ToHome() {
-        val i = Intent(this, Activity_Navigation::class.java)
+    private fun toHome() {
+        val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
 

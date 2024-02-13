@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class Activity_Email_Password : Activity() {
+class ActivityEmailPassword : Activity() {
     // [START declare_auth]
     private var mAuth: FirebaseAuth? = null
 
@@ -44,7 +44,7 @@ class Activity_Email_Password : Activity() {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
-                        this@Activity_Email_Password, "Authentication failed.",
+                        this@ActivityEmailPassword, "Authentication failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                     updateUI(null)
@@ -66,7 +66,7 @@ class Activity_Email_Password : Activity() {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
-                        this@Activity_Email_Password, "Authentication failed.",
+                        this@ActivityEmailPassword, "Authentication failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                     updateUI(null)

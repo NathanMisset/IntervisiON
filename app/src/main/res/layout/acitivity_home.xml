@@ -63,18 +63,6 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/background_black" />
 
-    <TextView
-        android:id="@+id/hipotesis_home"
-        android:layout_width="wrap_content"
-        android:layout_height="53dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"
-        android:background="@color/light_gray"
-        android:text="@string/hipotesis_home"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="20sp" />
-
     <LinearLayout
         android:id="@+id/vote_item_location_home"
         android:layout_width="match_parent"

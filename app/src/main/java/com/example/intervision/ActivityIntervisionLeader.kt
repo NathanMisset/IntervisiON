@@ -39,7 +39,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
 
     //Items
     protected var itemVote: ItemVote? = null
-    protected var itemElborateChose: ItemDiscusionLeader? = null
+    private var itemElborateChose: ItemDiscusionLeader? = null
 
     //Firebase
     protected var database: FirebaseDatabase? = null
@@ -53,17 +53,17 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         intervisionRounds = arrayOfNulls(rOUNDNUMBERS)
         Log.d(TAG, "Start IntervisionsLeader")
         sessionID = intent.extras!!.getString("SessionID")
-        IIIIInit()
+        iIIIInit()
     }
 
-    protected fun IIIIInit() {
+    private fun iIIIInit() {
         initVar()
         getData()
         initLayout()
         currentRound = 0
     }
 
-    protected fun getData() {
+    private fun getData() {
         firestore!!.collection("Sessions")
             .document(sessionID!!)
             .get()
@@ -119,7 +119,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         })
 
     }
-    protected fun initVar(){
+    private fun initVar(){
         //firebase
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
@@ -137,7 +137,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         Log.d(TAG, "initConnect")
         initConnection()
     }
-    protected fun initLayout() {
+    private fun initLayout() {
         setContent {
             FirstRound()
         }
@@ -225,6 +225,42 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             }
         }
     }
+    @Composable
+    protected open fun FirstButtonRow(){
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.2f),
+
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Button(onClick = {
+                Log.d("BUTTONS", "User tapped the nextRoundButton")
+                val newval = currentRound!! + 1
+                myRef!!.setValue(newval.toString())
+            }) {
+                Text(text = "Volgende")
+            }
+        }
+    }
+    @Composable
+    protected open fun LastButtonRow(){
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.2f),
+
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Button(onClick = {
+                Log.d("BUTTONS", "User tapped the previousRoundButton")
+                val newval = currentRound!! - 1
+                myRef!!.setValue(newval.toString())
+            }) {
+                Text(text = "Terug")
+            }
+        }
+    }
 
     @Composable
     protected fun FirstRound() {
@@ -238,7 +274,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 verticalArrangement = Arrangement.SpaceAround
             ) {
                 ItemRoundsExplained().Component()
-                DefaultButtonRow()
+                FirstButtonRow()
             }
         }
     }

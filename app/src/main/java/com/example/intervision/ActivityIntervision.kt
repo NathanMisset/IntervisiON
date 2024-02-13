@@ -1,6 +1,5 @@
 package com.example.intervision
 
-import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -21,10 +20,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ActivityIntervision : ActivityIntervisionLeader() {
     private var itemDiscusionUser: ItemDiscusionUser? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "load $TAG")
-        super.onCreate(savedInstanceState)
-    }
 
     override fun initItems() {
         itemVote = ItemVote(firestore!!, thesesID)

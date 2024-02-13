@@ -140,7 +140,7 @@ class Item_Vote(parent: ViewGroup?, activity: FragmentActivity?, statement: Stri
 
     }
     fun reload(){
-        val i = Intent(activity!!, Activity_Navigation::class.java)
+        val i = Intent(activity!!, ActivityNavigation::class.java)
         activity!!.startActivity(i)
     }
     companion object {

@@ -4,7 +4,6 @@
     <shared>
       <config>
         <device id="_device_class_phone" />
-        <device id="_android_virtual_device_id_Moto_API_34" />
       </config>
     </shared>
   </component>
@@ -12,7 +11,30 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="Test2" />
+    <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="Test2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Email_Password.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityEmailPassword.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Group_Assembly.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityGroupAssembly.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Image_From_User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityImageFromUser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Intervision_Leader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervisionLeader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Jetpack_Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityJetpackCompose.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityLogin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMain.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Make_Group.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMakeGroup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Navigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityNavigation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Register.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityRegister.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Reset_Password.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityResetPassword.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Splash.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySplash.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Test_Connection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTestConnection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Tutorial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTutorial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Waiting_Room.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityWaitingRoom.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Vote.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Vote.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/acitivity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/acitivity_home.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +46,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\natha\.android\avd\Iphone_API_34.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RF8M509V4SZ]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -119,14 +141,16 @@
     &quot;ScreenshotViewer.SavePath&quot;: &quot;C:/Users/natha/Pictures/Saved Pictures&quot;,
     &quot;android-custom-viewC:/Users/natha/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED&quot;: &quot;RecyclerView&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.android.tools.idea.devicemanager.tab&quot;: &quot;Physical&quot;,
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable&quot;,
+    &quot;live.layout.inspector.capturing&quot;: &quot;false&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Build Variants&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;experimental&quot;
   }
 }</component>
   <component name="PsdUISettings">
@@ -269,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707737759014</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Test2">
+      <created>1707738161516</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707738161516</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

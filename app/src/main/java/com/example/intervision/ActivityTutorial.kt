@@ -5,7 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 
-class Activity_Tutorial : AppCompatActivity() {
+class ActivityTutorial : AppCompatActivity() {
     var viewPager2: ViewPager2? = null
     var viewPagerItemArrayList: ArrayList<Item_View_Pager>? = null
     override fun onCreate(savedInstanceState: Bundle?) {

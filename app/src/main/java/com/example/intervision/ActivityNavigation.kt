@@ -6,7 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class Activity_Navigation : AppCompatActivity() {
+@Suppress("DEPRECATION")
+class ActivityNavigation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
@@ -16,7 +17,7 @@ class Activity_Navigation : AppCompatActivity() {
         // as soon as the application opens the first 
         // fragment should be shown to the user 
         // in this case it is algorithm fragment 
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, Fragment_Home())
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FragmentHome())
             .commit()
     }
 
@@ -26,15 +27,19 @@ class Activity_Navigation : AppCompatActivity() {
             // the selected fragment 
             // by using there id. 
             var selectedFragment: Fragment? = null
-            val itemId = item.itemId
-            if (itemId == R.id.home) {
-                selectedFragment = Fragment_Home()
-            } else if (itemId == R.id.profile) {
-                selectedFragment = Fragment_Profile()
-            } else if (itemId == R.id.group) {
-                selectedFragment = Fragment_Groups()
-            } else if (itemId == R.id.feed) {
-                selectedFragment = Fragment_Feed()
+            when (item.itemId) {
+                R.id.home -> {
+                    selectedFragment = FragmentHome()
+                }
+                R.id.profile -> {
+                    selectedFragment = FragmentProfile()
+                }
+                R.id.group -> {
+                    selectedFragment = FragmentGroups()
+                }
+                R.id.feed -> {
+                    selectedFragment = Fragment_Feed()
+                }
             }
             // It will help to replace the  
             // one fragment to other. 

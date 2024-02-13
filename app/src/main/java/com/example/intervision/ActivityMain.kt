@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 class ActivityMain : AppCompatActivity() {
-    var loginType = 2
+    private var loginType = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = Color.TRANSPARENT
@@ -27,53 +27,53 @@ class ActivityMain : AppCompatActivity() {
 
     private fun launchImage() {
         //Launch Image activity
-        val i = Intent(this, Activity_Image_From_User::class.java)
+        val i = Intent(this, ActivityImageFromUser::class.java)
         startActivity(i)
     }
 
-    fun launchRegister() {
+    private fun launchRegister() {
         //Launch register activity
-        val i = Intent(this, Activity_Register::class.java)
+        val i = Intent(this, ActivityRegister::class.java)
         startActivity(i)
     }
-    fun launchCompose() {
+    private fun launchCompose() {
         //Launch register activity
         val i = Intent(this, ActivityJetpackCompose::class.java)
         startActivity(i)
     }
 
-    fun launchTutorial() {
+    private fun launchTutorial() {
         //Launch Tutorial activity
-        val i = Intent(this, Activity_Tutorial::class.java)
+        val i = Intent(this, ActivityTutorial::class.java)
         startActivity(i)
     }
 
-    fun launchLogin() {
+    private fun launchLogin() {
         val i = Intent(this, ActivityLogin::class.java)
         startActivity(i)
     }
 
-    fun launchIntervision() {
-        val i = Intent(this, Activity_Test_Connection::class.java)
+    private fun launchIntervision() {
+        val i = Intent(this, ActivityTestConnection::class.java)
         startActivity(i)
     }
 
-    fun launchMakeGroup() {
-        val i = Intent(this, Activity_Make_Group::class.java)
+    private fun launchMakeGroup() {
+        val i = Intent(this, ActivityMakeGroup::class.java)
         startActivity(i)
     }
 
-    fun launchHome() {
-        val i = Intent(this, Activity_Navigation::class.java)
+    private fun launchHome() {
+        val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
 
-    fun launchFragmentTest() {
-        val i = Intent(this, Activity_Navigation::class.java)
+    private fun launchFragmentTest() {
+        val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
 
-    fun launchJetpackCompose() {
+    private fun launchJetpackCompose() {
         val i = Intent(this, ActivityJetpackCompose::class.java)
         startActivity(i)
     }

@@ -19,10 +19,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
-class Activity_Register : AppCompatActivity() {
+class ActivityRegister : AppCompatActivity() {
     private var mAuth: FirebaseAuth? = null
     private var storage: FirebaseStorage? = null
-    private val patterns: Patterns? = null
     var SELECT_PICTURE = 200
     private var BSelectImage: ImageButton? = null
     private var ProfileURI: Uri? = null
@@ -111,7 +110,7 @@ class Activity_Register : AppCompatActivity() {
 
     private fun Toast(Message: String) {
         Toast.makeText(
-            this@Activity_Register, Message,
+            this@ActivityRegister, Message,
             Toast.LENGTH_SHORT
         ).show()
     }
@@ -138,7 +137,7 @@ class Activity_Register : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
-                        this@Activity_Register, "Authentication failed.",
+                        this@ActivityRegister, "Authentication failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                     updateUI(null)
@@ -185,7 +184,7 @@ class Activity_Register : AppCompatActivity() {
     }
 
     private fun reload() {
-        val i = Intent(this, Activity_Navigation::class.java)
+        val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
 

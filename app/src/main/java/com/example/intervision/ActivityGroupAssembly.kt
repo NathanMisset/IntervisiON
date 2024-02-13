@@ -8,11 +8,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 @Suppress("UNCHECKED_CAST")
-class Activity_Group_Assembly : AppCompatActivity() {
-    protected var scrollLayout: ViewGroup? = null
-    protected var availableGroups: ArrayList<Item_Group_Preview>? = null
-    protected var user: FirebaseAuth? = null
-    protected var dataBase: FirebaseFirestore? = null
+class ActivityGroupAssembly : AppCompatActivity() {
+    private var scrollLayout: ViewGroup? = null
+    private var availableGroups: ArrayList<Item_Group_Preview>? = null
+    private var user: FirebaseAuth? = null
+    private var dataBase: FirebaseFirestore? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_assembly)
@@ -22,7 +22,7 @@ class Activity_Group_Assembly : AppCompatActivity() {
         data
     }
 
-    protected val data: Unit
+    private val data: Unit
         get() {
             dataBase = FirebaseFirestore.getInstance()
             dataBase!!.collection("Sessions")
@@ -31,7 +31,7 @@ class Activity_Group_Assembly : AppCompatActivity() {
                     if (task.isSuccessful) {
                         for (document in task.result) {
                             Log.d(TAG, document.id + " => " + document.data)
-                            AddGroup(document.data, document.id)
+                            addGroup(document.data, document.id)
                         }
                     } else {
                         Log.w(TAG, "Error getting documents.", task.exception)
@@ -39,7 +39,7 @@ class Activity_Group_Assembly : AppCompatActivity() {
                 }
         }
 
-    protected fun AddGroup(data: Map<String?, Any>, docname: String) {
+    private fun addGroup(data: Map<String?, Any>, docname: String) {
         availableGroups!!.add(
             Item_Group_Preview(
                 data["Group Name"].toString(),

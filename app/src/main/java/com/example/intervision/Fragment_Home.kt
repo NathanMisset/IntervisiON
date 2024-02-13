@@ -71,16 +71,13 @@ class FragmentHome : Fragment() {
                     }
                 }
         }
-//    private fun InitVoteItem(result: Boolean){
-//        if(!result){
-//            //val item_Vote = Item_Vote(voteItemLocation, activity, Statements!![0], Questions!![0], statementId!![0], user!!, db!!)
-//        } else{
-//            //val item_Result = Item_Result(voteItemLocation, activity, Statements!![0], user!!, db!!, requireContext())
-//        }
-//
-//
-//
-//    }
+    private fun InitVoteItem(result: Boolean){
+        if(!result){
+            Item_Vote(voteItemLocation, activity, statements!![0], questions!![0], statementId!![0], user!!, db!!)
+        } else{
+            Item_Result(voteItemLocation, activity, statements!![0], user!!, db!!, requireContext())
+        }
+    }
 
     private fun getIfVoted() {
         var againstArray: ArrayList<String>
@@ -109,14 +106,11 @@ class FragmentHome : Fragment() {
                         voted = forArray.contains(user!!.uid)
                     }
                     Log.d(TAG, "voted : $voted")
-                    //InitVoteItem(voted)
+                    InitVoteItem(voted)
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
-
             }
-
-
     }
 //    private fun MakeThesisViewPager() {
 //        Log.d(TAG, "Start MakeThesisViewPager")
@@ -140,7 +134,7 @@ class FragmentHome : Fragment() {
 //    }
 
     private fun toTutorial() {
-        val i = Intent(activity, Activity_Tutorial::class.java)
+        val i = Intent(activity, ActivityTutorial::class.java)
         startActivity(i)
     }
 
