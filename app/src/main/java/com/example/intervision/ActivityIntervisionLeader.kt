@@ -1,5 +1,6 @@
 package com.example.intervision
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -40,6 +41,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     //Items
     protected var itemVote: ItemVote? = null
     private var itemElborateChose: ItemDiscusionLeader? = null
+    protected var itemFinalRound: ItemFinalRound? = null
 
     //Firebase
     protected var database: FirebaseDatabase? = null
@@ -73,8 +75,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                     @Suppress("UNCHECKED_CAST")
                     partisipantsIdS = document.data!!["Participant Sid"] as ArrayList<String>?
                     Log.d(TAG, "List of users: " + document.data!!["Participant Sid"])
-
-                    thesesID = document.data!!["ThesisID"].toString()
+                    thesesID =  document.data!!["ThesisID"].toString().substring(1, document.data!!["ThesisID"].toString().length - 1)
                     Log.d(TAG, "ThesesID $thesesID")
                     fillContent()
                 } else {
@@ -104,7 +105,13 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 } else if (value == "W") {
                     currentRound = 0
                     myRef!!.setValue(currentRound.toString())
-                } else {
+                } else if(value == "S"){
+                    myRef!!.removeEventListener(this)
+                    setContent {
+                        QuitRound()
+                    }
+                } else
+                {
                     currentRound = value.toInt()
                     changeRound(currentRound!!)
                 }
@@ -130,6 +137,8 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         // Items
     }
     protected open fun initItems(){
+        itemFinalRound = ItemFinalRound()
+
         itemVote = ItemVote(firestore!!, thesesID)
         itemVote!!.init()
         itemElborateChose = ItemDiscusionLeader(this,user!!,firestore!!,partisipantsIdS!!)
@@ -138,9 +147,6 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         initConnection()
     }
     private fun initLayout() {
-        setContent {
-            FirstRound()
-        }
     }
 
     protected open fun fillContent() {
@@ -148,6 +154,10 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             intervisionRounds[i] = IntervisionRound()
         }
         initItems()
+    }
+    private fun toHome() {
+        startActivity(Intent(this, ActivityNavigation::class.java))
+        finish()
     }
 
 
@@ -174,6 +184,10 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 setContent {
                     FifthRound()
                 }
+            5 ->
+                setContent {
+                    FinalRound()
+                }
         }
     }
 
@@ -182,23 +196,6 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
 
     protected inner class IntervisionRound
-
-
-//    @Composable
-//    protected fun DefaultColumn() {
-//        MyApplicationTheme {
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxHeight()
-//                    .fillMaxWidth()
-//                    .background(color = MaterialTheme.colorScheme.background),
-//                horizontalAlignment = Alignment.CenterHorizontally,
-//                verticalArrangement = Arrangement.SpaceAround
-//            ) {
-//
-//            }
-//        }
-//    }
 
     @Composable
     protected open fun DefaultButtonRow(){
@@ -259,6 +256,13 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             }) {
                 Text(text = "Terug")
             }
+            Button(onClick = {
+                Log.d("BUTTONS", "User tapped the previousRoundButton")
+                val newval = 'S'
+                myRef!!.setValue(newval.toString())
+            }) {
+                Text(text = "Sessie Beeindigen")
+            }
         }
     }
 
@@ -307,7 +311,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemRoundThird().Component()
+                ItemThirdRound().Component()
                 DefaultButtonRow()
             }
         }
@@ -342,6 +346,42 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             ) {
                 ItemAction().Component()
                 DefaultButtonRow()
+            }
+        }
+    }
+    @Composable
+    protected open fun FinalRound() {
+        MyApplicationTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                itemFinalRound!!.Component()
+                LastButtonRow()
+            }
+        }
+    }
+    @Composable
+    protected open fun QuitRound() {
+        MyApplicationTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+
+                Button(onClick = {
+                    toHome()
+                     }) {
+                    Text(text = "Terug naar Home")
+                }
             }
         }
     }

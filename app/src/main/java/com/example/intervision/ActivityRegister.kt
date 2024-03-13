@@ -1,126 +1,125 @@
 package com.example.intervision
 
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
-import android.util.TypedValue
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.intervision.ui.MyApplicationTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
-class ActivityRegister : AppCompatActivity() {
+class ActivityRegister : ComponentActivity() {
     private var mAuth: FirebaseAuth? = null
     private var storage: FirebaseStorage? = null
-    var SELECT_PICTURE = 200
-    private var BSelectImage: ImageButton? = null
-    private var ProfileURI: Uri? = null
-    private val settings = "background off, background tint off, compact src"
-    var voornaam: EditText? = null
-    var werkfunctie: EditText? = null
-    var email: EditText? = null
-    var password: EditText? = null
+    private var voornaam: MutableState<String> = mutableStateOf("")
+    private var werkfunctie: MutableState<String> = mutableStateOf("")
+    private var email: MutableState<String> = mutableStateOf("")
+    private var password: MutableState<String> = mutableStateOf("")
+    private var checked: MutableState<Boolean> = mutableStateOf(false)
+    private var checkedFinish: MutableState<Boolean> = mutableStateOf(false)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
-        setContentView(R.layout.activity_register)
-        voornaam = findViewById(R.id.voornaam_register)
-        werkfunctie = findViewById(R.id.werkfunctie_register)
-        email = findViewById(R.id.email_register)
-        password = findViewById(R.id.password_register)
-        BSelectImage = findViewById(R.id.add_photo_button_register)
-        val finishRegisteruButton = findViewById<Button>(R.id.finish_button_register)
-        BSelectImage!!.setOnClickListener(View.OnClickListener { imageChooser() })
-        val AcceptToggle = findViewById<SwitchCompat>(R.id.switch_register)
-        AcceptToggle.setOnClickListener {
-            Log.d("BUTTONS", "User tapped the AcceptToggle")
-            if (AcceptToggle.isChecked && CheckAllFields()) {
-                finishRegisteruButton.isEnabled = true
-            } else {
-                AcceptToggle.toggle()
-                finishRegisteruButton.isEnabled = false
-            }
-        }
-        finishRegisteruButton.setOnClickListener {
-            Log.d("BUTTONS", "User tapped the finishRegisteruButton")
-            if (AcceptToggle.isChecked && CheckAllFields()) {
-                StartRegister()
-            }
+        setContent {
+            DefaultPreview()
         }
     }
 
-    private fun CheckAllFields(): Boolean {
+    private fun checkAllFields(): Boolean {
         var check = true
-        if (voornaam!!.length() == 0) {
+        if (voornaam.value.isEmpty()) {
             val error = "Voornaam is verplich"
-            Toast(error)
-            voornaam!!.error = error
+            toast(error)
+            //voornaam.value.error = error
             check = false
         }
         Log.d(TAG, "Voornaam is ingevuld")
-        if (werkfunctie!!.length() == 0) {
+        if (werkfunctie.value.isEmpty()) {
             val error = "Werkfunctie is verplicht"
-            Toast(error)
-            werkfunctie!!.error = "Werkfunctie is verplicht"
+            toast(error)
+            //werkfunctie!!.error = "Werkfunctie is verplicht"
             check = false
         }
         Log.d(TAG, "werkfunctie is ingevuld")
-        if (email!!.length() == 0) {
+        if (email.value.isEmpty()) {
             val error = "Email is verplicht"
-            Toast(error)
-            email!!.error = "Email is verplicht"
+            toast(error)
+            //email!!.error = "Email is verplicht"
             check = false
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email!!.text.toString()).matches()) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.value).matches()) {
             val error = "email format niet juist"
-            Toast(error)
-            email!!.error =
-                "Vul uw email adres volgens het volgende format in:\n uwnaam@voorbeeld.nl"
+            toast(error)
+            //email!!.error =
+            //    "Vul uw email adres volgens het volgende format in:\n uwnaam@voorbeeld.nl"
             check = false
         }
         Log.d(TAG, "email is ingevuld")
-        if (password!!.length() == 0) {
+        if (password.value.isEmpty()) {
             val error = "Wachtwoord is verplicht"
-            Toast(error)
-            password!!.error = "Wachtwoord is verplicht"
+            toast(error)
+            //password!!.error = "Wachtwoord is verplicht"
             check = false
-        } else if (password!!.length() < 6) {
+        } else if (password.value.length < 6) {
             val error = "Wachtwoord moet minimaal 8 karakters bevatten"
-            Toast(error)
-            password!!.error = "Wachtwoord moet minimaal 8 karakters bevatten"
+            toast(error)
+            //password!!.error = "Wachtwoord moet minimaal 8 karakters bevatten"
             check = false
         }
         Log.d(TAG, "Wachtwoord is ingevuld")
-
-
         // after all validation return true.
         return check
     }
 
-    private fun Toast(Message: String) {
+    private fun toast(message: String) {
         Toast.makeText(
-            this@ActivityRegister, Message,
+            this@ActivityRegister, message,
             Toast.LENGTH_SHORT
         ).show()
     }
 
-    private fun StartRegister() {
-        val emailEditText = findViewById<EditText>(R.id.email_register)
-        val email = emailEditText.text.toString()
-        val passwordEditText = findViewById<EditText>(R.id.password_register)
-        val password = passwordEditText.text.toString()
-        createAccount(email, password)
+    private fun startRegister() {
+        createAccount(email.value, password.value)
     }
 
     private fun createAccount(email: String, password: String) {
@@ -148,29 +147,16 @@ class ActivityRegister : AppCompatActivity() {
 
     private fun saveUserData(firebaseUser: FirebaseUser?) {
         val db = FirebaseFirestore.getInstance()
-        val storageRef = storage!!.reference
         Log.d(TAG, "IF")
-        if (BSelectImage!!.width.toFloat() == TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                200f,
-                resources.displayMetrics
-            )
-        ) {
-            val ref = storageRef.child("ProfilePictures/" + firebaseUser!!.uid)
-            ref.putFile(ProfileURI!!)
-                .addOnSuccessListener { Log.d(TAG, "image uploaded successfully") }
-                .addOnFailureListener { Log.d(TAG, "image uploaded failed") }
-        } else {
-        }
-        val voornaamEditText = findViewById<EditText>(R.id.voornaam_register)
-        val voornaam = voornaamEditText.text.toString()
-        val werkFunctieEditText = findViewById<EditText>(R.id.werkfunctie_register)
-        val werkFunctie = werkFunctieEditText.text.toString()
+
+
+
+
 
         // Create a new user with a first and last name
         val user: MutableMap<String, Any> = HashMap()
-        user["Voornaam"] = voornaam
-        user["Werk functie"] = werkFunctie
+        user["Voornaam"] = voornaam.value
+        user["Werk functie"] = werkfunctie.value
         user["User UID"] = firebaseUser!!.uid
         db.collection("User Data")
             .add(user)
@@ -184,7 +170,7 @@ class ActivityRegister : AppCompatActivity() {
     }
 
     private fun reload() {
-        val i = Intent(this, ActivityNavigation::class.java)
+        val i = Intent(this, ActivityTutorial::class.java)
         startActivity(i)
     }
 
@@ -193,62 +179,134 @@ class ActivityRegister : AppCompatActivity() {
         reload()
     }
 
-    fun imageChooser() {
 
-        // create an instance of the
-        // intent of the type image
-        val i = Intent()
-        i.type = "image/*"
-        i.action = Intent.ACTION_GET_CONTENT
+    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        val focusManager = LocalFocusManager.current
+        MyApplicationTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth(0.8f)
+                        .background(color = MaterialTheme.colorScheme.background),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceAround
+                ) {
+                    Text(text = "Registeren")
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight(0.4f)
+                            .fillMaxWidth()
+                            .background(color = MaterialTheme.colorScheme.background),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.SpaceAround
+                    ) {
+                        TextField(
+                            value = email.value,
+                            onValueChange = { email.value = it },
+                            label = { Text("email") },
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Email,
+                                imeAction = ImeAction.Next),
+                            keyboardActions = KeyboardActions(
+                                onNext = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
+                        )
+                        TextField(
+                            value = voornaam.value,
+                            onValueChange = { voornaam.value = it },
+                            label = { Text("voornaam") },
+                            keyboardOptions = KeyboardOptions(
+                                capitalization = KeyboardCapitalization.Sentences,
+                                imeAction = ImeAction.Next),
+                            keyboardActions = KeyboardActions(
+                                onNext = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
+                        )
+                        TextField(
+                            value = werkfunctie.value,
+                            onValueChange = { werkfunctie.value = it },
+                            label = { Text("werkfunctie") },
+                            keyboardOptions = KeyboardOptions(
+                                capitalization = KeyboardCapitalization.Sentences,
+                                imeAction = ImeAction.Next),
+                            keyboardActions = KeyboardActions(
+                                onNext = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
+                        )
+                        var passwordVisible by remember { mutableStateOf(false) }
+                        TextField(
+                            value = password.value,
+                            onValueChange = { password.value = it },
+                            label = { Text("wachtwoord") },
+                            singleLine = true,
+                            placeholder = { Text("Wachtwoord") },
+                            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                            keyboardOptions = KeyboardOptions(
+                                capitalization = KeyboardCapitalization.None,
+                                imeAction = ImeAction.Next,
+                                keyboardType = KeyboardType.Password),
+                            keyboardActions = KeyboardActions(
+                                onNext = { focusManager.clearFocus() }),
 
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
-    }
+                            trailingIcon = {
+                                val image = if (passwordVisible)
+                                    Icons.Filled.Visibility
+                                else Icons.Filled.VisibilityOff
 
-    // this function is triggered when user
-    // selects the image from the imageChooser
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
+                                // Localized description for accessibility services
+                                val description = if (passwordVisible) "Hide password" else "Show password"
 
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                Log.d(TAG, "data.getData() " + data!!.data)
-                Log.d(TAG, "type " + data.data!!.javaClass)
+                                // Toggle button to hide or display password
+                                IconButton(onClick = {passwordVisible = !passwordVisible}){
+                                    Icon(imageVector  = image, description)
+                                }
+                            }
+                        )
 
-                // Get the url of the image from data
-                ProfileURI = data.data
-                if (null != ProfileURI) {
-                    // update the preview image in the layout
-                    BSelectImage!!.setImageURI(ProfileURI)
-                    BSelectImage!!.background = null
-                    BSelectImage!!.setBackgroundColor(Color.TRANSPARENT)
-                    val params = BSelectImage!!.layoutParams
-                    val height = TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        200f,
-                        resources.displayMetrics
-                    ).toInt()
-                    val width = TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        200f,
-                        resources.displayMetrics
-                    ).toInt()
-                    params.height = height
-                    params.width = width
-                    BSelectImage!!.layoutParams = params
+                    }
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Switch(
+                            checked = checked.value,
+                            onCheckedChange = {
+                                checked.value = it
+                                if (checkAllFields()) {
+                                    checkedFinish.value = true
+                                } else {
+                                    checked.value = false
+                                }
+                            },
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = MaterialTheme.colorScheme.primary,
+                                checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
+                                uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
+                                uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
+                            )
+                        )
+                        Text(
+                            text = "Ik verleen toestemming voor het anoniem bewaren van mijn stemmen op de stellingen ten behoeve" +
+                                    "van onderzoeksdoeleinden van het lectoraat Legal Management"
+                        )
+                    }
+                    Button(onClick = { startRegister() }) {
+                        Text(text = "Aan de slag")
+                    }
+
                 }
             }
         }
     }
 
-    private fun toHome() {}
 
     companion object {
         private const val TAG = "EmailPassword"
-        private const val EMAIL_PATTERN =
-            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+//        private const val EMAIL_PATTERN =
+//            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     }
 }

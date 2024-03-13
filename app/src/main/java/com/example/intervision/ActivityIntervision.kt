@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,11 +23,12 @@ class ActivityIntervision : ActivityIntervisionLeader() {
     private var itemDiscusionUser: ItemDiscusionUser? = null
 
     override fun initItems() {
+        itemFinalRound = ItemFinalRound()
         itemVote = ItemVote(firestore!!, thesesID)
         itemVote!!.init()
         itemDiscusionUser = ItemDiscusionUser(storage!!,firestore!!,partisipantsIdS!!)
         itemDiscusionUser!!.init()
-        Log.d(TAG, "initConnect")
+        Log.d(TAG, "initItem")
         initConnection()
     }
 
@@ -57,12 +59,19 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                         Log.d(TAG, "Value 2 = " + value[1])
                     }
 
-                    currentRound = if (value.length > 1) {
-                        value[0].toString().toInt()
+                     if (value.length > 1) {
+                        currentRound =value[0].toString().toInt()
+                         changeRound(currentRound!!)
+                    }else if(value == "S") {
+                         myRef!!.removeEventListener(this)
+                         setContent {
+                             QuitRound()
+                         }
                     } else {
-                        value.toInt()
+                        currentRound = value.toInt()
+                         changeRound(currentRound!!)
                     }
-                    changeRound(currentRound!!)
+
                     if (value.length > 1) {
                         itemDiscusionUser!!.giveTurn(value[1])
                     }
@@ -132,6 +141,12 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 }
                 Log.d(TAG, "round 5")
             }
+            5 -> {
+                setContent {
+                    FinalRound()
+                }
+                Log.d(TAG, "round 5")
+            }
         }
     }
     @Composable
@@ -150,6 +165,22 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 verticalArrangement = Arrangement.SpaceAround
             ) {
                 itemDiscusionUser!!.Component()
+            }
+        }
+    }
+    @Composable
+    override fun FinalRound() {
+        MyApplicationTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                itemFinalRound!!.Component()
+                Text(text = "Wacht tot de leider een beslissing maakt")
             }
         }
     }

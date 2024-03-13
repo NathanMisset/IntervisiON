@@ -29,19 +29,14 @@
             android:name=".ActivityMain"
             android:exported="false" />
         <activity android:name=".ActivityLogin" />
-
-        <activity android:name=".ActivityImageFromUser" />
-
         <activity android:name=".ActivityResetPassword" />
         <activity android:name=".ActivityIntervisionLeader" />
         <activity android:name=".ActivityIntervision" />
-        <activity android:name=".ActivityTestConnection" />
         <activity android:name=".ActivityMakeGroup" />
-        <activity android:name=".ActivityGroupAssembly" />
         <activity android:name=".ActivityNavigation" />
-        <activity android:name=".ActivityJetpackCompose" />
         <activity android:name=".ActivityWaitingRoom" />
-
+        <activity android:name=".ActivitySettings"/>
+        <activity android:name=".ActivityCredits"/>
     </application>
 
 </manifest>

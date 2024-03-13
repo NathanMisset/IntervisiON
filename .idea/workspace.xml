@@ -12,28 +12,86 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="Test2">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityCredits.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentGroups.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentHome.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentProfile.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/HomeItemResult.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/HomeItemVote.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemFinalRound.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemGroupPreview.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityEmailPassword.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityGroupAssembly.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityImageFromUser.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Email_Password.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityEmailPassword.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Group_Assembly.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityGroupAssembly.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Image_From_User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityImageFromUser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Intervision_Leader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervisionLeader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Jetpack_Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityJetpackCompose.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Login.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityLogin.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMain.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Make_Group.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMakeGroup.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Navigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityNavigation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Register.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityRegister.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Reset_Password.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityResetPassword.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Splash.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySplash.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Test_Connection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTestConnection.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Tutorial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTutorial.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Activity_Waiting_Room.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityWaitingRoom.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Vote.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Vote.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/acitivity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/acitivity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervisionLeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervisionLeader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityJetpackCompose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySettings.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityLogin.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMain.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMain.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMakeGroup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMakeGroup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityNavigation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityNavigation.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityRegister.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityRegister.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityResetPassword.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityResetPassword.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySplash.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySplash.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTestConnection.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTutorial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityTutorial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Adapter_ViewPager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/AdapterViewPager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Adapter_View_Pager_Small.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Feed.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Groups.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Home.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Fragment_Profile.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemAction.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemAction.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionUser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemRoundsExplained.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemRoundsExplained.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemVote.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemVote.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Group_Preview.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Result.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Single_View.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemSingleView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Spinner.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Turn.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_View_Pager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemViewPager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_View_Pager_Small.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_Vote.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Item_thesis.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/Manager_Basic_Item.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ManagerBasicItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/itemRoundThird.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemThirdRound.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/image1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/image2.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/acitivity_home.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_group_assembly.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_intervision.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_intervision_leaderview.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_make_group.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_navigation.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_reset_password.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_test_connection.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_tutorial.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tutorial.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_user_data.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_waiting_room.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_feed.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_eleborate_choice.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_group_preview.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_results.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_rounds_explained.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_thesis.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_turn.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_turn_notification.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_users_spinner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_viewpager.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_viewpager.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_viewpager_small.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_vote.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/bottom_menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/context_menu.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,9 +152,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -108,6 +166,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -146,7 +205,7 @@
     &quot;last_directory_selection&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/natha/AndroidStudioProjects/IntervisiON/app/src/main/res/drawable&quot;,
     &quot;live.layout.inspector.capturing&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Build Variants&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
@@ -243,6 +302,13 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StandaloneScriptsStorage">
+    <option name="files">
+      <set>
+        <option value="$PROJECT_DIR$/app/build.gradle.kts" />
+      </set>
+    </option>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="" />
@@ -300,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707738161516</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Test2">
+      <created>1707840515342</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707840515342</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

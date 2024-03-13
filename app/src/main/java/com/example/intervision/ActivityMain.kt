@@ -10,35 +10,20 @@ class ActivityMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = Color.TRANSPARENT
-        setContentView(R.layout.activity_login)
         when (loginType) {
             0 -> launchRegister()
             1 -> launchTutorial()
             2 -> launchLogin()
-            3 -> launchImage()
-            4 -> launchIntervision()
             5 -> launchMakeGroup()
             6 -> launchHome()
             7 -> launchFragmentTest()
-            8 -> launchJetpackCompose()
-            9 -> launchCompose()
         }
     }
 
-    private fun launchImage() {
-        //Launch Image activity
-        val i = Intent(this, ActivityImageFromUser::class.java)
-        startActivity(i)
-    }
 
     private fun launchRegister() {
         //Launch register activity
         val i = Intent(this, ActivityRegister::class.java)
-        startActivity(i)
-    }
-    private fun launchCompose() {
-        //Launch register activity
-        val i = Intent(this, ActivityJetpackCompose::class.java)
         startActivity(i)
     }
 
@@ -50,11 +35,6 @@ class ActivityMain : AppCompatActivity() {
 
     private fun launchLogin() {
         val i = Intent(this, ActivityLogin::class.java)
-        startActivity(i)
-    }
-
-    private fun launchIntervision() {
-        val i = Intent(this, ActivityTestConnection::class.java)
         startActivity(i)
     }
 
@@ -72,11 +52,4 @@ class ActivityMain : AppCompatActivity() {
         val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
-
-    private fun launchJetpackCompose() {
-        val i = Intent(this, ActivityJetpackCompose::class.java)
-        startActivity(i)
-    }
-
-
 }

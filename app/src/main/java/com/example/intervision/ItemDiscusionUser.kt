@@ -31,7 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 class ItemDiscusionUser(
-    val storage: FirebaseStorage,
+    private val storage: FirebaseStorage,
     val firestore: FirebaseFirestore,
     private val partisipantsIdS: ArrayList<String>?
 ) {

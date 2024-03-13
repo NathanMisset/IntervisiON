@@ -31,21 +31,19 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
     //Compose Var
     private lateinit var againtVoteCount: MutableState<String>
     private lateinit var inFavourVoteCount: MutableState<String>
-    private lateinit var ThesisString: MutableState<String>
+    private lateinit var thesisString: MutableState<String>
 
     //Var
-    private var Against: ArrayList<String>? = null
-    private var InFavour: ArrayList<String>? = null
+    private var against: ArrayList<String> = ArrayList()
+    private var inFavour: ArrayList<String> = ArrayList()
 
 
     fun init() {
-        Against = ArrayList()
-        InFavour = ArrayList()
 
         againtVoteCount = mutableStateOf("")
         inFavourVoteCount = mutableStateOf("")
-        ThesisString = mutableStateOf("[Stelling]")
-        Log.d(TAG, "stellingID " + stellingID)
+        thesisString = mutableStateOf("[Stelling]")
+        Log.d(TAG, "stellingID $stellingID")
 
         firestore.collection("Votes")
             .whereEqualTo("Id", stellingID)
@@ -54,13 +52,23 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                 if (task.isSuccessful) {
                     for (document in task.result) {
                         Log.d(TAG, document.id + " => " + document.data)
-                        Against!!.add(document.data["Against"].toString())
-                        InFavour!!.add(document.data["In Favour"].toString())
+
+                        val listA = document.data["Against"].toString().substring( 1, document.data["Against"].toString().length - 1 ).split(',')
+                        Log.d(TAG, "listA $listA")
+                        for (any in listA) {
+                            against.add(document.data["Against"].toString())
+                        }
+                        val listIF = document.data["In Favour"].toString().substring( 1, document.data["In Favour"].toString().length - 1 ).split(',')
+                        Log.d(TAG, "listIF $listIF")
+                        for (any in listIF) {
+                            inFavour.add(document.data["In Favour"].toString())
+                        }
+
                     }
-                    Log.d(TAG, "Against $Against")
-                    againtVoteCount = mutableStateOf(Against!!.size.toString())
-                    Log.d(TAG, "InFavour $InFavour")
-                    inFavourVoteCount = mutableStateOf(InFavour!!.size.toString())
+                    Log.d(TAG, "Against $against")
+                    againtVoteCount = mutableStateOf(against.size.toString())
+                    Log.d(TAG, "InFavour $inFavour")
+                    inFavourVoteCount = mutableStateOf(inFavour.size.toString())
                     getThesis()
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
@@ -76,9 +84,9 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                 if (task.isSuccessful) {
                     val document = task.result
                     Log.d(TAG, "Cached document data: ${document?.data}")
-                    ThesisString = mutableStateOf(task.result.data!!["Question"].toString())
-                    ThesisString =
-                        mutableStateOf(ThesisString.value + "\n" + task.result.data!!["Statement"].toString())
+                    thesisString = mutableStateOf(task.result.data!!["Question"].toString())
+                    thesisString =
+                        mutableStateOf(thesisString.value + "\n" + task.result.data!!["Statement"].toString())
                 } else {
                     Log.d(TAG, "Cached get failed: ", task.exception)
                 }
@@ -115,7 +123,7 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                     painter = painterResource(id = R.drawable.image_quotations_72x72),
                     contentDescription = stringResource(id = R.string.content_1)
                 )
-                Text(text = ThesisString.value)
+                Text(text = thesisString.value)
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),

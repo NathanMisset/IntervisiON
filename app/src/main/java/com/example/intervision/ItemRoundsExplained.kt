@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.spacing
 
-class ItemRoundsExplained()  {
+class ItemRoundsExplained  {
     @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
     @Composable
     fun Component() {

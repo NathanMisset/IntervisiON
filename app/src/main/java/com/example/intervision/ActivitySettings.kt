@@ -42,7 +42,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class ActivityJetpackCompose : ComponentActivity() {
+class ActivitySettings : ComponentActivity() {
     //Firebase
     private var firestore : FirebaseFirestore? = null
     private var auth : FirebaseAuth? = null
