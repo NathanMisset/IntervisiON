@@ -20,6 +20,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import com.example.intervision.ui.MyApplicationTheme
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -135,9 +137,6 @@ class FragmentHome {
         val i = Intent(parent, ActivityTutorial::class.java)
         parent!!.startActivity(i)
     }
-
-
-    @Preview(device = "spec:width=1080px,height=2280px,dpi=400", showBackground = true)
     @Composable
     fun Component() {
         Column(
@@ -181,5 +180,46 @@ class FragmentHome {
     }
 }
 
+@PreviewFontScale()
+@Composable
+fun FragmentHomePreview() {
+    MyApplicationTheme {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = "Home")
+                    IconButton(
+                        onClick = { }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.QuestionMark,
+                            contentDescription = "Tutorial"
+                        )
+                    }
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.8f),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
 
+                ) {
+                }
+            }
+        }
+    }
+}
 

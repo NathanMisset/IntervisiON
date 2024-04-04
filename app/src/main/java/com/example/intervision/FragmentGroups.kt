@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -17,7 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
+import com.example.intervision.ui.MyApplicationTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -63,10 +66,9 @@ class FragmentGroups : ComponentActivity() {
         val i = Intent(parent, ActivityMakeGroup::class.java)
         parent!!.startActivity(i)
     }
-
-    @Preview(device = "spec:width=1080px,height=2280px,dpi=400", showBackground = true)
     @Composable
     fun Component() {
+
         Column(
             modifier = Modifier
                 .fillMaxHeight(),
@@ -111,5 +113,50 @@ class FragmentGroups : ComponentActivity() {
 
     companion object {
         private const val TAG = "GroupAssemblyActivity"
+    }
+}
+
+@PreviewFontScale()
+@Composable
+fun FragmentGroupPreview() {
+    MyApplicationTheme {
+        Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(text = "Group")
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight(0.8f)
+                    .verticalScroll(rememberScrollState())
+            ) {
+
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .fillMaxHeight(.5f),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Button(
+                    onClick = { },
+                    modifier = Modifier
+
+//                        .fillMaxHeight()
+                        .defaultMinSize(minHeight = 10.dp),
+                ) {
+                    Text(text = "Maak groep")
+                }
+            }
+        }
     }
 }

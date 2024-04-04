@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,6 +28,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import com.example.intervision.ui.MyApplicationTheme
 import com.google.firebase.auth.FirebaseUser
@@ -40,7 +42,7 @@ class HomeItemVote {
 
     lateinit var user: FirebaseUser
     private lateinit var fireStoreDatabase: FirebaseFirestore
-    private var openAlertDialog =  mutableStateOf(false)
+    private var openAlertDialog = mutableStateOf(false)
 
     fun init(
         statement: String,
@@ -94,7 +96,7 @@ class HomeItemVote {
             .document(id)
             .update("In Favour", data)
             .addOnSuccessListener {
-                openAlertDialog.value =  true
+                openAlertDialog.value = true
             }
     }
 
@@ -135,7 +137,7 @@ class HomeItemVote {
             .document(id)
             .update("Against", data)
             .addOnSuccessListener {
-                openAlertDialog.value =  true
+                openAlertDialog.value = true
             }
     }
 
@@ -143,12 +145,12 @@ class HomeItemVote {
         val i = Intent(parent!!, ActivityNavigation::class.java)
         parent!!.startActivity(i)
     }
+
     private fun toMakeGroup() {
         val i = Intent(parent!!, ActivityMakeGroup::class.java)
         parent!!.startActivity(i)
     }
 
-    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
     @Composable
     fun Component() {
         MyApplicationTheme {
@@ -157,73 +159,72 @@ class HomeItemVote {
                 openAlertDialog.value -> {
                     AlertDialogExample(
                         onDismissRequest = { reload() },
-                        onConfirmation = { toMakeGroup()
-                            openAlertDialog.value = false },
+                        onConfirmation = {
+                            toMakeGroup()
+                            openAlertDialog.value = false
+                        },
                         dialogTitle = "Je hebt gestemt!",
                         dialogText = "Wil je direct een intervisie groep aan maken?",
                         icon = Icons.Default.HowToVote
                     )
                 }
             }
-            Column(
+
+            Card(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .fillMaxWidth(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Card(
+                    .fillMaxWidth()
+                    .padding(16.dp),
+
+                ) {
+                Column(
                     modifier = Modifier
-                        .fillMaxHeight(.55f)
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(20.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(text = "Stem en zie hoe andere gestemt hebben.")
 
-                    ) {
-                    Column(
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = question.value,
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )
+                    Text(
+                        text = statement.value,
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(20.dp),
-                        horizontalAlignment = Alignment.Start
-                    ) {
-                        Text(text = "Stem en zie hoe andere gestemt hebben.")
-
+                            .padding(top = 10.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .padding(bottom = 40.dp)
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 50.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Button(onClick = {
+                        Log.d("BUTTONS", "User tapped the disAgree vote button")
+                        saveDisAgreed()
+                    }) {
+                        Text(text = "OnEens")
                     }
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(20.dp),
-                        horizontalAlignment = Alignment.Start
-                    ) {
-                        Text(
-                            text = question.value,
-                            fontWeight = FontWeight.Bold,
-                            fontStyle = FontStyle.Italic
-                        )
-                        Text(text = statement.value,
-                            modifier = Modifier
-                                .padding(top = 10.dp))
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                    Row(
-                        modifier = Modifier
-                            .padding(bottom = 40.dp)
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceAround
-                    ) {
-                        Button(onClick = {
-                            Log.d("BUTTONS", "User tapped the disAgree vote button")
-                            saveDisAgreed()
-                        }) {
-                            Text(text = "OnEens")
-                        }
-                        Button(onClick = {
-                            saveAgreed()
-                        }) {
-                            Text(text = "Eens")
-                        }
+                    Button(onClick = {
+                        saveAgreed()
+                    }) {
+                        Text(text = "Eens")
                     }
                 }
             }
+
         }
     }
 
@@ -232,6 +233,7 @@ class HomeItemVote {
     }
 
 }
+
 @Composable
 fun AlertDialogExample(
     onDismissRequest: () -> Unit,
@@ -272,6 +274,78 @@ fun AlertDialogExample(
             }
         }
     )
+}
+
+@PreviewFontScale
+@Composable
+fun HomeItemVotePreview() {
+    MyApplicationTheme {
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.8f),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .padding(16.dp),
+
+                ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(text = "Stem en zie hoe andere gestemt hebben.")
+
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = "question.value",
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )
+                    Text(
+                        text = "statement.value",
+                        modifier = Modifier
+                            .padding(top = 10.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Row(
+                    modifier = Modifier
+                        .padding(bottom = 30.dp)
+                        .fillMaxHeight()
+                        .defaultMinSize(minHeight = 50.dp)
+                        .fillMaxWidth(),
+
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Button(onClick = {
+                        Log.d("BUTTONS", "User tapped the disAgree vote button")
+
+                    }) {
+                        Text(text = "OnEens")
+                    }
+                    Button(onClick = {
+
+                    }) {
+                        Text(text = "Eens")
+                    }
+                }
+            }
+        }
+    }
 }
 
 

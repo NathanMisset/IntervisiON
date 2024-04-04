@@ -189,6 +189,7 @@ class ActivitySettings : ComponentActivity() {
                         ),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.padding(20.dp)
+                            .fillMaxWidth()
 
                     )
                     TextField(
@@ -204,8 +205,8 @@ class ActivitySettings : ComponentActivity() {
                         ),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
-                            .padding(LocalSpacing.current.medium)
-
+                            .padding(20.dp)
+                            .fillMaxWidth()
                     )
 
 
@@ -221,6 +222,7 @@ class ActivitySettings : ComponentActivity() {
                         ),
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier.padding(20.dp)
+                            .fillMaxWidth()
                     )
                 }
             }

@@ -61,21 +61,21 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation( "androidx.ui:ui-framework:0.1.0-dev03")
-    implementation ("androidx.navigation:navigation-compose:2.5.0")
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-storage:20.3.0")
-    implementation("com.google.firebase:firebase-firestore:24.10.2")
+    implementation("com.google.firebase:firebase-firestore:24.11.0")
     implementation("com.google.firebase:firebase-database")
     implementation("androidx.wear.compose:compose-material:1.3.0")
 
-    implementation ("androidx.compose.material3:material3:1.2.0-alpha02")
+    implementation ("androidx.compose.material3:material3:1.3.0-alpha03")
 
-    val composeBom = platform("androidx.compose:compose-bom:2023.10.01")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
+
+    implementation(platform("androidx.compose:compose-bom:2024.03.00"))
+
 
     // Choose one of the following:
     // Material Design 3
@@ -117,4 +117,7 @@ dependencies {
 
     implementation("com.google.accompanist:accompanist-pager:0.13.0")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.13.0")
-    }
+
+
+
+}

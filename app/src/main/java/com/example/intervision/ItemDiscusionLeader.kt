@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -18,12 +19,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -85,15 +92,20 @@ class ItemDiscusionLeader(
 
     @Composable
     fun Component() {
-        Column {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = spacing.large),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
             Text(
-                text = "Ronde 4 van 5",
+                text = "Ronde 2 van 4",
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Discussie",
+                text = "Toelichting keuze",
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -102,7 +114,8 @@ class ItemDiscusionLeader(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.75f),
+                .fillMaxHeight(0.5f)
+                .padding(horizontal = spacing.large),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -266,194 +279,239 @@ class ItemDiscusionLeader(
 }
 
 
-//@Composable
-//fun A() {
-//    Column(
-//        modifier = Modifier
-//            .fillMaxHeight()
-//            .fillMaxWidth()
-//            .background(color = MaterialTheme.colorScheme.background),
-//        horizontalAlignment = Alignment.CenterHorizontally,
-//        verticalArrangement = Arrangement.SpaceAround
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .fillMaxHeight(0.8f)
-//                .padding(horizontal = spacing.medium),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.SpaceEvenly
-//        ) {
-//            Column {
-//                Text(
-//                    text = "Ronde 4 van 5",
-//                    fontWeight = FontWeight.Bold,
-//                    fontStyle = FontStyle.Italic,
-//                    fontSize = 20.sp
-//                )
-//                Text(
-//                    text = "Discussie",
-//                    fontWeight = FontWeight.Bold,
-//                    fontStyle = FontStyle.Italic,
-//                    fontSize = 30.sp
-//                )
-//            }
-//            Column(
-//                modifier = Modifier
-//                    .fillMaxWidth(),
-//                horizontalAlignment = Alignment.CenterHorizontally,
-//                verticalArrangement = Arrangement.SpaceEvenly
-//            ) {
-//                Card() {
-//                    Text(
-//                        text = "Tik de persoon die aan het woord mag.",
-//                        modifier = Modifier
-//                            .padding(spacing.large)
-//                    )
-//                }
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(top = 10.dp),
-//                    horizontalArrangement = Arrangement.SpaceAround
-//                ) {
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier
-//                            .clickable { }
-//                            .background(
-//                                MaterialTheme.colorScheme.primary,
-//                                shape = RoundedCornerShape(15.dp)
-//                            )
-//                            .padding(10.dp),
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-//                            contentDescription = "profile",
-//                            contentScale = ContentScale.Inside
-//
-//                        )
-//                        Text(
-//                            text = "userNames[0][0]",
-//                            fontSize = 10.sp
-//                        )
-//                    }
-//
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier
-//                            .clickable { }
-//                            .background(
-//                                MaterialTheme.colorScheme.primary,
-//                                shape = RoundedCornerShape(15.dp)
-//                            )
-//                            .padding(10.dp),
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-//                            contentDescription = "profile",
-//                        )
-//                        Text(
-//                            text = "userNames[0][1]",
-//                            fontSize = 10.sp
-//                        )
-//                    }
-//
-//
-//
-//
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier
-//                            .clickable { }
-//                            .background(
-//                                MaterialTheme.colorScheme.primary,
-//                                shape = RoundedCornerShape(15.dp)
-//                            )
-//                            .padding(10.dp),
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-//                            contentDescription = "profile",
-//                        )
-//                        Text(
-//                            text = "userNames[0][2]",
-//                            fontSize = 10.sp
-//                        )
-//                    }
-//                }
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(top = 10.dp),
-//                    horizontalArrangement = Arrangement.SpaceAround
-//                ) {
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier
-//                            .clickable { }
-//                            .background(
-//                                MaterialTheme.colorScheme.primary,
-//                                shape = RoundedCornerShape(15.dp)
-//                            )
-//                            .padding(10.dp),
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-//                            contentDescription = "profile",
-//                            contentScale = ContentScale.Inside
-//
-//                        )
-//                        Text(
-//                            text = "userNames[0][0]",
-//                            fontSize = 10.sp
-//                        )
-//                    }
-//
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier
-//                            .clickable { }
-//                            .background(
-//                                MaterialTheme.colorScheme.primary,
-//                                shape = RoundedCornerShape(15.dp)
-//                            )
-//                            .padding(10.dp),
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-//                            contentDescription = "profile",
-//                        )
-//                        Text(
-//                            text = "userNames[0][1]",
-//                            fontSize = 10.sp
-//                        )
-//                    }
-//
-//
-//
-//
-//                    Column(
-//                        horizontalAlignment = Alignment.CenterHorizontally,
-//                        modifier = Modifier
-//                            .clickable { }
-//                            .background(
-//                                MaterialTheme.colorScheme.primary,
-//                                shape = RoundedCornerShape(15.dp)
-//                            )
-//                            .padding(10.dp),
-//                    ) {
-//                        Image(
-//                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-//                            contentDescription = "profile",
-//                        )
-//                        Text(
-//                            text = "userNames[0][2]",
-//                            fontSize = 10.sp
-//                        )
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+@PreviewFontScale
+@Composable
+fun VoteLeaderComponent() {
+    var height = 100.dp
+    var width = 80.dp
+
+    when (LocalDensity.current.fontScale) {
+        0.85F -> {
+            height = 110.dp
+            width = 90.dp
+        }
+        1.00F  -> {
+            height = 110.dp
+            width = 90.dp
+        }
+        1.15F  -> {
+            height = 120.dp
+            width = 90.dp
+        }
+        1.30F  -> {
+            height = 130.dp
+            width = 90.dp
+        }
+        1.50F  -> {
+            height = 150.dp
+            width = 90.dp
+        }
+        1.80F  -> {
+            height = 150.dp
+            width = 90.dp
+        }
+        2.00F -> {
+            height = 150.dp
+            width = 90.dp
+        }
+        else -> {
+            height = 150.dp
+            width = 90.dp
+        }
+    }
+
+    MyApplicationTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.large),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Ronde 2 van 4",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = "Toelichting keuze",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 30.sp
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.8f)
+                    .padding(horizontal = spacing.large),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Card (){
+                    Text(
+                        text = "Tik de persoon die aan het woord mag.",
+                        modifier = Modifier
+                            .padding(spacing.large)
+                    )
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable {  }
+                            .background(
+                                MaterialTheme.colorScheme.primary,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp)
+                            .size(width = width,height = height),
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
+                            contentDescription = "profile",
+                            contentScale = ContentScale.Inside
+
+                        )
+                        Text(
+                            text = "userNames[0][0]",
+                            fontSize = 10.sp
+                        )
+                    }
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable {  }
+                            .background(
+                                MaterialTheme.colorScheme.primary,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp)
+                            .size(width = width,height = height),
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
+                            contentDescription = "profile",
+                        )
+                        Text(
+                            text = "userNames[0][1]",
+                            fontSize = 10.sp
+                        )
+                    }
+
+
+
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable {  }
+                            .background(
+                                MaterialTheme.colorScheme.primary,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp)
+                            .size(width = width,height = height),
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
+                            contentDescription = "profile",
+                        )
+                        Text(
+                            text = "userNames[0][2]",
+                            fontSize = 10.sp
+                        )
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable {  }
+                            .background(
+                                MaterialTheme.colorScheme.primary,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp)
+                            .size(width = width,height = height),
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
+                            contentDescription = "profile",
+                            contentScale = ContentScale.Inside
+
+                        )
+                        Text(
+                            text = "userNames[0][3]",
+                            fontSize = 10.sp
+                        )
+                    }
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable {  }
+                            .background(
+                                MaterialTheme.colorScheme.primary,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp)
+                            .size(width = width,height = height),
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
+                            contentDescription = "profile",
+                        )
+                        Text(
+                            text = "userNames[0][4]",
+                            fontSize = 10.sp
+                        )
+                    }
+
+
+
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable {  }
+                            .background(
+                                MaterialTheme.colorScheme.primary,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp)
+                            .size(width = width,height = height),
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
+                            contentDescription = "profile",
+                        )
+                        Text(
+                            text = "userNames[0][5]",
+                            fontSize = 10.sp
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

@@ -343,6 +343,143 @@ class ActivityWaitingRoom : ComponentActivity() {
             }
         }
     }
+    @Composable
+    fun Participant() {
+        MyApplicationTheme {
+
+            Column (
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background)
+                    .padding(spacing.medium),
+
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+
+            ){
+                Text(text = "Open nu de Teams vergadering op jouw desktop/laptop voordat de intervisie begint en zorg ervoor dat de verrbinding technisch werkt!")
+                Text(text = groupName.value,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp)
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal = spacing.small,
+                            vertical = spacing.default
+                        ),
+
+                    horizontalArrangement = Arrangement.SpaceAround)
+                {
+                    ElevatedCard {
+                        Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
+                            , contentDescription = "ProfilePicture 1",
+                            modifier = Modifier
+                                .padding(spacing.small))
+                        Text(text = participantsNames[0][0],
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .padding(spacing.small))
+                    }
+                    ElevatedCard {
+                        Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
+                            , contentDescription = "ProfilePicture 1",
+                            modifier = Modifier
+                                .padding(spacing.small))
+                        Text(text = participantsNames[0][1],
+                            modifier = Modifier
+                                .padding(spacing.small))
+                    }
+                    ElevatedCard {
+                        Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
+                            , contentDescription = "ProfilePicture 1",
+                            modifier = Modifier
+                                .padding(spacing.small))
+                        Text(text = participantsNames[0][2],
+                            modifier = Modifier
+                                .padding(spacing.small))
+                    }
+                }
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal = spacing.small,
+                            vertical = spacing.default
+                        ),
+
+                    horizontalArrangement = Arrangement.SpaceAround) {
+                    ElevatedCard {
+                        Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
+                            , contentDescription = "ProfilePicture 1",
+                            modifier = Modifier
+                                .padding(spacing.small))
+                        Text(text = participantsNames[0][3],
+                            modifier = Modifier
+                                .padding(spacing.small))
+                    }
+                    ElevatedCard {
+                        Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
+                            , contentDescription = "ProfilePicture 1",
+                            modifier = Modifier
+                                .padding(spacing.small))
+                        Text(text = participantsNames[0][4],
+                            modifier = Modifier
+                                .padding(spacing.small))
+                    }
+                    ElevatedCard {
+                        Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
+                            , contentDescription = "ProfilePicture 1",
+                            modifier = Modifier
+                                .padding(spacing.small))
+                        Text(text = participantsNames[0][5],
+                            modifier = Modifier
+                                .padding(spacing.small),
+                        )
+                    }
+                }
+                Column (
+                    verticalArrangement = Arrangement.SpaceEvenly){
+                    if(leader == true) {
+                        Button(
+                            onClick = { toIntervisionLeader() },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer
+                            ),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(
+                                    top = spacing.default,
+                                    bottom = spacing.default,
+                                    start = spacing.medium,
+                                    end = spacing.medium
+                                )
+                        ) {
+                            Text(text = "Start")
+                        }
+                    }
+
+                    Button(onClick = { finish()},
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.errorContainer
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(
+                                top = spacing.default,
+                                bottom = spacing.default,
+                                start = spacing.medium,
+                                end = spacing.medium
+                            )
+                    ) {
+                        Text(text = "Verlaten")
+                    }
+                }
+            }
+        }
+    }
 
     companion object {
         private const val TAG = "WaitingRoomActivity"

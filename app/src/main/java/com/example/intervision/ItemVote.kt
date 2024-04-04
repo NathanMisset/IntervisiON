@@ -2,12 +2,17 @@ package com.example.intervision
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +25,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.spacing
@@ -38,8 +46,8 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
     private var inFavour: ArrayList<String> = ArrayList()
 
 
-    fun init() {
 
+    fun init() {
         againtVoteCount = mutableStateOf("")
         inFavourVoteCount = mutableStateOf("")
         thesisString = mutableStateOf("[Stelling]")
@@ -96,18 +104,93 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
     @Composable
     fun Component() {
         MyApplicationTheme {
-            Column {
+            Column (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.large),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
                 Text(
-                    text = "Ronde 2 van 5",
+                    text = "Ronde 1 van 4",
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = "Stelling",
+                    text = "Stelling en resultaat",
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
+                )
+                Text(
+                    text = "Voer een gesprek over de stelling",
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.6f)
+                    .padding(horizontal = spacing.large),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
+                    painter = painterResource(id = R.drawable.image_quotations_72x72),
+                    contentDescription = stringResource(id = R.string.content_1)
+                )
+                Text(text = thesisString.value)
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(50.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "Voor: " + inFavourVoteCount.value)
+                    Text(text = "Tegen: " + againtVoteCount.value)
+                }
+            }
+        }
+    }
+
+    companion object {
+        private const val TAG = "ItemVote"
+    }
+}
+
+
+@PreviewFontScale
+@Composable
+fun VoteTestComponent() {
+    MyApplicationTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            Column (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.large),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(
+                    text = "Ronde 1 van 4",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = "Stelling en resultaat",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 30.sp
+                )
+                Text(
+                    text = "Voer een gesprek over de stelling",
                 )
             }
             Column(
@@ -123,30 +206,16 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                     painter = painterResource(id = R.drawable.image_quotations_72x72),
                     contentDescription = stringResource(id = R.string.content_1)
                 )
-                Text(text = thesisString.value)
+                Text(text = "Ga ik de bezwaarmaker bellen?\nIk bel NIET als de bezwaarmaker een advocaat heeft ingeschakeld")
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Text(
-                        text = againtVoteCount.value,
-                        fontWeight = FontWeight.Bold,
-                        fontStyle = FontStyle.Italic,
-                        fontSize = 30.sp
-                    )
-                    Text(
-                        text = inFavourVoteCount.value,
-                        fontWeight = FontWeight.Bold,
-                        fontStyle = FontStyle.Italic,
-                        fontSize = 30.sp
-                    )
+                    Text(text = "1")
+                    Text(text = "1")
                 }
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "ItemVote"
     }
 }

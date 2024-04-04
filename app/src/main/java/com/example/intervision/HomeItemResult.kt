@@ -6,7 +6,9 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,8 +25,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.MyApplicationTheme
@@ -56,6 +60,7 @@ class HomeItemResult() {
         this.user = user
         this.fireStoreDatabase = fireStoreDatabase
         getData()
+
     }
 
     private fun setData() {
@@ -96,18 +101,27 @@ class HomeItemResult() {
 
     @Composable
     fun Component() {
+        var cardSize = 400.dp
+        when (LocalDensity.current.fontScale) {
+            0.85F -> cardSize = 350.dp
+            1.00F  -> cardSize = 400.dp
+            1.15F  -> cardSize = 400.dp
+            1.30F  -> cardSize = 400.dp
+            1.50F  -> cardSize = 400.dp
+            1.80F  -> cardSize = 450.dp
+            2.00F ->  cardSize = 480.dp
+            else -> cardSize = 400.dp
+        }
         MyApplicationTheme {
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(0.8f),
+                    .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Card(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(0.6f)
+                        .size(cardSize)
                         .padding(16.dp),
 
                     ) {
@@ -133,7 +147,8 @@ class HomeItemResult() {
                     ) {
                         PieChart(entries)
                     }
-                    Row(modifier = Modifier.fillMaxWidth(),
+                    Row(modifier = Modifier.fillMaxWidth()
+                        .defaultMinSize(50.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly) {
                         Text(text = "Tegen:",
                             fontSize = 13.sp)
@@ -182,43 +197,76 @@ fun PieChart(entries: MutableList<PieChartEntry>) {
 
 data class PieChartEntry(val color: Color, val percentage: Float)
 
-@Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
+@PreviewFontScale
 @Composable
 fun Component() {
+    var cardSize = 400.dp
+    when (LocalDensity.current.fontScale) {
+        0.85F -> cardSize = 350.dp
+        1.00F  -> cardSize = 400.dp
+        1.15F  -> cardSize = 400.dp
+        1.30F  -> cardSize = 400.dp
+        1.50F  -> cardSize = 400.dp
+        1.80F  -> cardSize = 450.dp
+        2.00F ->  cardSize = 480.dp
+        else -> cardSize = 400.dp
+    }
     var entries: MutableList<PieChartEntry>
     entries = mutableListOf(
-        PieChartEntry(Color.Red, (1f / 2f)),
-        PieChartEntry(Color.Blue, (1f / 2f))
+        PieChartEntry(Color.Yellow, (1f / 2f)),
+        PieChartEntry(Color.Cyan, (1f / 2f))
     )
     MyApplicationTheme {
         Column(
             modifier = Modifier
-                .fillMaxHeight(0.6f)
-                .fillMaxWidth(0.8f),
+                .fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Card(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.6f)
+                    .size(cardSize)
                     .padding(16.dp),
 
                 ) {
-                Text(text = "TEst")
-                Text(text = "TEst")
+                Column(Modifier
+                    .padding(16.dp)) {
+                    Text(text = "Ga ik de bezwaarmaker bellen?",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        lineHeight = 30.sp)
+
+                    Text(text = "Ik bel NIET als de bzwaarmaker een advocaat heeft ingeschakkelt",
+                        fontSize = 13.sp ,
+                        lineHeight = 15.sp,
+                        minLines = 1,
+                        maxLines = 2)
+                }
                 Column(
                     modifier = Modifier
+                        .fillMaxWidth()
                         .padding(10.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     PieChart(entries)
                 }
-                Text(text = "Rood = voor")
-                Text(text = "Blauw = tegen")
+                Row(modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly) {
+                    Text(text = "Tegen:",
+                        fontSize = 13.sp)
+                    Icon(imageVector = Icons.Default.Circle,
+                        contentDescription ="Circle",
+                        tint = MaterialTheme.colorScheme.secondary)
+                    Text(text = "Voor:",
+                        fontSize = 13.sp)
+                    Icon(imageVector = Icons.Default.Circle,
+                        contentDescription ="Circle",
+                        tint = MaterialTheme.colorScheme.primary)
+                }
             }
 
         }
 
     }
 }
+

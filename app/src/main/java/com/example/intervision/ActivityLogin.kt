@@ -48,6 +48,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.MyApplicationTheme
@@ -133,8 +134,7 @@ class ActivityLogin : ComponentActivity() {
         reload()
     }
 
-    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
-    //@Preview(device = "spec:width=1080px,height=540px,dpi=400")
+    @PreviewFontScale
     @Composable
     fun DefaultPreview() {
         val focusManager = LocalFocusManager.current
@@ -152,7 +152,7 @@ class ActivityLogin : ComponentActivity() {
                     verticalArrangement = Arrangement.SpaceEvenly
                 ){
                     Image(
-                        painter = painterResource(id = R.drawable.image_main_icon),
+                        painter = painterResource(id = R.drawable.main_icon),
                         contentDescription = stringResource(id = R.string.content_1),
                         Modifier
                             .fillMaxWidth()

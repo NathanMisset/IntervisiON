@@ -154,6 +154,21 @@ class ActivityIntervision : ActivityIntervisionLeader() {
 
     }
     @Composable
+    override fun FirstRound(){
+        MyApplicationTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                ItemRoundsExplained().ComponentParticipant()
+            }
+        }
+    }
+    @Composable
     override fun ForthRound(){
         MyApplicationTheme {
             Column(
@@ -169,6 +184,10 @@ class ActivityIntervision : ActivityIntervisionLeader() {
         }
     }
     @Composable
+    override fun FifthRound(){
+
+    }
+    @Composable
     override fun FinalRound() {
         MyApplicationTheme {
             Column(
@@ -179,7 +198,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemFinalRound!!.Component()
+                itemFinalRound!!.ComponentParticipant()
                 Text(text = "Wacht tot de leider een beslissing maakt")
             }
         }

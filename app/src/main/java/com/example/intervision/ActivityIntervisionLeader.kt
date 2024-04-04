@@ -267,7 +267,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
 
     @Composable
-    protected fun FirstRound() {
+    protected open fun FirstRound() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -283,7 +283,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         }
     }
     @Composable
-    protected fun SecondRound() {
+    protected open fun SecondRound() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -300,8 +300,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
     @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
     @Composable
-    protected fun ThirdRound() {
-
+    protected open fun ThirdRound() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -311,7 +310,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemThirdRound().Component()
+                itemElborateChose!!.Component()
                 DefaultButtonRow()
             }
         }
@@ -328,13 +327,13 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemElborateChose!!.Component()
+                ItemThirdRound().Component()
                 DefaultButtonRow()
             }
         }
     }
     @Composable
-    protected fun FifthRound() {
+    protected open fun FifthRound() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier

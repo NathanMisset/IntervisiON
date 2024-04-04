@@ -18,8 +18,10 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -94,23 +96,29 @@ class ItemDiscusionUser(
 
     @Composable
     fun Component() {
-        Column {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = spacing.large),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
             Text(
-                text = "Ronde 4 van 5",
+                text = "Ronde 2 van 4",
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Discussie",
+                text = "Licht jouw keuze toe",
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
             )
         }
         Column (modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .fillMaxHeight(0.5f)){
+            .fillMaxWidth()
+            .fillMaxHeight(0.5f)
+            .padding(horizontal = spacing.large)){
             Row(
                 modifier = Modifier
 
@@ -144,10 +152,9 @@ class ItemDiscusionUser(
         private const val TAG = "DiscussionItem"
     }
 }
-
 @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
 @Composable
-fun TestComponent() {
+fun VoteUserComponent() {
     MyApplicationTheme {
         Column(
             modifier = Modifier
@@ -157,17 +164,32 @@ fun TestComponent() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround
         ) {
-
-            Column(
+            Column (
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.8f),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
+                    .padding(horizontal = spacing.large),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(
+                    text = "Ronde 2 van 4",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = "Licht jouw keuze toe",
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 30.sp
+                )
+            }
+            Column (modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.5f)
+                .padding(horizontal = spacing.large)){
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth(0.8f)
+
                         .padding(spacing.medium)
                         .background(
                             MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(15.dp)
@@ -186,29 +208,12 @@ fun TestComponent() {
 
                     )
                     Text(
-                        text = "test" + " is aan de beurt",
+                        text = "userTurnText.value",
                         modifier = Modifier.padding(spacing.medium)
                     )
-                }
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.2f),
-
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Button(onClick = {
-
-                }) {
-                    Text(text = "Terug")
-                }
-                Button(onClick = {
-
-                }) {
-                    Text(text = "Volgende")
                 }
             }
         }
     }
 }
+
