@@ -1,3 +1,9 @@
+/*
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.util.Log
@@ -13,37 +19,68 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.UiString
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ *
+ * This activity controls the Intervision for a non leader user
+ * It contains mulitiple complex items that are control from a different class
+ *
+ */
 class ActivityIntervision : ActivityIntervisionLeader() {
+
     private var itemDiscusionUser: ItemDiscusionUser? = null
 
+    /**
+     *
+     * fillContent
+     *
+     */
+    override fun fillContent() {
+        intervisionRounds = arrayOfNulls(rOUNDNUMBERS)
+        for (i in 0 until rOUNDNUMBERS) {
+            intervisionRounds[i] = IntervisionRound()
+        }
+        initItems()
+    }
+
+    /**
+     *
+     * initItems Instantiate items that a more complex
+     *
+     */
     override fun initItems() {
         itemFinalRound = ItemFinalRound()
         itemVote = ItemVote(firestore!!, thesesID)
         itemVote!!.init()
-        itemDiscusionUser = ItemDiscusionUser(storage!!,firestore!!,partisipantsIdS!!)
+        itemDiscusionUser = ItemDiscusionUser(storage!!, firestore!!, partisipantsIdS!!)
         itemDiscusionUser!!.init()
-        Log.d(TAG, "initItem")
         initConnection()
     }
 
+    /**
+     *
+     * initConnection creates a connection with the firebase firestore database
+     * Then creates a connection with the firebase realtime database as an event
+     * It will listen to the varaible connected to the session ID
+     * When the Activity Leader Changes the this value this event will be called
+     * And Make sure that changeRound is called
+     *
+     * Lastly it get the data of all member that are part of the group
+     *
+     */
     override fun initConnection() {
-        Log.d(TAG, "InitConnection ")
         database =
             FirebaseDatabase.getInstance("https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app")
         myRef = database!!.getReference(sessionID!!)
 
-            // Read from the database
             firebaseevent = myRef!!.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    Log.d(TAG, "data type: " + dataSnapshot.value!!.javaClass)
                     val value: String? = if (dataSnapshot.value is String) {
                         dataSnapshot.getValue(String::class.java)
                     } else {
@@ -51,25 +88,17 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                         valueGot.toString()
                     }
 
-
-
-                    Log.d(TAG, "Value = $value")
-                    Log.d(TAG, "Value 1 = " + value!![0])
-                    if (value.length > 1) {
-                        Log.d(TAG, "Value 2 = " + value[1])
-                    }
-
-                     if (value.length > 1) {
-                        currentRound =value[0].toString().toInt()
-                         changeRound(currentRound!!)
-                    }else if(value == "S") {
+                    if (value!!.length > 1) {
+                        currentRound = value[0].toString().toInt()
+                        changeRound(currentRound!!)
+                    } else if (value == "S") {
                          myRef!!.removeEventListener(this)
                          setContent {
                              QuitRound()
                          }
                     } else {
                         currentRound = value.toInt()
-                         changeRound(currentRound!!)
+                        changeRound(currentRound!!)
                     }
 
                     if (value.length > 1) {
@@ -79,10 +108,8 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Failed to read value
                     Log.w(TAG, "Failed to read value.", error.toException())
                 }
-
             })
 
         firestore = FirebaseFirestore.getInstance()
@@ -94,21 +121,17 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                     val document = task.result
                     @Suppress("UNCHECKED_CAST")
                     partisipantsIdS = document.data!!["Participant Sid"] as ArrayList<String>?
-                    Log.d(TAG, "List of users: " + document.data!!["Participant Sid"])
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
             }
     }
 
-    override fun fillContent() {
-        Log.d(TAG, "FillConent ")
-        intervisionRounds = arrayOfNulls(rOUNDNUMBERS)
-        for (i in 0 until rOUNDNUMBERS) {
-            intervisionRounds[i] = IntervisionRound()
-        }
-        initItems()
-    }
+    /**
+     *
+     * changeRound is mostly called from the event in initConnection
+     *
+     */
     override fun changeRound(roundNumber: Int) {
         when (roundNumber) {
             0 -> {
@@ -145,16 +168,14 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 setContent {
                     FinalRound()
                 }
-                Log.d(TAG, "round 5")
+                Log.d(TAG, "final round")
             }
         }
     }
-    @Composable
-    override fun DefaultButtonRow(){
 
-    }
+    /** Composables */
     @Composable
-    override fun FirstRound(){
+    override fun FirstRound() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -168,6 +189,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
             }
         }
     }
+
     @Composable
     override fun ForthRound(){
         MyApplicationTheme {
@@ -183,9 +205,10 @@ class ActivityIntervision : ActivityIntervisionLeader() {
             }
         }
     }
-    @Composable
-    override fun FifthRound(){
 
+    @Composable
+    override fun FifthRound() {
+        /** TODO  Implement Fifth Round*/
     }
     @Composable
     override fun FinalRound() {
@@ -199,7 +222,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 verticalArrangement = Arrangement.SpaceAround
             ) {
                 itemFinalRound!!.ComponentParticipant()
-                Text(text = "Wacht tot de leider een beslissing maakt")
+                Text(text = UiString.wachtTekstIntervisie)
             }
         }
     }
