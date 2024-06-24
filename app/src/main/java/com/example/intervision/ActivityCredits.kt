@@ -39,6 +39,7 @@ import com.example.intervision.ui.UiString
  * It contains a image, text and a button to return to the login screen
  *
  */
+
 class ActivityCredits: ComponentActivity()  {
     /** Initialisation */
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -27,6 +27,8 @@ data class String(
     val ideeContentCredits: String = "Idee gebaseerd op Dielemma game van de Irasmus Universiteit en het Beterbezwaarspel van het lectoraat legal Managment",
     val designContentCredits: String = "Gebaseerd op het design van Raquel de Romas student Communicatie en Multimedia Design aan de Hogeschool van Amsterdam",
 
+    //Intervisie
+    val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt"
     )
 
 val LocalString= compositionLocalOf { com.example.intervision.ui.String() }
