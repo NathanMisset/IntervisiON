@@ -1,3 +1,9 @@
+/*
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.os.Bundle
@@ -5,7 +11,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
@@ -22,25 +27,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.UiString
+
+/**
+ *
+ * This activity controls the credit screen
+ * It contains a image, text and a button to return to the login screen
+ *
+ */
 class ActivityCredits: ComponentActivity()  {
+    /** Initialisation */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DefaultPreview()
+            screen()
         }
     }
-    fun toLogin(){
+    /** Methodes */
+    private fun toLogin() {
         finish()
     }
-    @PreviewFontScale
-    @Composable
-    fun DefaultPreview() {
+    /** Composables */
+    @PreviewFontScale @Composable
+    fun screen() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -53,7 +66,7 @@ class ActivityCredits: ComponentActivity()  {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.main_icon),
-                    contentDescription = stringResource(id = R.string.content_1),
+                    contentDescription = UiString.descriptionIconApp,
                     Modifier
                         .fillMaxWidth()
                 )
@@ -62,21 +75,24 @@ class ActivityCredits: ComponentActivity()  {
                     modifier = Modifier
                         .fillMaxHeight(0.8f)
                         .verticalScroll(rememberScrollState())
-                ){
-                    Text(text = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
+                ) {
+                    Text(text = UiString.makerContentCredits,
                         modifier = Modifier.padding(10.dp),
-                        textAlign = TextAlign.Justify)
-                    Text(text = "In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam",
+                        textAlign = TextAlign.Justify
+                    )
+                    Text(text = UiString.opdrachtContentCredits,
                         modifier = Modifier.padding(10.dp),
-                        textAlign = TextAlign.Justify)
-                    Text(text = "Idee gebaseerd op Dielemma game van de Irasmus Universiteit en het Beterbezwaarspel van het lectoraat legal Managment",
+                        textAlign = TextAlign.Justify
+                    )
+                    Text(text = UiString.ideeContentCredits,
                         modifier = Modifier.padding(10.dp),
-                        textAlign = TextAlign.Justify)
-                    Text(text = "Gebaseerd op het design van Raquel de Romas student Communicatie en Multimedia Design aan de Hogeschool van Amsterdam",
+                        textAlign = TextAlign.Justify
+                    )
+                    Text(text = UiString.designContentCredits,
                         modifier = Modifier.padding(10.dp),
-                        textAlign = TextAlign.Justify)
+                        textAlign = TextAlign.Justify
+                    )
                 }
-
 
                 OutlinedButton(
                     onClick = {
@@ -86,9 +102,8 @@ class ActivityCredits: ComponentActivity()  {
                         .padding(top = 10.dp)
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 50.dp)
-                )
-                {
-                    Text(text = "Terug")
+                ) {
+                    Text(text = UiString.backButtonApp)
                 }
             }
         }
