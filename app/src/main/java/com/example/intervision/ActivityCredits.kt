@@ -112,4 +112,8 @@ class ActivityCredits: ComponentActivity()  {
             }
         }
     }
+
+    companion object {
+        private const val TAG = "CreditsActivity"
+    }
 }

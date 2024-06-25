@@ -29,6 +29,11 @@ data class String(
     val emailTextFieldLogin: String = "Email",
     val passwordTextFieldLogin: String = "Wachtwoord",
 
+    /** Navitation */
+    val homeLabelNavigation: String = "Home",
+    val groupLabelNavigation: String = "Group",
+    val profileLabelNavigation: String = "Profile",
+
     /** Credits */
     val makerContentCredits: String = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
     val opdrachtContentCredits: String = "In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam",
