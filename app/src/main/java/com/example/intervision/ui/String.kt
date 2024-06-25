@@ -70,6 +70,18 @@ data class String(
     /** Intervisie */
     val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt",
 
+    /** Tutorial */
+    val primeHeaderTutorial: String = "HOE WERKT DE APP?",
+    val header1Tutorial: String = "1. Elke maand\\n een nieuwe stelling",
+    val header2Tutorial: String = "2. Eens of Oneens?",
+    val header3Tutorial: String = "3. Online intervisie",
+    val content1Tutorial: String = "Elke eerste maandag van de maand om 16:00 ontvang je een stelling van de app met betrekking tot een bezwaarprocedure.",
+    val content2Tutorial: String = "Na het openen van de stelling geef je aan of je het eens of oneens ben met de stelling.\\n \\n Optioneel: Iedereen mag nieuwe stellingen in de app toevoegen",
+    val content3Tutorial: String = "Na het stemmen heb je de optie om een online intervisie te houden over de desbetreffende stelling samen met jouw collega’s of andere juridische experts binnen of buiten jouw regio via Microsoft Teams.\\n \\nWij zorgen ervoor dat jij direct een Teams-uitnodiging ontvangt na het deelnemen aan een intervisie.",
+    val photo1DescriptionTutorial: String = "voorbeeld van notificatie",
+    val photo2DescriptionTutorial: String = "voorbeeld van een stelling in de app",
+    val photo3DescriptionTutorial: String = "foto van een teams gesprek op een scherm plus mobiel met de intervisie open",
+
     /** Settings*/
     val acountLabelSettings: String = "Acount",
     val opslaanLabelSettings: String = "Opslaan",
