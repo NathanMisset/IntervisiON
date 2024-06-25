@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -27,41 +33,56 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+
+/**
+ *
+ * This activity controls the Intervision for a leader user
+ * It contains mulitiple complex items that are control from a different class
+ *
+ */
+
 open class ActivityIntervisionLeader : ComponentActivity() {
-    //
+    /** Class variables */
     protected var sessionID: String? = null
-    protected var partisipantsIdS: ArrayList<String>? = null
     protected var thesesID: String? = null
-    protected var rOUNDNUMBERS = 5
-    protected lateinit var intervisionRounds: Array<IntervisionRound?>
+    protected var partisipantsIdS: ArrayList<String>? = null
     protected var currentRound : Int? = null
     protected var data: String? = null
-    protected var firebaseevent: ValueEventListener? = null
 
-    //Items
+    /** Items */
     protected var itemVote: ItemVote? = null
     private var itemElborateChose: ItemDiscusionLeader? = null
     protected var itemFinalRound: ItemFinalRound? = null
 
-    //Firebase
+    /** Firebase */
     protected var database: FirebaseDatabase? = null
     protected var firestore: FirebaseFirestore? = null
     protected var myRef: DatabaseReference? = null
     protected var storage: FirebaseStorage? = null
     protected var user: FirebaseAuth? = null
+    protected var firebaseevent: ValueEventListener? = null
+    private var firebaseURL: String = "https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        intervisionRounds = arrayOfNulls(rOUNDNUMBERS)
-        Log.d(TAG, "Start IntervisionsLeader")
         sessionID = intent.extras!!.getString("SessionID")
-        iIIIInit()
+        init()
     }
 
-    private fun iIIIInit() {
+    private fun init() {
         initVar()
         getData()
-        initLayout()
+    }
+
+    private fun initVar(){
+        //firebase
+        firestore = FirebaseFirestore.getInstance()
+        storage = FirebaseStorage.getInstance()
+        user = FirebaseAuth.getInstance()
+        database =
+            FirebaseDatabase.getInstance(firebaseURL)
+        myRef = database!!.getReference(sessionID!!)
+        // Items
         currentRound = 0
     }
 
@@ -74,33 +95,48 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                     val document = task.result
                     @Suppress("UNCHECKED_CAST")
                     partisipantsIdS = document.data!!["Participant Sid"] as ArrayList<String>?
-                    Log.d(TAG, "List of users: " + document.data!!["Participant Sid"])
                     thesesID =  document.data!!["ThesisID"].toString().substring(1, document.data!!["ThesisID"].toString().length - 1)
-                    Log.d(TAG, "ThesesID $thesesID")
-                    fillContent()
+                    initItems()
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
             }
     }
 
+    protected open fun initItems() {
+        itemFinalRound = ItemFinalRound()
+        itemVote = ItemVote(firestore!!, thesesID)
+        itemVote!!.init()
+        itemElborateChose = ItemDiscusionLeader(this, user!!, firestore!!, partisipantsIdS!!)
+        itemElborateChose!!.init()
+        initConnection()
+    }
+
+    /**
+     *
+     * initConnection creates a connection with the firebase firestore database
+     * Then creates a connection with the firebase realtime database as an event
+     * It will listen to the varaible connected to the session ID
+     * When the Activity Leader Changes the this value this event will be called
+     * And Make sure that changeRound is called
+     *
+     * The value can be 1 to 5 for the round
+     * This can have a character from 'a' to 'f' this is needed to give user turns
+     * W for Waitingroom
+     * S for Stop meaning end of session
+     *
+     */
+
     protected open fun initConnection() {
-        // Read from the database
         firebaseevent = myRef!!.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, "data type: " + dataSnapshot.value!!.javaClass)
                 val value: String? = if (dataSnapshot.value is String) {
                     dataSnapshot.getValue(String::class.java)
                 } else {
                     val valueGot = dataSnapshot.getValue(Long::class.java)
                     valueGot.toString()
                 }
-                Log.d(TAG, "Value = $value")
-                Log.d(TAG, "Value 1 = " + value!![0])
-
-                if (value.length > 1) {
+                if (value!!.length > 1) {
                     currentRound = value[0].toString().toInt()
                 } else if (value == "W") {
                     currentRound = 0
@@ -110,93 +146,62 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                     setContent {
                         QuitRound()
                     }
-                } else
-                {
+                } else {
                     currentRound = value.toInt()
                     changeRound(currentRound!!)
                 }
-
-
             }
-
             override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-
-    }
-    private fun initVar(){
-        //firebase
-        firestore = FirebaseFirestore.getInstance()
-        storage = FirebaseStorage.getInstance()
-        user = FirebaseAuth.getInstance()
-        database =
-            FirebaseDatabase.getInstance("https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app")
-        myRef = database!!.getReference(sessionID!!)
-        // Items
-    }
-    protected open fun initItems(){
-        itemFinalRound = ItemFinalRound()
-
-        itemVote = ItemVote(firestore!!, thesesID)
-        itemVote!!.init()
-        itemElborateChose = ItemDiscusionLeader(this,user!!,firestore!!,partisipantsIdS!!)
-        itemElborateChose!!.init()
-        Log.d(TAG, "initConnect")
-        initConnection()
-    }
-    private fun initLayout() {
     }
 
-    protected open fun fillContent() {
-        for (i in 0 until rOUNDNUMBERS) {
-            intervisionRounds[i] = IntervisionRound()
-        }
-        initItems()
+    /**
+     *
+     * changes the character to give a new user a turn
+     * More info in ItemDiscusionLeader.kt
+     *
+     */
+    fun changeValue(a: Char) {
+        myRef!!.setValue(currentRound.toString() + a)
     }
-    private fun toHome() {
-        startActivity(Intent(this, ActivityNavigation::class.java))
-        finish()
-    }
-
-
 
     protected open fun changeRound(roundNumber: Int) {
         when (roundNumber) {
             0 ->
                 setContent {
-                    FirstRound()
+                    Round1()
                 }
             1 ->
                 setContent {
-                    SecondRound()
+                    Round2()
                 }
             2 ->
                 setContent {
-                    ThirdRound()
+                    Round3()
                 }
             3 ->
                 setContent {
-                    ForthRound()
+                    Round4()
                 }
             4 ->
                 setContent {
-                    FifthRound()
+                    Round5()
                 }
             5 ->
                 setContent {
-                    FinalRound()
+                    SessionEnd()
                 }
         }
     }
 
-    fun changeValue(a: Char) {
-        myRef!!.setValue(currentRound.toString() + a)
+    private fun toHome() {
+        startActivity(Intent(this, ActivityNavigation::class.java))
+        finish()
     }
 
-    protected inner class IntervisionRound
-
+    /** Composables */
     @Composable
     protected open fun DefaultButtonRow(){
         Row(
@@ -207,14 +212,12 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(onClick = {
-                Log.d("BUTTONS", "User tapped the previousRoundButton")
                 val newval = currentRound!! - 1
                 myRef!!.setValue(newval.toString())
             }) {
                 Text(text = "Terug")
             }
             Button(onClick = {
-                Log.d("BUTTONS", "User tapped the nextRoundButton")
                 val newval = currentRound!! + 1
                 myRef!!.setValue(newval.toString())
             }) {
@@ -228,11 +231,9 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.2f),
-
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(onClick = {
-                Log.d("BUTTONS", "User tapped the nextRoundButton")
                 val newval = currentRound!! + 1
                 myRef!!.setValue(newval.toString())
             }) {
@@ -246,18 +247,15 @@ open class ActivityIntervisionLeader : ComponentActivity() {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.2f),
-
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             Button(onClick = {
-                Log.d("BUTTONS", "User tapped the previousRoundButton")
                 val newval = currentRound!! - 1
                 myRef!!.setValue(newval.toString())
             }) {
                 Text(text = "Terug")
             }
             Button(onClick = {
-                Log.d("BUTTONS", "User tapped the previousRoundButton")
                 val newval = 'S'
                 myRef!!.setValue(newval.toString())
             }) {
@@ -267,7 +265,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
 
     @Composable
-    protected open fun FirstRound() {
+    protected open fun Round1() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -283,7 +281,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         }
     }
     @Composable
-    protected open fun SecondRound() {
+    protected open fun Round2() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -300,7 +298,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
     @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
     @Composable
-    protected open fun ThirdRound() {
+    protected open fun Round3() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -317,7 +315,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
 
     @Composable
-    protected open fun ForthRound() {
+    protected open fun Round4() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -333,7 +331,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         }
     }
     @Composable
-    protected open fun FifthRound() {
+    protected open fun Round5() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -349,7 +347,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         }
     }
     @Composable
-    protected open fun FinalRound() {
+    protected open fun SessionEnd() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -375,10 +373,9 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-
                 Button(onClick = {
                     toHome()
-                     }) {
+                    }) {
                     Text(text = "Terug naar Home")
                 }
             }

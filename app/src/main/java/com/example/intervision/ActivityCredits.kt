@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
  *
  * Gemaakt door Nathan Misset 2024

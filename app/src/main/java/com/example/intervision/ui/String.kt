@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
  *
  * Gemaakt door Nathan Misset 2024
@@ -13,7 +13,7 @@ import androidx.compose.runtime.compositionLocalOf
 import kotlin.String
 
 data class String(
-    // App
+    /** App */
     val nameApp: String = "Intervisie voor bezwaarbehandelaars",
     val quitButtonApp: String = "Sluit",
     val saveButtonApp: String = "Opgeslagen",
@@ -21,13 +21,13 @@ data class String(
     val nextButtonApp: String = "Volgende",
     val descriptionIconApp: String = "App Icon",
 
-    // Credits
+    /** Credits */
     val makerContentCredits: String = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
     val opdrachtContentCredits: String = "In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam",
     val ideeContentCredits: String = "Idee gebaseerd op Dielemma game van de Irasmus Universiteit en het Beterbezwaarspel van het lectoraat legal Managment",
     val designContentCredits: String = "Gebaseerd op het design van Raquel de Romas student Communicatie en Multimedia Design aan de Hogeschool van Amsterdam",
 
-    //Intervisie
+    /** Intervisie */
     val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt"
     )
 

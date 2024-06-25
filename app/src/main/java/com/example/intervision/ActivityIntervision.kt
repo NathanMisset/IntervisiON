@@ -30,24 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore
  *
  * This activity controls the Intervision for a non leader user
  * It contains mulitiple complex items that are control from a different class
+ * For more info check ActivityIntervisionLeader.kt the class this one inherits from
  *
  */
 class ActivityIntervision : ActivityIntervisionLeader() {
 
     private var itemDiscusionUser: ItemDiscusionUser? = null
-
-    /**
-     *
-     * fillContent
-     *
-     */
-    override fun fillContent() {
-        intervisionRounds = arrayOfNulls(rOUNDNUMBERS)
-        for (i in 0 until rOUNDNUMBERS) {
-            intervisionRounds[i] = IntervisionRound()
-        }
-        initItems()
-    }
 
     /**
      *
@@ -70,6 +58,11 @@ class ActivityIntervision : ActivityIntervisionLeader() {
      * It will listen to the varaible connected to the session ID
      * When the Activity Leader Changes the this value this event will be called
      * And Make sure that changeRound is called
+     *
+     * The value can be 1 to 5 for the round
+     * This can have a chart from 'a' to 'f' this is needed to give user turns
+     * W for Waitingroom
+     * S for Stop meaning end of session
      *
      * Lastly it get the data of all member that are part of the group
      *
@@ -136,37 +129,37 @@ class ActivityIntervision : ActivityIntervisionLeader() {
         when (roundNumber) {
             0 -> {
                 setContent {
-                    FirstRound()
+                    Round1()
                 }
                 Log.d(TAG, "round 1")
             }
             1 ->{
                 setContent {
-                    SecondRound()
+                    Round2()
                 }
                 Log.d(TAG, "round 2")
             }
             2 -> {
                 setContent {
-                    ThirdRound()
+                    Round3()
                 }
                 Log.d(TAG, "round 3")
             }
             3 -> {
                 setContent {
-                    ForthRound()
+                    Round4()
                 }
                 Log.d(TAG, "round 4")
             }
             4 -> {
                 setContent {
-                    FifthRound()
+                    Round5()
                 }
                 Log.d(TAG, "round 5")
             }
             5 -> {
                 setContent {
-                    FinalRound()
+                    SessionEnd()
                 }
                 Log.d(TAG, "final round")
             }
@@ -175,7 +168,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
 
     /** Composables */
     @Composable
-    override fun FirstRound() {
+    override fun Round1() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -191,7 +184,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
     }
 
     @Composable
-    override fun ForthRound(){
+    override fun Round4(){
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -207,11 +200,11 @@ class ActivityIntervision : ActivityIntervisionLeader() {
     }
 
     @Composable
-    override fun FifthRound() {
+    override fun Round5() {
         /** TODO  Implement Fifth Round*/
     }
     @Composable
-    override fun FinalRound() {
+    override fun SessionEnd() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
