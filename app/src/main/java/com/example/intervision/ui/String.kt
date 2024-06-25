@@ -98,6 +98,8 @@ data class String(
     /** FragmentGroup */
     val maakGroupFragmentGroup: String = "Maak groep",
 
+    /** FragmentProfile */
+    val settingsDescriptionProfileGroup: String = "settings",
 
     /** Settings */
     val acountLabelSettings: String = "Acount",

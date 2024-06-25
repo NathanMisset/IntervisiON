@@ -72,10 +72,10 @@ class FragmentHome {
         statementId = ArrayList()
         statements = ArrayList()
         questions = ArrayList()
-        thesis()
+        getThesis()
     }
 
-    private fun thesis() {
+    private fun getThesis() {
         db!!.collection("Theses")
             .get()
             .addOnCompleteListener { task ->
