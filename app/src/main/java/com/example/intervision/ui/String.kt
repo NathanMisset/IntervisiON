@@ -15,6 +15,7 @@ import kotlin.String
 data class String(
     /** App */
     val nameApp: String = "Intervisie voor bezwaarbehandelaars",
+    val taalCodeApp: String = "nl",
     val quitButtonApp: String = "Sluit",
     val saveButtonApp: String = "Opgeslagen",
     val backButtonApp: String = "Terug",
@@ -52,6 +53,12 @@ data class String(
             "van het lectoraat Legal Management",
     val finishRegister: String = "Register",
 
+    /** Reset password */
+    val verzendenLabelResetPassword: String = "Verzenden",
+    val contentResetPassword: String = "Vul je email in.\\n\\nAls de email gelinked is \" +\n" +
+            "                                \"aan een account\\nkrijgt u een mail met een link om \\n\" +\n" +
+            "                                \"wachtwoord te reseten.",
+
 
     /** Credits */
     val makerContentCredits: String = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
@@ -61,6 +68,8 @@ data class String(
 
     /** Intervisie */
     val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt"
+
+
     )
 
 val LocalString = compositionLocalOf { com.example.intervision.ui.String() }

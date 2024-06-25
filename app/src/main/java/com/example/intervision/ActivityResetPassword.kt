@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -21,19 +27,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.activity.compose.setContent
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 
+/**
+ *
+ * This activity controls the reset password proces
+ *
+ */
 
 open class ActivityResetPassword : ComponentActivity() {
-    private var auth: FirebaseAuth? = null
+
+    /** Class Variables */
     private var email: MutableState<String> = mutableStateOf("")
     private var sendButtonState: MutableState<Boolean> = mutableStateOf(true)
+
+    /** Firebase */
+    private var auth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
         setContent {
-            DefaultPreview()
+            Screen()
         }
     }
 
@@ -43,11 +61,10 @@ open class ActivityResetPassword : ComponentActivity() {
     }
 
     private fun resetPassword() {
-        auth!!.setLanguageCode("nl")
+        auth!!.setLanguageCode(UiString.taalCodeApp)
         auth!!.sendPasswordResetEmail(email.value)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "Email sent to: " + email.value)
                     mailSend()
                 }
             }
@@ -57,13 +74,10 @@ open class ActivityResetPassword : ComponentActivity() {
         sendButtonState.value = false
     }
 
-    companion object {
-        private const val TAG = "Reset Password"
-    }
-
+    /** Composables */
     @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
     @Composable
-    fun DefaultPreview() {
+    fun Screen() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
@@ -81,28 +95,30 @@ open class ActivityResetPassword : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
-                    Text(text = "Wachtwoord vergeten?",
+                    Text(text = ComposableUiString.forgotPasswordButtonLogin,
                         fontSize = 20.sp)
                     Text(
-                        text = "Vul je email in.\n\nAls de email gelinked is " +
-                                "aan een account\nkrijgt u een mail met een link om \n" +
-                                "wachtwoord te reseten.",
+                        text = ComposableUiString.contentResetPassword,
                         softWrap = true
                     )
                     TextField(value = email.value,
                         onValueChange = { email.value = it },
-                        label = { Text("email") })
+                        label = { Text(ComposableUiString.emailTextFieldLogin) }
+                    )
                     if (sendButtonState.value) {
                         Button(onClick = { resetPassword() }) {
-                            Text(text = "Verzenden")
+                            Text(text = ComposableUiString.verzendenLabelResetPassword)
                         }
                     } else {
                         Button(onClick = { toLogin() }) {
-                            Text(text = "Terug")
+                            Text(text = ComposableUiString.backButtonApp)
                         }
                     }
                 }
             }
         }
+    }
+    companion object {
+        private const val TAG = "Reset Password"
     }
 }
