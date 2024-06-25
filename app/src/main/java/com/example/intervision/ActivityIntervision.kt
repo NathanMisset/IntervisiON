@@ -35,6 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  */
 class ActivityIntervision : ActivityIntervisionLeader() {
 
+    /** Class variables */
     private var itemDiscusionUser: ItemDiscusionUser? = null
 
     /**

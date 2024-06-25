@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -41,32 +47,49 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
+/**
+ *
+ * This activity controls the login activity
+ *
+ */
+
 class ActivityLogin : ComponentActivity() {
-    private var mAuth: FirebaseAuth? = null
+
+    /** Class variables */
     private var username: MutableState<String> = mutableStateOf("")
     private var password: MutableState<String> = mutableStateOf("")
+
+    /** Firebase */
+    private var mAuth: FirebaseAuth? = null
+
+    /** Initialisation */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         setContent {
-            DefaultPreview()
+            Screen()
         }
     }
 
+    /**
+     *
+     * toast is a small message at the bottom of the screen
+     * This toast is mostly shown when a login error occurs
+     *
+     */
     private fun toast(message: String) {
         Toast.makeText(
             this@ActivityLogin, message,
@@ -74,6 +97,12 @@ class ActivityLogin : ComponentActivity() {
         ).show()
     }
 
+
+    /**
+     *
+     * Checks if username and password fields are filled
+     *
+     */
     private fun checkAllFields(): Boolean {
         var check = true
         if (username.value.isEmpty()) {
@@ -89,18 +118,20 @@ class ActivityLogin : ComponentActivity() {
         return check
     }
 
+    /**
+     *
+     * Basic login for email and password signIn copied from android
+     *
+     */
     private fun signIn(email: String, password: String) {
-        // [START sign_in_with_email]
         mAuth!!.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("dasda", "signInWithEmail:success")
+                    Log.d(TAG, "signInWithEmail:success")
                     val user = mAuth!!.currentUser
                     updateUI(user)
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("tads", "signInWithEmail:failure", task.exception)
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
                         this@ActivityLogin, "Login failed.",
                         Toast.LENGTH_SHORT
@@ -108,9 +139,12 @@ class ActivityLogin : ComponentActivity() {
                     updateUI(null)
                 }
             }
-        // [END sign_in_with_email]
     }
 
+    private fun updateUI(user: FirebaseUser?) {
+        if (user == null) return
+        toNavigation()
+    }
     private fun toRestPassword() {
         val i = Intent(this, ActivityResetPassword::class.java)
         startActivity(i)
@@ -123,20 +157,15 @@ class ActivityLogin : ComponentActivity() {
         val i = Intent(this, ActivityRegister::class.java)
         startActivity(i)
     }
-
-    private fun reload() {
+    private fun toNavigation() {
         val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        if (user == null) return
-        reload()
-    }
 
-    @PreviewFontScale
-    @Composable
-    fun DefaultPreview() {
+    /** Composables */
+    @PreviewFontScale @Composable
+    fun Screen() {
         val focusManager = LocalFocusManager.current
         MyApplicationTheme {
             Column(
@@ -153,12 +182,12 @@ class ActivityLogin : ComponentActivity() {
                 ){
                     Image(
                         painter = painterResource(id = R.drawable.main_icon),
-                        contentDescription = stringResource(id = R.string.content_1),
+                        contentDescription = UiString.descriptionIconApp,
                         Modifier
                             .fillMaxWidth()
                     )
                     Text(
-                        "Login",
+                        UiString.loginButtonLogin,
                         fontSize = 30.sp,
                         fontWeight = Bold,
                     )
@@ -175,7 +204,7 @@ class ActivityLogin : ComponentActivity() {
                     TextField(
                         value = username.value,
                         onValueChange = { username.value = it },
-                        label = { Text("Email") },
+                        label = { Text(UiString.emailTextFieldLogin) },
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                             focusedIndicatorColor = Color.Transparent,
@@ -191,13 +220,13 @@ class ActivityLogin : ComponentActivity() {
                             .fillMaxWidth()
                     )
 
-                    var passwordVisible by remember { mutableStateOf(false) }
+                    var rememberPasswordVisibility by remember { mutableStateOf(false) }
                     TextField(
                         value = password.value,
                         onValueChange = { password.value = it },
-                        label = { Text("Wachtwoord") },
+                        label = { Text(UiString.passwordTextFieldLogin) },
                         singleLine = true,
-                        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        visualTransformation = if (rememberPasswordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                             focusedIndicatorColor = Color.Transparent,
@@ -216,25 +245,22 @@ class ActivityLogin : ComponentActivity() {
                             .defaultMinSize(minHeight = 50.dp)
                             .fillMaxWidth(),
                         trailingIcon = {
-                            val image = if (passwordVisible)
+                            val image = if (rememberPasswordVisibility)
                                 Icons.Filled.Visibility
                             else Icons.Filled.VisibilityOff
 
-                            // Localized description for accessibility services
                             val description =
-                                if (passwordVisible) "Wachtwoord verbergen" else "Wachtwoord laten zien"
+                                if (rememberPasswordVisibility) "Wachtwoord verbergen" else "Wachtwoord laten zien"
 
-                            // Toggle button to hide or display password
-                            IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                            IconButton(onClick = { rememberPasswordVisibility = !rememberPasswordVisibility }) {
                                 Icon(imageVector = image, description)
                             }
                         }
                     )
                 }
-
                 Button(
                     onClick = {
-                        Log.d("BUTTONS", "User tapped the LoginButton")
+                        Log.d(TAG, "User tapped the LoginButton")
                         if (checkAllFields()) {
                             signIn(username.value, password.value)
                         }
@@ -242,14 +268,11 @@ class ActivityLogin : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .defaultMinSize(minHeight = 50.dp)
-
-                )
-                {
+                ) {
                     Text(
-                        text = "Login",
+                        text = UiString.loginButtonLogin,
                     )
                 }
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceEvenly,
@@ -264,9 +287,8 @@ class ActivityLogin : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .defaultMinSize(minHeight = 50.dp)
-                    )
-                    {
-                        Text(text = "Registeren")
+                    ) {
+                        Text(text = UiString.registerButtonLogin)
                     }
                     OutlinedButton(
                         onClick = {
@@ -275,9 +297,8 @@ class ActivityLogin : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .defaultMinSize(minHeight = 50.dp)
-                    )
-                    {
-                        Text(text = "Wachtwoord vergeten?")
+                    ) {
+                        Text(text = UiString.forgotPasswordButtonLogin)
                     }
                     TextButton(
                         onClick = {
@@ -286,13 +307,15 @@ class ActivityLogin : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .defaultMinSize(minHeight = 50.dp)
-                    )
-                    {
-                        Text(text = "Credits")
+                    ) {
+                        Text(text = UiString.creditsButtonLogin)
                     }
                 }
             }
         }
+    }
+    companion object {
+        private const val TAG = "LoginActivity"
     }
 }
 

@@ -42,6 +42,7 @@ import com.google.firebase.storage.FirebaseStorage
  */
 
 open class ActivityIntervisionLeader : ComponentActivity() {
+
     /** Class variables */
     protected var sessionID: String? = null
     protected var thesesID: String? = null
@@ -63,6 +64,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     protected var firebaseevent: ValueEventListener? = null
     private var firebaseURL: String = "https://intervision-1be7c-default-rtdb.europe-west1.firebasedatabase.app"
 
+    /** Initialisation */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sessionID = intent.extras!!.getString("SessionID")

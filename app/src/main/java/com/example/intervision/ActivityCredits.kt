@@ -41,6 +41,7 @@ import com.example.intervision.ui.UiString
  */
 
 class ActivityCredits: ComponentActivity()  {
+
     /** Initialisation */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

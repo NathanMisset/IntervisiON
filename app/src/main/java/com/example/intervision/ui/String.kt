@@ -21,6 +21,14 @@ data class String(
     val nextButtonApp: String = "Volgende",
     val descriptionIconApp: String = "App Icon",
 
+    /** App */
+    val loginButtonLogin: String = "Login",
+    val registerButtonLogin: String = "Registeren",
+    val forgotPasswordButtonLogin: String = "Wachtwoord vergeten?",
+    val creditsButtonLogin: String = "Credits",
+    val emailTextFieldLogin: String = "Email",
+    val passwordTextFieldLogin: String = "Wachtwoord",
+
     /** Credits */
     val makerContentCredits: String = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
     val opdrachtContentCredits: String = "In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam",
