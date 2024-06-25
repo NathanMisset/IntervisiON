@@ -126,7 +126,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
+                /** Failed to read value */
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
@@ -208,7 +208,6 @@ class ActivityWaitingRoom : ComponentActivity() {
                             horizontal = spacing.small,
                             vertical = spacing.default
                         ),
-
                     horizontalArrangement = Arrangement.SpaceAround) {
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
@@ -239,7 +238,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                                 .padding(spacing.small))
                     }
                 }
-                Row (
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
@@ -276,8 +275,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                             )
                     }
                 }
-                Column (
-                    verticalArrangement = Arrangement.SpaceEvenly){
+                Column(verticalArrangement = Arrangement.SpaceEvenly){
                     if(leader == true) {
                         Button(
                             onClick = { toIntervisionLeader() },
@@ -297,7 +295,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                         }
                     }
 
-                    Button(onClick = { finish()},
+                    Button(onClick = { finish() },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.errorContainer
                         ),
