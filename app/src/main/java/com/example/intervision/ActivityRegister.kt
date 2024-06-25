@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -42,71 +48,73 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.ComposableUiString
+import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
+/**
+ *
+ * This activity controls the registration proces
+ *
+ */
+
 class ActivityRegister : ComponentActivity() {
-    private var mAuth: FirebaseAuth? = null
-    private var storage: FirebaseStorage? = null
+
+    /** Class variable */
     private var voornaam: MutableState<String> = mutableStateOf("")
     private var werkfunctie: MutableState<String> = mutableStateOf("")
     private var email: MutableState<String> = mutableStateOf("")
     private var password: MutableState<String> = mutableStateOf("")
     private var checked: MutableState<Boolean> = mutableStateOf(false)
     private var checkedFinish: MutableState<Boolean> = mutableStateOf(false)
+
+    /** Firebase */
+    private var mAuth: FirebaseAuth? = null
+    private var storage: FirebaseStorage? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
         setContent {
-            DefaultPreview()
+            Screen()
         }
     }
 
     private fun checkAllFields(): Boolean {
         var check = true
         if (voornaam.value.isEmpty()) {
-            val error = "Voornaam is verplich"
+            val error = UiString.voornaamErrorRegister
             toast(error)
-            //voornaam.value.error = error
             check = false
         }
-        Log.d(TAG, "Voornaam is ingevuld")
         if (werkfunctie.value.isEmpty()) {
-            val error = "Werkfunctie is verplicht"
+            val error = UiString.werkfuntieErrorRegister
             toast(error)
-            //werkfunctie!!.error = "Werkfunctie is verplicht"
             check = false
         }
-        Log.d(TAG, "werkfunctie is ingevuld")
         if (email.value.isEmpty()) {
-            val error = "Email is verplicht"
+            val error = UiString.emailErrorRegister
             toast(error)
-            //email!!.error = "Email is verplicht"
             check = false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email.value).matches()) {
-            val error = "email format niet juist"
+            val error = UiString.emailFormatErrorRegister
             toast(error)
-            //email!!.error =
-            //    "Vul uw email adres volgens het volgende format in:\n uwnaam@voorbeeld.nl"
             check = false
         }
-        Log.d(TAG, "email is ingevuld")
         if (password.value.isEmpty()) {
-            val error = "Wachtwoord is verplicht"
+            val error = UiString.wachtwoordErrorRegister
             toast(error)
-            //password!!.error = "Wachtwoord is verplicht"
             check = false
         } else if (password.value.length < 6) {
-            val error = "Wachtwoord moet minimaal 8 karakters bevatten"
+            val error = UiString.wachtwoordLengtenErrorRegister
             toast(error)
-            //password!!.error = "Wachtwoord moet minimaal 8 karakters bevatten"
             check = false
         }
-        Log.d(TAG, "Wachtwoord is ingevuld")
         // after all validation return true.
         return check
     }
@@ -123,17 +131,14 @@ class ActivityRegister : ComponentActivity() {
     }
 
     private fun createAccount(email: String, password: String) {
-        // [START create_user_with_email]
         mAuth!!.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = mAuth!!.currentUser
                     saveUserData(user)
                     updateUI(user)
                 } else {
-                    // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(
                         this@ActivityRegister, "Authentication failed.",
@@ -142,29 +147,20 @@ class ActivityRegister : ComponentActivity() {
                     updateUI(null)
                 }
             }
-        // [END create_user_with_email]
     }
 
     private fun saveUserData(firebaseUser: FirebaseUser?) {
         val db = FirebaseFirestore.getInstance()
-        Log.d(TAG, "IF")
-
-
-
-
-
-        // Create a new user with a first and last name
         val user: MutableMap<String, Any> = HashMap()
+
         user["Voornaam"] = voornaam.value
         user["Werk functie"] = werkfunctie.value
         user["User UID"] = firebaseUser!!.uid
+
         db.collection("User Data")
             .add(user)
             .addOnSuccessListener { documentReference ->
-                Log.d(
-                    TAG,
-                    "DocumentSnapshot added with ID: " + documentReference.id
-                )
+                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.id)
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
     }
@@ -179,10 +175,9 @@ class ActivityRegister : ComponentActivity() {
         reload()
     }
 
-
     @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
     @Composable
-    fun DefaultPreview() {
+    fun Screen() {
         val focusManager = LocalFocusManager.current
         MyApplicationTheme {
             Column(
@@ -201,7 +196,7 @@ class ActivityRegister : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
-                    Text(text = "Registeren")
+                    Text(text = ComposableUiString.registerRegister)
                     Column(
                         modifier = Modifier
                             .fillMaxHeight(0.4f)
@@ -213,7 +208,7 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = email.value,
                             onValueChange = { email.value = it },
-                            label = { Text("email") },
+                            label = { Text(ComposableUiString.emailLabelRegister) },
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Email,
                                 imeAction = ImeAction.Next),
@@ -223,7 +218,7 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = voornaam.value,
                             onValueChange = { voornaam.value = it },
-                            label = { Text("voornaam") },
+                            label = { Text(ComposableUiString.voornaamLabelRegister) },
                             keyboardOptions = KeyboardOptions(
                                 capitalization = KeyboardCapitalization.Sentences,
                                 imeAction = ImeAction.Next),
@@ -233,7 +228,7 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = werkfunctie.value,
                             onValueChange = { werkfunctie.value = it },
-                            label = { Text("werkfunctie") },
+                            label = { Text(ComposableUiString.werkfuntieLabelRegister) },
                             keyboardOptions = KeyboardOptions(
                                 capitalization = KeyboardCapitalization.Sentences,
                                 imeAction = ImeAction.Next),
@@ -244,9 +239,9 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = password.value,
                             onValueChange = { password.value = it },
-                            label = { Text("wachtwoord") },
+                            label = { Text(ComposableUiString.wachtwoordLabelRegister) },
                             singleLine = true,
-                            placeholder = { Text("Wachtwoord") },
+                            placeholder = { Text(ComposableUiString.wachtwoordLabelRegister) },
                             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                             keyboardOptions = KeyboardOptions(
                                 capitalization = KeyboardCapitalization.None,
@@ -260,10 +255,8 @@ class ActivityRegister : ComponentActivity() {
                                     Icons.Filled.Visibility
                                 else Icons.Filled.VisibilityOff
 
-                                // Localized description for accessibility services
-                                val description = if (passwordVisible) "Hide password" else "Show password"
+                                val description = if (passwordVisible) ComposableUiString.wachtwoordOntzichbaarRegister else ComposableUiString.wachtwoordZichbaarLabelRegister
 
-                                // Toggle button to hide or display password
                                 IconButton(onClick = {passwordVisible = !passwordVisible}){
                                     Icon(imageVector  = image, description)
                                 }
@@ -290,12 +283,11 @@ class ActivityRegister : ComponentActivity() {
                             )
                         )
                         Text(
-                            text = "Ik verleen toestemming voor het anoniem bewaren van mijn stemmen op de stellingen ten behoeve" +
-                                    "van onderzoeksdoeleinden van het lectoraat Legal Management"
+                            text = ComposableUiString.toestemmingRegister
                         )
                     }
                     Button(onClick = { startRegister() }) {
-                        Text(text = "Aan de slag")
+                        Text(text = ComposableUiString.finishRegister)
                     }
 
                 }
@@ -303,9 +295,8 @@ class ActivityRegister : ComponentActivity() {
         }
     }
 
-
     companion object {
-        private const val TAG = "EmailPassword"
+        private const val TAG = "RegisterActivity"
 //        private const val EMAIL_PATTERN =
 //            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
     }

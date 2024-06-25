@@ -56,7 +56,7 @@ import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.MyApplicationTheme
-import com.example.intervision.ui.UiString
+import com.example.intervision.ui.ComposableUiString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -182,12 +182,12 @@ class ActivityLogin : ComponentActivity() {
                 ){
                     Image(
                         painter = painterResource(id = R.drawable.main_icon),
-                        contentDescription = UiString.descriptionIconApp,
+                        contentDescription = ComposableUiString.descriptionIconApp,
                         Modifier
                             .fillMaxWidth()
                     )
                     Text(
-                        UiString.loginButtonLogin,
+                        ComposableUiString.loginButtonLogin,
                         fontSize = 30.sp,
                         fontWeight = Bold,
                     )
@@ -204,7 +204,7 @@ class ActivityLogin : ComponentActivity() {
                     TextField(
                         value = username.value,
                         onValueChange = { username.value = it },
-                        label = { Text(UiString.emailTextFieldLogin) },
+                        label = { Text(ComposableUiString.emailTextFieldLogin) },
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                             focusedIndicatorColor = Color.Transparent,
@@ -224,7 +224,7 @@ class ActivityLogin : ComponentActivity() {
                     TextField(
                         value = password.value,
                         onValueChange = { password.value = it },
-                        label = { Text(UiString.passwordTextFieldLogin) },
+                        label = { Text(ComposableUiString.passwordTextFieldLogin) },
                         singleLine = true,
                         visualTransformation = if (rememberPasswordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
                         colors = TextFieldDefaults.colors(
@@ -270,7 +270,7 @@ class ActivityLogin : ComponentActivity() {
                         .defaultMinSize(minHeight = 50.dp)
                 ) {
                     Text(
-                        text = UiString.loginButtonLogin,
+                        text = ComposableUiString.loginButtonLogin,
                     )
                 }
                 Column(
@@ -288,7 +288,7 @@ class ActivityLogin : ComponentActivity() {
                             .fillMaxWidth()
                             .defaultMinSize(minHeight = 50.dp)
                     ) {
-                        Text(text = UiString.registerButtonLogin)
+                        Text(text = ComposableUiString.registerButtonLogin)
                     }
                     OutlinedButton(
                         onClick = {
@@ -298,7 +298,7 @@ class ActivityLogin : ComponentActivity() {
                             .fillMaxWidth()
                             .defaultMinSize(minHeight = 50.dp)
                     ) {
-                        Text(text = UiString.forgotPasswordButtonLogin)
+                        Text(text = ComposableUiString.forgotPasswordButtonLogin)
                     }
                     TextButton(
                         onClick = {
@@ -308,7 +308,7 @@ class ActivityLogin : ComponentActivity() {
                             .fillMaxWidth()
                             .defaultMinSize(minHeight = 50.dp)
                     ) {
-                        Text(text = UiString.creditsButtonLogin)
+                        Text(text = ComposableUiString.creditsButtonLogin)
                     }
                 }
             }

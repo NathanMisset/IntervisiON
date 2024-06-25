@@ -34,7 +34,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.intervision.ui.MyApplicationTheme
-import com.example.intervision.ui.UiString
+import com.example.intervision.ui.ComposableUiString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -88,7 +88,7 @@ class ActivityNavigation : ComponentActivity() {
     override fun onRestart() {
         super.onRestart()
         super.onStart()
-        Log.d("navigation", "OnStart")
+        Log.d(TAG, "OnStart")
         Handler().postDelayed({
             setContent {
                 MyApplicationTheme {
@@ -144,19 +144,19 @@ class ActivityNavigation : ComponentActivity() {
                     navController,
                     Screen.Home,
                     Icons.Default.Home,
-                    UiString.homeLabelNavigation
+                    ComposableUiString.homeLabelNavigation
                 )
                 NavigationItem(
                     navController,
                     Screen.Group,
                     Icons.Default.Group,
-                    UiString.groupLabelNavigation
+                    ComposableUiString.groupLabelNavigation
                 )
                 NavigationItem(
                     navController,
                     Screen.Profile,
                     Icons.Default.AccountCircle,
-                    UiString.profileLabelNavigation
+                    ComposableUiString.profileLabelNavigation
                 )
             }
         }

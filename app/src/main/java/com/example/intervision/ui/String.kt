@@ -34,6 +34,25 @@ data class String(
     val groupLabelNavigation: String = "Group",
     val profileLabelNavigation: String = "Profile",
 
+    /** Register */
+    val voornaamErrorRegister: String = "Voornaam is verplich",
+    val werkfuntieErrorRegister: String = "Werkfunctie is verplicht",
+    val emailErrorRegister: String = "Email is verplicht",
+    val emailFormatErrorRegister: String = "Email format niet juist",
+    val wachtwoordErrorRegister: String = "Wachtwoord is verplicht",
+    val wachtwoordLengtenErrorRegister: String = "Wachtwoord is verplicht",
+    val voornaamLabelRegister: String = "*Voornaam",
+    val werkfuntieLabelRegister: String = "*Werkfunctie",
+    val emailLabelRegister: String = "*Email",
+    val wachtwoordLabelRegister: String = "*Wachtwoord",
+    val wachtwoordZichbaarLabelRegister: String = "Show password",
+    val wachtwoordOntzichbaarRegister: String = "Hide password",
+    val registerRegister: String = "Register",
+    val toestemmingRegister: String = "Ik verleen toestemming voor het anoniem bewaren van mijn stemmen op de stellingen ten behoeve van onderzoeksdoeleinden " +
+            "van het lectoraat Legal Management",
+    val finishRegister: String = "Register",
+
+
     /** Credits */
     val makerContentCredits: String = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
     val opdrachtContentCredits: String = "In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam",
@@ -44,9 +63,12 @@ data class String(
     val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt"
     )
 
-val LocalString= compositionLocalOf { com.example.intervision.ui.String() }
+val LocalString = compositionLocalOf { com.example.intervision.ui.String() }
+val LocalString1 =  com.example.intervision.ui.String()
 
 val UiString: com.example.intervision.ui.String
+    get() = LocalString1
+val ComposableUiString: com.example.intervision.ui.String
     @Composable
     @ReadOnlyComposable
     get() = LocalString.current
