@@ -37,22 +37,27 @@ class ActivityMain : AppCompatActivity() {
         val i = Intent(this, ActivityRegister::class.java)
         startActivity(i)
     }
+
     private fun launchTutorial() {
         val i = Intent(this, ActivityTutorial::class.java)
         startActivity(i)
     }
+
     private fun launchLogin() {
         val i = Intent(this, ActivityLogin::class.java)
         startActivity(i)
     }
+
     private fun launchMakeGroup() {
         val i = Intent(this, ActivityMakeGroup::class.java)
         startActivity(i)
     }
+
     private fun launchHome() {
         val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)
     }
+
     private fun launchFragmentTest() {
         val i = Intent(this, ActivityNavigation::class.java)
         startActivity(i)

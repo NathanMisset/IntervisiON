@@ -46,16 +46,18 @@ class ActivityCredits: ComponentActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            screen()
+            Screen()
         }
     }
+
     /** Methodes */
     private fun toLogin() {
         finish()
     }
+
     /** Composables */
     @PreviewFontScale @Composable
-    fun screen() {
+    fun Screen() {
         MyApplicationTheme {
             Column(
                 modifier = Modifier
