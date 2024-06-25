@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -25,6 +31,12 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
+/**
+ *
+ * This activity controlls the HomeSection.
+ * It shows the thesis of the month and the results after the user voted
+ *
+ */
 
 class FragmentHome {
 
