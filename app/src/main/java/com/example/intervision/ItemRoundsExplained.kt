@@ -1,7 +1,6 @@
 package com.example.intervision
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,17 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
 class ItemRoundsExplained  {
     @Composable
     fun Component() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -71,7 +69,7 @@ class ItemRoundsExplained  {
 
     @Composable
     fun ComponentParticipant() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column {
                 Text(
                     text = "Introductie ronde",
@@ -118,7 +116,7 @@ class ItemRoundsExplained  {
 @PreviewFontScale
 @Composable
 fun TestComponent() {
-    MyApplicationTheme {
+    IntervisionBaseTheme {
         Column(
             modifier = Modifier
                 .fillMaxHeight()

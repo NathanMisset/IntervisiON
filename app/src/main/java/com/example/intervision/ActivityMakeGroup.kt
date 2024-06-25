@@ -53,7 +53,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
@@ -258,7 +258,7 @@ class ActivityMakeGroup : ComponentActivity() {
         val pagerState = rememberPagerState(3)
         val coroutineScope = rememberCoroutineScope()
 
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .padding(10.dp)

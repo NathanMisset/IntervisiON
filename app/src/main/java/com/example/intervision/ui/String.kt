@@ -78,11 +78,25 @@ data class String(
     val content1Tutorial: String = "Elke eerste maandag van de maand om 16:00 ontvang je een stelling van de app met betrekking tot een bezwaarprocedure.",
     val content2Tutorial: String = "Na het openen van de stelling geef je aan of je het eens of oneens ben met de stelling.\\n \\n Optioneel: Iedereen mag nieuwe stellingen in de app toevoegen",
     val content3Tutorial: String = "Na het stemmen heb je de optie om een online intervisie te houden over de desbetreffende stelling samen met jouw collega’s of andere juridische experts binnen of buiten jouw regio via Microsoft Teams.\\n \\nWij zorgen ervoor dat jij direct een Teams-uitnodiging ontvangt na het deelnemen aan een intervisie.",
-    val photo1DescriptionTutorial: String = "voorbeeld van notificatie",
-    val photo2DescriptionTutorial: String = "voorbeeld van een stelling in de app",
+    val photo1DescriptionTutorial: String = "Voorbeeld van notificatie",
+    val photo2DescriptionTutorial: String = "Voorbeeld van een stelling in de app",
     val photo3DescriptionTutorial: String = "foto van een teams gesprek op een scherm plus mobiel met de intervisie open",
 
-    /** Settings*/
+    /** Waiting Room */
+    val desciptionWaitingRoom: String = "Open nu de Teams vergadering op jouw desktop/laptop voordat de intervisie begint en zorg ervoor dat de verbinding technisch werkt!",
+    val startButtonWaitingRoom: String = "Start",
+    val leaveButtonWaitingRoom: String = "Verlaten",
+    val intentPutExtraSessionIDWaitingRoom: String = "SessionID",
+    val intentPutExtraLeaderWaitingRoom: String = "Leader",
+    val profile1ImageDescriptionWaitingRoom: String = "ProfilePicture 1",
+    val profile2ImageDescriptionWaitingRoom: String = "ProfilePicture 2",
+    val profile3ImageDescriptionWaitingRoom: String = "ProfilePicture 3",
+    val profile4ImageDescriptionWaitingRoom: String = "ProfilePicture 4",
+    val profile5ImageDescriptionWaitingRoom: String = "ProfilePicture 5",
+    val profile6ImageDescriptionWaitingRoom: String = "ProfilePicture 6",
+
+
+    /** Settings */
     val acountLabelSettings: String = "Acount",
     val opslaanLabelSettings: String = "Opslaan",
     val quitIconDescriptonSettings: String = "Close Cross",

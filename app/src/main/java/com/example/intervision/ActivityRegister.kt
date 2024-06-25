@@ -47,8 +47,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.ComposableUiString
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -179,7 +179,7 @@ class ActivityRegister : ComponentActivity() {
     @Composable
     fun Screen() {
         val focusManager = LocalFocusManager.current
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()

@@ -33,8 +33,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.ComposableUiString
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -91,7 +91,7 @@ class ActivityNavigation : ComponentActivity() {
         Log.d(TAG, "OnStart")
         Handler().postDelayed({
             setContent {
-                MyApplicationTheme {
+                IntervisionBaseTheme {
                     Log.d("navigation", "setContent")
                     val navController = rememberNavController()
 
@@ -116,7 +116,7 @@ class ActivityNavigation : ComponentActivity() {
         Log.d(TAG, "OnStart")
         Handler().postDelayed({
             setContent {
-                MyApplicationTheme {
+                IntervisionBaseTheme {
                     Log.d(TAG, "setContent")
                     val navController = rememberNavController()
                     Scaffold(
@@ -178,7 +178,7 @@ class ActivityNavigation : ComponentActivity() {
 
     @Composable
     fun HomeScreen() {
-            MyApplicationTheme {
+            IntervisionBaseTheme {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
@@ -191,7 +191,7 @@ class ActivityNavigation : ComponentActivity() {
 
     @Composable
     fun GroupScreen() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -206,7 +206,7 @@ class ActivityNavigation : ComponentActivity() {
 
     @Composable
     fun ProfileScreen() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,

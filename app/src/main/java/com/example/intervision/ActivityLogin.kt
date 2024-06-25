@@ -55,8 +55,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.ComposableUiString
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -167,7 +167,7 @@ class ActivityLogin : ComponentActivity() {
     @PreviewFontScale @Composable
     fun Screen() {
         val focusManager = LocalFocusManager.current
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxSize()

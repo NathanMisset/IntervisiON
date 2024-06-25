@@ -18,8 +18,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.ComposableUiString
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -33,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  * For more info check ActivityIntervisionLeader.kt the class this one inherits from
  *
  */
+
 class ActivityIntervision : ActivityIntervisionLeader() {
 
     /** Class variables */
@@ -170,7 +171,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
     /** Composables */
     @Composable
     override fun Round1() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -186,7 +187,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
 
     @Composable
     override fun Round4(){
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -206,7 +207,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
     }
     @Composable
     override fun SessionEnd() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()

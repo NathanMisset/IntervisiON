@@ -24,7 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -268,7 +268,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
 
     @Composable
     protected open fun Round1() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -284,7 +284,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
     @Composable
     protected open fun Round2() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -301,7 +301,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
     @Composable
     protected open fun Round3() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -318,7 +318,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
 
     @Composable
     protected open fun Round4() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -334,7 +334,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
     @Composable
     protected open fun Round5() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -350,7 +350,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
     @Composable
     protected open fun SessionEnd() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -366,7 +366,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
     @Composable
     protected open fun QuitRound() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()

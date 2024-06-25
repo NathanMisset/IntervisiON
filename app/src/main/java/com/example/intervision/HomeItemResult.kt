@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -27,11 +26,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.customColor1ContainerLightMediumContrast
 import com.example.intervision.ui.primaryLightMediumContrast
 import com.google.firebase.auth.FirebaseUser
@@ -112,7 +110,7 @@ class HomeItemResult() {
             2.00F ->  cardSize = 480.dp
             else -> cardSize = 400.dp
         }
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -216,7 +214,7 @@ fun Component() {
         PieChartEntry(Color.Yellow, (1f / 2f)),
         PieChartEntry(Color.Cyan, (1f / 2f))
     )
-    MyApplicationTheme {
+    IntervisionBaseTheme {
         Column(
             modifier = Modifier
                 .fillMaxSize(),

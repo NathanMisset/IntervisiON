@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
 class ItemFinalRound {
@@ -86,7 +86,7 @@ class ItemFinalRound {
 @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
 @Composable
 fun FinalTest() {
-    MyApplicationTheme {
+    IntervisionBaseTheme {
         Column(
             modifier = Modifier
                 .fillMaxHeight()

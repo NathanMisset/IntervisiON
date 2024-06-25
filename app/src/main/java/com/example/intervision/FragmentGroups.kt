@@ -17,10 +17,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -119,7 +118,7 @@ class FragmentGroups : ComponentActivity() {
 @PreviewFontScale()
 @Composable
 fun FragmentGroupPreview() {
-    MyApplicationTheme {
+    IntervisionBaseTheme {
         Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,

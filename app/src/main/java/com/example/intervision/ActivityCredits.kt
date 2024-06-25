@@ -30,8 +30,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.MyApplicationTheme
 import com.example.intervision.ui.ComposableUiString
+import com.example.intervision.ui.IntervisionBaseTheme
 
 /**
  *
@@ -58,7 +58,7 @@ class ActivityCredits: ComponentActivity()  {
     /** Composables */
     @PreviewFontScale @Composable
     fun Screen() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxSize()

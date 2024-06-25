@@ -8,7 +8,6 @@ package com.example.intervision
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.activity.compose.setContent
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.ComposableUiString
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 
@@ -78,7 +77,7 @@ open class ActivityResetPassword : ComponentActivity() {
     @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
     @Composable
     fun Screen() {
-        MyApplicationTheme {
+        IntervisionBaseTheme {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()

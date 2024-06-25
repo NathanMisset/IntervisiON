@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +20,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
 class ItemAction {
@@ -107,7 +106,7 @@ class ItemAction {
 @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
 @Composable
 fun ActionRoundTest() {
-    MyApplicationTheme {
+    IntervisionBaseTheme {
         Column(
             modifier = Modifier
                 .fillMaxHeight()

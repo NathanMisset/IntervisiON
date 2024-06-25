@@ -38,7 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.intervision.ui.ComposableUiString
-import com.example.intervision.ui.MyApplicationTheme
+import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -124,7 +124,7 @@ class ActivitySettings : ComponentActivity() {
 
     @Composable
     fun Screen(){
-        MyApplicationTheme{
+        IntervisionBaseTheme {
             Column (
                 modifier = Modifier
                     .fillMaxHeight()
