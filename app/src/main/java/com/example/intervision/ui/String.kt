@@ -16,6 +16,7 @@ data class String(
     /** App */
     val nameApp: String = "Intervisie voor bezwaarbehandelaars",
     val taalCodeApp: String = "nl",
+    val deviceIdApp: String = "id:Motorola Moto G8 Plus",
     val quitButtonApp: String = "Sluit",
     val saveButtonApp: String = "Opgeslagen",
     val backButtonApp: String = "Terug",
@@ -67,8 +68,12 @@ data class String(
     val designContentCredits: String = "Gebaseerd op het design van Raquel de Romas student Communicatie en Multimedia Design aan de Hogeschool van Amsterdam",
 
     /** Intervisie */
-    val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt"
+    val wachtTekstIntervisie: String = "Wacht tot de leider een beslissing maakt",
 
+    /** Settings*/
+    val acountLabelSettings: String = "Acount",
+    val opslaanLabelSettings: String = "Opslaan",
+    val quitIconDescriptonSettings: String = "Close Cross",
 
     )
 
