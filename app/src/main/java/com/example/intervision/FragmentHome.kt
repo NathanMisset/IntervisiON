@@ -28,24 +28,28 @@ import com.google.firebase.firestore.Query
 
 class FragmentHome {
 
-    private var user: FirebaseUser? = null
-    private var db: FirebaseFirestore? = null
+    /** Class Variables */
     private var statements: ArrayList<String>? = null
     private var questions: ArrayList<String>? = null
     private var statementId: ArrayList<String>? = null
+    private var resultMade: MutableState<Boolean> = mutableStateOf(false)
+    private var voteResult: Boolean? = null
+    private var parent: ComponentActivity? = null
 
+    /** Firebase */
+    private var user: FirebaseUser? = null
+    private var db: FirebaseFirestore? = null
+
+    /** Items */
     private var homeItemVote: HomeItemVote? = null
     private var homeItemResult: HomeItemResult? = null
 
-    private var resultMade: MutableState<Boolean> = mutableStateOf(false)
-    private var voteResult: Boolean? = null
-
-    private var parent: ComponentActivity? = null
-
-
-
+    /**
+     *
+     * This is an fragment init. This is initiated by the navigationActivity and needs some input.
+     *
+     */
     fun init(user: FirebaseUser, db: FirebaseFirestore, parent: ComponentActivity) {
-        Log.d("FragmentHome", "Init")
         this.user = user
         this.db = db
         this.parent = parent
@@ -53,59 +57,47 @@ class FragmentHome {
     }
 
     private fun prepVars() {
-        Log.d("FragmentHome", "prepVars")
         statementId = ArrayList()
         statements = ArrayList()
         questions = ArrayList()
-
         thesis()
     }
 
-
     private fun thesis() {
-        Log.d("FragmentHome", "thesis")
         db!!.collection("Theses")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result) {
-                        //Log.d(TAG, "Statements : $Statements")
                         statementId!!.add(document.id)
                         statements!!.add(document.data["Statement"].toString())
                         questions!!.add(document.data["Question"].toString())
                     }
                     getIfVoted()
                 } else {
-                    //Log.w(TAG, "Error getting documents.", task.exception)
+                    Log.w(TAG, "Error getting documents.", task.exception)
                 }
             }
     }
 
     private fun initVoteItem(result: Boolean) {
-
-        Log.d("FragmentHome", "InitVoteItem")
-        Log.d("FragmentHome", "boolean = $result")
         if (!result) {
             homeItemVote = HomeItemVote()
             homeItemVote!!.init(statements!![0], statementId!![0], questions!![0], user!!, db!!, parent!!)
-            Log.d("itemHomeVote","itemHomeVote" + homeItemVote!!)
         } else {
             homeItemResult = HomeItemResult()
             homeItemResult!!.init(statements!![0], questions!![0], user!!, db!!)
-            Log.d("homeItemResult"," homeItemResult" + homeItemResult!!)
         }
         resultMade = mutableStateOf(true)
         voteResult = result
     }
 
     private fun getIfVoted() {
-        Log.d("FragmentHome", "getIfVoted")
         var againstArray: ArrayList<String>
         againstArray = arrayListOf()
         var forArray: ArrayList<String>
         forArray = arrayListOf()
         var voted: Boolean
-
 
         db!!.collection("Votes")
             .orderBy("uploaded", Query.Direction.DESCENDING)
@@ -132,10 +124,13 @@ class FragmentHome {
                 }
             }
     }
+
     private fun toTutorial(){
         val i = Intent(parent, ActivityTutorial::class.java)
         parent!!.startActivity(i)
     }
+
+    /** Composables */
     @Composable
     fun Component() {
         Column(
@@ -172,15 +167,14 @@ class FragmentHome {
         }
     }
 
-
     companion object {
 
-        private const val TAG = "Home"
+        private const val TAG = "HomeFragment"
     }
 }
 
-@PreviewFontScale()
-@Composable
+/** Seperate Composable to view how the design looks with standard variables */
+@PreviewFontScale() @Composable
 fun FragmentHomePreview() {
     IntervisionBaseTheme {
         Column(

@@ -132,13 +132,12 @@ class FragmentGroups : ComponentActivity() {
     }
 
     companion object {
-        private const val TAG = "GroupFragmentActivity"
+        private const val TAG = "GroupFragment"
     }
 }
 
 /** Seperate Composable to view how the design looks with standard variables */
-@PreviewFontScale()
-@Composable
+@PreviewFontScale() @Composable
 fun FragmentGroupPreview() {
     IntervisionBaseTheme {
         Column(
