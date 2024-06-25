@@ -1,4 +1,17 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
+
+/**
+ *
+ * This activity controlls the groupsection.
+ * It shows all the available groups for a user to join
+ *
+ */
 
 import android.content.Intent
 import android.util.Log
@@ -19,25 +32,36 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 class FragmentGroups : ComponentActivity() {
+
+    /** Class variables */
     private var availableGroups: ArrayList<ItemGroupPreview>? = null
+    private var parent: ComponentActivity? = null
+
+    /** Firebase */
     private var user: FirebaseAuth? = null
     private var dataBase: FirebaseFirestore? = null
     private var storage: FirebaseStorage? = null
-    private var parent: ComponentActivity? = null
 
-    fun init(user: FirebaseAuth, db: FirebaseFirestore, storage:FirebaseStorage, parent: ComponentActivity) {
+    /**
+     *
+     * This is an fragment init. This is initiated by the navigationActivity and needs some input.
+     *
+     */
+    fun init(user: FirebaseAuth, database: FirebaseFirestore, storage:FirebaseStorage, parent: ComponentActivity) {
         this.user = user
-        dataBase = db
         this.storage = storage
         this.parent = parent
+        this.dataBase = database
         data()
     }
+
     private fun data(){
             availableGroups = ArrayList()
             dataBase!!.collection("Sessions")
@@ -65,9 +89,10 @@ class FragmentGroups : ComponentActivity() {
         val i = Intent(parent, ActivityMakeGroup::class.java)
         parent!!.startActivity(i)
     }
+
+    /** Composables */
     @Composable
     fun Component() {
-
         Column(
             modifier = Modifier
                 .fillMaxHeight(),
@@ -86,11 +111,10 @@ class FragmentGroups : ComponentActivity() {
                 .fillMaxHeight(0.8f)
                 .verticalScroll(rememberScrollState())
             ) {
-            for (group in availableGroups!!){
+            for (group in availableGroups!!) {
                 group.Component()
                 }
             }
-
             Row(
                 modifier = Modifier.fillMaxWidth()
                     .fillMaxHeight(.5f),
@@ -99,22 +123,20 @@ class FragmentGroups : ComponentActivity() {
             ) {
                 Button(onClick = { toMakeGroup() },
                     modifier = Modifier
-
-//                        .fillMaxHeight()
                         .defaultMinSize(minHeight = 10.dp),
                 ) {
-                    Text(text = "Maak groep")
+                    Text(text = ComposableUiString.maakGroupFragmentGroup)
                 }
             }
         }
     }
 
-
     companion object {
-        private const val TAG = "GroupAssemblyActivity"
+        private const val TAG = "GroupFragmentActivity"
     }
 }
 
+/** Seperate Composable to view how the design looks with standard variables */
 @PreviewFontScale()
 @Composable
 fun FragmentGroupPreview() {
@@ -130,7 +152,7 @@ fun FragmentGroupPreview() {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Group")
+                Text(text = ComposableUiString.groupLabelNavigation)
             }
             Column(
                 modifier = Modifier
@@ -153,7 +175,7 @@ fun FragmentGroupPreview() {
 //                        .fillMaxHeight()
                         .defaultMinSize(minHeight = 10.dp),
                 ) {
-                    Text(text = "Maak groep")
+                    Text(text = ComposableUiString.maakGroupFragmentGroup)
                 }
             }
         }

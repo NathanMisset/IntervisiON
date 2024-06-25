@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.view.LayoutInflater
@@ -6,6 +12,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
+/**
+ *
+ * This activity manages the viewpager.
+ * Mostly copied from a tutorial on the web.
+ *
+ */
 
 class AdapterViewPager(private var viewPagerItemsArrayList: ArrayList<ItemViewPager>) :
     RecyclerView.Adapter<AdapterViewPager.ViewHolder>() {
@@ -36,5 +49,9 @@ class AdapterViewPager(private var viewPagerItemsArrayList: ArrayList<ItemViewPa
             tvHeading = itemView.findViewById(R.id.heading_register)
             tvDesc = itemView.findViewById(R.id.tvDesc)
         }
+    }
+
+    companion object {
+        private const val TAG = "AdapterViewPagerActivity"
     }
 }

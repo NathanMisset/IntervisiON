@@ -95,6 +95,9 @@ data class String(
     val profile5ImageDescriptionWaitingRoom: String = "ProfilePicture 5",
     val profile6ImageDescriptionWaitingRoom: String = "ProfilePicture 6",
 
+    /** FragmentGroup */
+    val maakGroupFragmentGroup: String = "Maak groep",
+
 
     /** Settings */
     val acountLabelSettings: String = "Acount",
