@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.util.Log
@@ -27,10 +33,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item represents the 4th round.
+ * It doesnt do much but display a question and an icon
+ *
+ */
 
 class ItemDiscusionLeader(
     var parent: ActivityIntervisionLeader,
@@ -39,14 +54,11 @@ class ItemDiscusionLeader(
     private var uIdList: ArrayList<String>?
 ) {
 
-    //Lists
+    /** Class Variables */
     private lateinit var userNames: MutableList<List<String>>
-
-    //View
     private val chars = charArrayOf('A', 'B', 'C', 'D', 'E', 'F')
 
     fun init() {
-        Log.d(TAG, "uIdList$uIdList")
         userNames = mutableStateListOf(
             listOf(
                 "Gebruiker 1",
@@ -57,14 +69,10 @@ class ItemDiscusionLeader(
                 "Gebruiker 6"
             )
         )
-        Log.d(TAG, "itemElborateChose")
         getNames()
     }
 
-
     private fun getNames() {
-
-        Log.d(TAG, "Start Names")
         db.collection("User Data")
             .whereIn("User UID", uIdList!!)
             .get()
@@ -78,31 +86,29 @@ class ItemDiscusionLeader(
                         list.add("Leeg")
                     }
                     userNames = mutableListOf(list)
-                    Log.d(TAG, "list $list")
-                    Log.d(TAG, "userNames $userNames")
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
             }
     }
 
-
+    /** Composables */
     @Composable
     fun Component() {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = spacing.large),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Text(
-                text = "Ronde 2 van 4",
+                text = ComposableUiString.roundTextItemDiscusionLeader,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Toelichting keuze",
+                text = ComposableUiString.asgnimentTextItemDiscusionLeader,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -118,7 +124,7 @@ class ItemDiscusionLeader(
         ) {
             Card {
                 Text(
-                    text = "Tik de persoon die aan het woord mag.",
+                    text = ComposableUiString.instructeItemDiscusionLeader,
                     modifier = Modifier
                         .padding(spacing.large)
                 )
@@ -141,7 +147,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = "profile",
+                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         contentScale = ContentScale.Inside
 
                     )
@@ -150,7 +156,6 @@ class ItemDiscusionLeader(
                         fontSize = 10.sp
                     )
                 }
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
@@ -163,17 +168,13 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = "profile",
+                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                     )
                     Text(
                         text = userNames[0][1],
                         fontSize = 10.sp
                     )
                 }
-
-
-
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
@@ -186,7 +187,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = "profile",
+                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                     )
                     Text(
                         text = userNames[0][2],
@@ -212,7 +213,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = "profile",
+                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         contentScale = ContentScale.Inside
 
                     )
@@ -221,7 +222,6 @@ class ItemDiscusionLeader(
                         fontSize = 10.sp
                     )
                 }
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
@@ -234,17 +234,13 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = "profile",
+                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                     )
                     Text(
                         text = userNames[0][4],
                         fontSize = 10.sp
                     )
                 }
-
-
-
-
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
@@ -257,7 +253,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = "profile",
+                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                     )
                     Text(
                         text = userNames[0][5],
@@ -267,21 +263,20 @@ class ItemDiscusionLeader(
             }
         }
     }
-
-
     companion object {
         private const val TAG = "Eleboratechoice"
     }
-
 }
 
-
-@PreviewFontScale
-@Composable
+/**
+ *
+ * These methode are outside the class so the preview can easier reach them
+ *
+ */
+@PreviewFontScale @Composable
 fun VoteLeaderComponent() {
     var height = 100.dp
     var width = 80.dp
-
     when (LocalDensity.current.fontScale) {
         0.85F -> {
             height = 110.dp
@@ -316,7 +311,6 @@ fun VoteLeaderComponent() {
             width = 90.dp
         }
     }
-
     IntervisionBaseTheme {
         Column(
             modifier = Modifier
@@ -333,13 +327,13 @@ fun VoteLeaderComponent() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Ronde 2 van 4",
+                    text = ComposableUiString.roundTextItemDiscusionLeader,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = "Toelichting keuze",
+                    text = ComposableUiString.asgnimentTextItemDiscusionLeader,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
@@ -353,9 +347,9 @@ fun VoteLeaderComponent() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
-                Card (){
+                Card{
                     Text(
-                        text = "Tik de persoon die aan het woord mag.",
+                        text = ComposableUiString.instructeItemDiscusionLeader,
                         modifier = Modifier
                             .padding(spacing.large)
                     )
@@ -379,16 +373,14 @@ fun VoteLeaderComponent() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = "profile",
+                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                             contentScale = ContentScale.Inside
-
                         )
                         Text(
                             text = "userNames[0][0]",
                             fontSize = 10.sp
                         )
                     }
-
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
@@ -402,17 +394,13 @@ fun VoteLeaderComponent() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = "profile",
+                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         )
                         Text(
                             text = "userNames[0][1]",
                             fontSize = 10.sp
                         )
                     }
-
-
-
-
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
@@ -426,7 +414,7 @@ fun VoteLeaderComponent() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = "profile",
+                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         )
                         Text(
                             text = "userNames[0][2]",
@@ -453,7 +441,7 @@ fun VoteLeaderComponent() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = "profile",
+                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                             contentScale = ContentScale.Inside
 
                         )
@@ -462,7 +450,6 @@ fun VoteLeaderComponent() {
                             fontSize = 10.sp
                         )
                     }
-
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
@@ -476,17 +463,13 @@ fun VoteLeaderComponent() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = "profile",
+                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         )
                         Text(
                             text = "userNames[0][4]",
                             fontSize = 10.sp
                         )
                     }
-
-
-
-
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier
@@ -500,7 +483,7 @@ fun VoteLeaderComponent() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = "profile",
+                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         )
                         Text(
                             text = "userNames[0][5]",

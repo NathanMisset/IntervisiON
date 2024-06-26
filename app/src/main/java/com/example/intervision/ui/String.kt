@@ -118,8 +118,17 @@ data class String(
     val votedTextHomeItemVote: String = "Je hebt gestemt!",
     val votedTextQuestionHomeItemVote: String = "Wil je direct een intervisie groep aan maken?",
 
+    /** ItemAction */
+    val roundTextItemAction: String = "Ronde 4 van 4",
+    val questionLeiderItemAction: String = "Wat gaan de \ndeelnemers\nanders doen?",
+    val questionDeelnemersItemAction: String = "Wat gaan je \nanders doen?",
+    val discriptionImageItemAction: String = "Afbeelding van mensen die praten",
 
-
+    /** ItemDiscusionLeader */
+    val roundTextItemDiscusionLeader: String = "Ronde 2 van 4",
+    val asgnimentTextItemDiscusionLeader: String = "Toelichting keuze",
+    val instructeItemDiscusionLeader: String = "Tik de persoon die aan het woord mag.",
+    val imageDesciptionItemDiscusionLeader: String = "profile",
 
     /** Settings */
     val acountLabelSettings: String = "Acount",
