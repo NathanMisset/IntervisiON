@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.util.Log
@@ -29,24 +35,35 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.customColor1ContainerLightMediumContrast
 import com.example.intervision.ui.primaryLightMediumContrast
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item show the result of the mothly votes as a piechart
+ *
+ */
 
-class HomeItemResult() {
+class HomeItemResult {
 
+    /** Firebase */
     lateinit var user: FirebaseUser
-    lateinit var fireStoreDatabase: FirebaseFirestore
-    lateinit var entries: MutableList<PieChartEntry>
-    lateinit var statement: MutableState<String>
-    lateinit var question: MutableState<String>
+    private lateinit var fireStoreDatabase: FirebaseFirestore
 
-    var nFor: Float? = null
-    var nAgaint: Float? = null
+    /** Class Variables */
+    private lateinit var entries: MutableList<PieChartEntry>
+    private lateinit var statement: MutableState<String>
+    private lateinit var question: MutableState<String>
 
+    private var nFor: Float? = null
+    private var nAgaint: Float? = null
+
+    /** After instanstasiating this needs to becaled to make the item ready */
     fun init(
         statement: String,
         question: String,
@@ -58,34 +75,28 @@ class HomeItemResult() {
         this.user = user
         this.fireStoreDatabase = fireStoreDatabase
         getData()
-
     }
 
     private fun setData() {
-
-
         val tot = nFor!! + nAgaint!!
-
         entries = mutableListOf(
             PieChartEntry(primaryLightMediumContrast, (nFor!! / tot)),
             PieChartEntry(customColor1ContainerLightMediumContrast, (nAgaint!! / tot))
         )
     }
 
-    fun getData() {
-        val ForArray: ArrayList<ArrayList<String?>> = ArrayList()
-        val AgaintArray: ArrayList<ArrayList<String?>> = ArrayList()
+    private fun getData() {
+        val forArray: ArrayList<ArrayList<String?>> = ArrayList()
+        val againtArray: ArrayList<ArrayList<String?>> = ArrayList()
         fireStoreDatabase.collection("Votes")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    Log.d(TAG, "document.data =" + document.data.get("In Favour"))
-                    Log.d(TAG, "document.data =" + document.data.get("Against"))
-                    ForArray.add(document.data.get("In Favour") as java.util.ArrayList<String?>)
-                    AgaintArray.add(document.data.get("Against") as java.util.ArrayList<String?>)
+                    forArray.add(document.data["In Favour"] as java.util.ArrayList<String?>)
+                    againtArray.add(document.data["Against"] as java.util.ArrayList<String?>)
                 }
-                nFor = ForArray[0].size.toFloat()
-                nAgaint = AgaintArray[0].size.toFloat()
+                nFor = forArray[0].size.toFloat()
+                nAgaint = againtArray[0].size.toFloat()
                 setData()
             }
             .addOnFailureListener { exception ->
@@ -93,22 +104,19 @@ class HomeItemResult() {
             }
     }
 
-    companion object {
-        private const val TAG = "Item Result"
-    }
-
+    /** Composables */
     @Composable
     fun Component() {
-        var cardSize = 400.dp
-        when (LocalDensity.current.fontScale) {
-            0.85F -> cardSize = 350.dp
-            1.00F  -> cardSize = 400.dp
-            1.15F  -> cardSize = 400.dp
-            1.30F  -> cardSize = 400.dp
-            1.50F  -> cardSize = 400.dp
-            1.80F  -> cardSize = 450.dp
-            2.00F ->  cardSize = 480.dp
-            else -> cardSize = 400.dp
+        /** cardSize wil changed based on the fontscale of the users phone to keep the UI clear */
+        val cardSize = when (LocalDensity.current.fontScale) {
+            0.85F -> 350.dp
+            1.00F  -> 400.dp
+            1.15F  -> 400.dp
+            1.30F  -> 400.dp
+            1.50F  -> 400.dp
+            1.80F  -> 450.dp
+            2.00F -> 480.dp
+            else -> 400.dp
         }
         IntervisionBaseTheme {
             Column(
@@ -121,22 +129,20 @@ class HomeItemResult() {
                     modifier = Modifier
                         .size(cardSize)
                         .padding(16.dp),
-
                     ) {
-                    Column(Modifier
+                    Column(
+                        modifier = Modifier
                         .padding(16.dp)) {
                         Text(text = question.value,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             lineHeight = 30.sp)
-
                         Text(text = statement.value,
                                 fontSize = 13.sp ,
                                 lineHeight = 15.sp,
                             minLines = 1,
                             maxLines = 2)
                     }
-
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -145,7 +151,8 @@ class HomeItemResult() {
                     ) {
                         PieChart(entries)
                     }
-                    Row(modifier = Modifier.fillMaxWidth()
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
                         .defaultMinSize(50.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly) {
                         Text(text = "Tegen:",
@@ -163,11 +170,19 @@ class HomeItemResult() {
             }
         }
     }
+    companion object {
+        private const val TAG = "Item Result"
+    }
 }
 
+/**
+ *
+ * These methode are outside the class so the preview can easier reach them
+ *
+ */
 fun calculateStartAngles(entries: MutableList<PieChartEntry>): List<Float> {
     var totalPercentage = 0f
-    var startAngleList = ArrayList<Float>()
+    val startAngleList = ArrayList<Float>()
     for (item in entries) {
         val startAngle = totalPercentage * 360
         totalPercentage += item.percentage
@@ -175,6 +190,8 @@ fun calculateStartAngles(entries: MutableList<PieChartEntry>): List<Float> {
     }
     return startAngleList
 }
+
+data class PieChartEntry(val color: Color, val percentage: Float)
 
 @Composable
 fun PieChart(entries: MutableList<PieChartEntry>) {
@@ -193,24 +210,20 @@ fun PieChart(entries: MutableList<PieChartEntry>) {
     }
 }
 
-data class PieChartEntry(val color: Color, val percentage: Float)
-
-@PreviewFontScale
-@Composable
+/** Seperate Composable to view how the design looks with standard variables */
+@PreviewFontScale @Composable
 fun Component() {
-    var cardSize = 400.dp
-    when (LocalDensity.current.fontScale) {
-        0.85F -> cardSize = 350.dp
-        1.00F  -> cardSize = 400.dp
-        1.15F  -> cardSize = 400.dp
-        1.30F  -> cardSize = 400.dp
-        1.50F  -> cardSize = 400.dp
-        1.80F  -> cardSize = 450.dp
-        2.00F ->  cardSize = 480.dp
-        else -> cardSize = 400.dp
+    val cardSize = when (LocalDensity.current.fontScale) {
+        0.85F -> 350.dp
+        1.00F  -> 400.dp
+        1.15F  -> 400.dp
+        1.30F  -> 400.dp
+        1.50F  -> 400.dp
+        1.80F  -> 450.dp
+        2.00F -> 480.dp
+        else -> 400.dp
     }
-    var entries: MutableList<PieChartEntry>
-    entries = mutableListOf(
+    val entries: MutableList<PieChartEntry> = mutableListOf(
         PieChartEntry(Color.Yellow, (1f / 2f)),
         PieChartEntry(Color.Cyan, (1f / 2f))
     )
@@ -225,16 +238,14 @@ fun Component() {
                 modifier = Modifier
                     .size(cardSize)
                     .padding(16.dp),
-
                 ) {
                 Column(Modifier
                     .padding(16.dp)) {
-                    Text(text = "Ga ik de bezwaarmaker bellen?",
+                    Text(text = ComposableUiString.stelling1HomeItemResult,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         lineHeight = 30.sp)
-
-                    Text(text = "Ik bel NIET als de bzwaarmaker een advocaat heeft ingeschakkelt",
+                    Text(text = ComposableUiString.stelling2HomeItemResult,
                         fontSize = 13.sp ,
                         lineHeight = 15.sp,
                         minLines = 1,
@@ -250,21 +261,19 @@ fun Component() {
                 }
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly) {
-                    Text(text = "Tegen:",
+                    Text(text = ComposableUiString.tegenHomeItemResult,
                         fontSize = 13.sp)
                     Icon(imageVector = Icons.Default.Circle,
-                        contentDescription ="Circle",
+                        contentDescription = ComposableUiString.circelTegenHomeItemResult,
                         tint = MaterialTheme.colorScheme.secondary)
-                    Text(text = "Voor:",
+                    Text(text = ComposableUiString.voorHomeItemResult,
                         fontSize = 13.sp)
                     Icon(imageVector = Icons.Default.Circle,
-                        contentDescription ="Circle",
+                        contentDescription = ComposableUiString.circelVoorHomeItemResult,
                         tint = MaterialTheme.colorScheme.primary)
                 }
             }
-
         }
-
     }
 }
 

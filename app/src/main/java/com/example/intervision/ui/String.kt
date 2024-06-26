@@ -60,7 +60,6 @@ data class String(
             "                                \"aan een account\\nkrijgt u een mail met een link om \\n\" +\n" +
             "                                \"wachtwoord te reseten.",
 
-
     /** Credits */
     val makerContentCredits: String = "Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024",
     val opdrachtContentCredits: String = "In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam",
@@ -100,6 +99,14 @@ data class String(
 
     /** FragmentProfile */
     val settingsDescriptionProfileGroup: String = "settings",
+
+    /** HomeItemResult */
+    val stelling1HomeItemResult: String = "Ga ik de bezwaarmaker bellen?",
+    val stelling2HomeItemResult: String = "Ik bel NIET als de bzwaarmaker een advocaat heeft ingeschakkelt",
+    val tegenHomeItemResult: String = "Tegen:",
+    val voorHomeItemResult: String = "Voor:",
+    val circelTegenHomeItemResult: String = "CircleDonkergroen",
+    val circelVoorHomeItemResult: String = "CircleGeel",
 
     /** Settings */
     val acountLabelSettings: String = "Acount",
