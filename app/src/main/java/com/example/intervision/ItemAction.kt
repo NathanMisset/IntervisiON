@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import androidx.compose.foundation.Image
@@ -22,6 +28,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
+
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item represents the 4th round.
+ * It doesnt do much but display a question and an icon
+ *
+ */
 
 class ItemAction {
     @Composable
