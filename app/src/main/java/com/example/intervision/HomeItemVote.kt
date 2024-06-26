@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -29,18 +35,30 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item show the thesis of the month and alow user to vote
+ * After they voted they get the change to reload the homepage and look at homeItemResult
+ * or continue and make a group imidiatly
+ *
+ */
+
 class HomeItemVote {
+    /** Firebase */
+    lateinit var user: FirebaseUser
+    private lateinit var fireStoreDatabase: FirebaseFirestore
+
+    /** Class Variables */
     private lateinit var statement: MutableState<String>
     private lateinit var statementId: String
     private lateinit var question: MutableState<String>
     private var parent: ComponentActivity? = null
-
-    lateinit var user: FirebaseUser
-    private lateinit var fireStoreDatabase: FirebaseFirestore
     private var openAlertDialog = mutableStateOf(false)
 
     fun init(
@@ -59,6 +77,7 @@ class HomeItemVote {
         this.parent = parent
     }
 
+    /** get list of in favour votes, puts it in a list and adds the id of the user */
     private fun saveAgreed() {
         val voteData: ArrayList<ArrayList<String?>> = ArrayList()
         fireStoreDatabase.collection("Votes")
@@ -69,7 +88,6 @@ class HomeItemVote {
                     voteData.add(document.data["In Favour"] as java.util.ArrayList<String?>)
                     voteData[0].add(user.uid)
                     saveAgreed1(voteData[0])
-
                 }
             }
             .addOnFailureListener { exception ->
@@ -77,6 +95,7 @@ class HomeItemVote {
             }
     }
 
+    /** gets the id of the document that needs to be updated  */
     private fun saveAgreed1(data: java.util.ArrayList<String?>) {
         fireStoreDatabase.collection("Votes")
             .limit(1)
@@ -90,6 +109,7 @@ class HomeItemVote {
             }
     }
 
+    /** updates the document inside the database */
     private fun saveAgreed2(data: java.util.ArrayList<String?>, id: String) {
         fireStoreDatabase.collection("Votes")
             .document(id)
@@ -99,7 +119,7 @@ class HomeItemVote {
             }
     }
 
-
+    /** gets list of against votes, puts it in a list and adds the id of the user */
     private fun saveDisAgreed() {
         val voteData: ArrayList<ArrayList<String?>> = ArrayList()
         fireStoreDatabase.collection("Votes")
@@ -118,6 +138,7 @@ class HomeItemVote {
             }
     }
 
+    /** gets the id of the document that needs to be updated  */
     private fun saveDisAgreed1(data: java.util.ArrayList<String?>) {
         fireStoreDatabase.collection("Votes")
             .limit(1)
@@ -131,6 +152,7 @@ class HomeItemVote {
             }
     }
 
+    /** updates the document inside the database */
     private fun saveDisAgreed2(data: java.util.ArrayList<String?>, id: String) {
         fireStoreDatabase.collection("Votes")
             .document(id)
@@ -150,20 +172,20 @@ class HomeItemVote {
         parent!!.startActivity(i)
     }
 
+    /** Composables */
     @Composable
     fun Component() {
         IntervisionBaseTheme {
             when {
-                // ...
                 openAlertDialog.value -> {
-                    AlertDialogExample(
+                    AlertDialog(
                         onDismissRequest = { reload() },
                         onConfirmation = {
                             toMakeGroup()
                             openAlertDialog.value = false
                         },
-                        dialogTitle = "Je hebt gestemt!",
-                        dialogText = "Wil je direct een intervisie groep aan maken?",
+                        dialogTitle = ComposableUiString.votedTextHomeItemVote,
+                        dialogText = ComposableUiString.votedTextQuestionHomeItemVote,
                         icon = Icons.Default.HowToVote
                     )
                 }
@@ -174,7 +196,6 @@ class HomeItemVote {
                     .fillMaxHeight()
                     .fillMaxWidth()
                     .padding(16.dp),
-
                 ) {
                 Column(
                     modifier = Modifier
@@ -182,8 +203,7 @@ class HomeItemVote {
                         .padding(20.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Stem en zie hoe andere gestemt hebben.")
-
+                    Text(text = ComposableUiString.text1HomeItemVote)
                 }
                 Column(
                     modifier = Modifier
@@ -211,30 +231,33 @@ class HomeItemVote {
                     horizontalArrangement = Arrangement.SpaceAround
                 ) {
                     Button(onClick = {
-                        Log.d("BUTTONS", "User tapped the disAgree vote button")
+                        Log.d(TAG, "User tapped the disAgree vote button")
                         saveDisAgreed()
                     }) {
-                        Text(text = "OnEens")
+                        Text(text = ComposableUiString.onEensHomeItemVote)
                     }
                     Button(onClick = {
                         saveAgreed()
                     }) {
-                        Text(text = "Eens")
+                        Text(text = ComposableUiString.eensHomeItemVote)
                     }
                 }
             }
-
         }
     }
 
     companion object {
         private const val TAG = "Item Vote"
     }
-
 }
 
+/**
+ *
+ * These methode are outside the class so the preview can easier reach them
+ *
+ */
 @Composable
-fun AlertDialogExample(
+fun AlertDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
     dialogTitle: String,
@@ -243,7 +266,7 @@ fun AlertDialogExample(
 ) {
     AlertDialog(
         icon = {
-            Icon(icon, contentDescription = "Example Icon")
+            Icon(icon, contentDescription = ComposableUiString.exampleIconHomeItemVote)
         },
         title = {
             Text(text = dialogTitle)
@@ -260,7 +283,7 @@ fun AlertDialogExample(
                     onConfirmation()
                 }
             ) {
-                Text("Ja")
+                Text(ComposableUiString.jaHomeItemVote)
             }
         },
         dismissButton = {
@@ -269,17 +292,15 @@ fun AlertDialogExample(
                     onDismissRequest()
                 }
             ) {
-                Text("Nee")
+                Text(ComposableUiString.neeHomeItemVote)
             }
         }
     )
 }
 
-@PreviewFontScale
-@Composable
+@PreviewFontScale @Composable
 fun HomeItemVotePreview() {
     IntervisionBaseTheme {
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -300,7 +321,7 @@ fun HomeItemVotePreview() {
                         .padding(20.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = "Stem en zie hoe andere gestemt hebben.")
+                    Text(text = ComposableUiString.text1HomeItemVote)
 
                 }
                 Column(
@@ -334,12 +355,12 @@ fun HomeItemVotePreview() {
                         Log.d("BUTTONS", "User tapped the disAgree vote button")
 
                     }) {
-                        Text(text = "OnEens")
+                        Text(text = ComposableUiString.onEensHomeItemVote)
                     }
                     Button(onClick = {
 
                     }) {
-                        Text(text = "Eens")
+                        Text(text = ComposableUiString.eensHomeItemVote)
                     }
                 }
             }

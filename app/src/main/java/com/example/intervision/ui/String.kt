@@ -108,6 +108,19 @@ data class String(
     val circelTegenHomeItemResult: String = "CircleDonkergroen",
     val circelVoorHomeItemResult: String = "CircleGeel",
 
+    /** HomeItemVote */
+    val text1HomeItemVote: String = "Stem en zie hoe andere gestemt hebben.",
+    val onEensHomeItemVote: String = "OnEens",
+    val eensHomeItemVote: String = "Eens",
+    val exampleIconHomeItemVote: String = "Example Icon",
+    val jaHomeItemVote: String = "Ja",
+    val neeHomeItemVote: String = "Nee",
+    val votedTextHomeItemVote: String = "Je hebt gestemt!",
+    val votedTextQuestionHomeItemVote: String = "Wil je direct een intervisie groep aan maken?",
+
+
+
+
     /** Settings */
     val acountLabelSettings: String = "Acount",
     val opslaanLabelSettings: String = "Opslaan",
