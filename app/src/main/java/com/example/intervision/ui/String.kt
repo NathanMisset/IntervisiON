@@ -130,6 +130,14 @@ data class String(
     val instructeItemDiscusionLeader: String = "Tik de persoon die aan het woord mag.",
     val imageDesciptionItemDiscusionLeader: String = "profile",
 
+    /** ItemDiscusionLeader */
+    val textDefaultItemDiscusionUser: String = "Wacht tot iemand de beurt krijgt",
+    val text1ItemDiscusionUser: String = "is aan de beurt",
+    val text2ItemDiscusionUser: String = "Licht jouw keuze toe",
+    val previewtextItemDiscusionUser: String = "userTurnText.value",
+
+
+
     /** Settings */
     val acountLabelSettings: String = "Acount",
     val opslaanLabelSettings: String = "Opslaan",

@@ -42,8 +42,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 /**
  *
  * This item can be initiated as an object in an activity
- * This item represents the 4th round.
- * It doesnt do much but display a question and an icon
+ * This item represents the 2de from the preceptive of the leader.
+ * It give the leader the ability to give user a turn to speak.
+ * When they tap a specific user it shows every user whos turn it is.
  *
  */
 
@@ -149,7 +150,6 @@ class ItemDiscusionLeader(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
                         contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         contentScale = ContentScale.Inside
-
                     )
                     Text(
                         text = userNames[0][0],
@@ -215,7 +215,6 @@ class ItemDiscusionLeader(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
                         contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                         contentScale = ContentScale.Inside
-
                     )
                     Text(
                         text = userNames[0][3],
@@ -264,7 +263,7 @@ class ItemDiscusionLeader(
         }
     }
     companion object {
-        private const val TAG = "Eleboratechoice"
+        private const val TAG = "DiscussionLeaderItem"
     }
 }
 
