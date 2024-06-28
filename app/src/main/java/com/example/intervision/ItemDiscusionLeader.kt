@@ -95,7 +95,7 @@ class ItemDiscusionLeader(
 
     /** Composables */
     @Composable
-    fun Component() {
+    fun Screen() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -273,7 +273,7 @@ class ItemDiscusionLeader(
  *
  */
 @PreviewFontScale @Composable
-fun VoteLeaderComponent() {
+fun ItemDiscusuionLeaderPreview() {
     var height = 100.dp
     var width = 80.dp
     when (LocalDensity.current.fontScale) {

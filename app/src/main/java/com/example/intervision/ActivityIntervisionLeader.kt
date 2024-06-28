@@ -277,7 +277,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemRoundsExplained().Component()
+                ItemRoundsExplained().Screen()
                 FirstButtonRow()
             }
         }
@@ -293,7 +293,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemVote!!.Component()
+                itemVote!!.Screen()
                 DefaultButtonRow()
             }
         }
@@ -310,7 +310,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemElborateChose!!.Component()
+                itemElborateChose!!.Screen()
                 DefaultButtonRow()
             }
         }
@@ -327,7 +327,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemRound3().Component()
+                ItemRound3().Screen()
                 DefaultButtonRow()
             }
         }
@@ -359,7 +359,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemFinalRound!!.Component()
+                itemFinalRound!!.Screen()
                 LastButtonRow()
             }
         }

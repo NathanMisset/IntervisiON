@@ -112,7 +112,7 @@ class FragmentGroups : ComponentActivity() {
                 .verticalScroll(rememberScrollState())
             ) {
             for (group in availableGroups!!) {
-                group.Component()
+                group.Screen()
                 }
             }
             Row(

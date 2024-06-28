@@ -103,8 +103,8 @@ data class String(
     /** HomeItemResult */
     val stelling1HomeItemResult: String = "Ga ik de bezwaarmaker bellen?",
     val stelling2HomeItemResult: String = "Ik bel NIET als de bzwaarmaker een advocaat heeft ingeschakkelt",
-    val tegenHomeItemResult: String = "Tegen:",
-    val voorHomeItemResult: String = "Voor:",
+    val tegenHomeItemResult: String = "Tegen: ",
+    val voorHomeItemResult: String = "Voor: ",
     val circelTegenHomeItemResult: String = "CircleDonkergroen",
     val circelVoorHomeItemResult: String = "CircleGeel",
 
@@ -118,6 +118,15 @@ data class String(
     val votedTextHomeItemVote: String = "Je hebt gestemt!",
     val votedTextQuestionHomeItemVote: String = "Wil je direct een intervisie groep aan maken?",
 
+    /** ItemVote */
+    val roundTextItemVote: String = "Ronde 1 van 4",
+    val titleTextItemVote: String = "Stelling en resultaat",
+    val asignmentItemVote: String = "Voer een gesprek over de stelling",
+    val exampleThesisItemVote: String = "Ga ik de bezwaarmaker bellen?\n" +
+            "    Ik bel NIET als de bezwaarmaker een advocaat heeft ingeschakeld",
+    val exampleVoteresultItemVote: String = "1",
+
+
     /** ItemDiscusionLeader */
     val roundTextItemDiscusionLeader: String = "Ronde 2 van 4",
     val asgnimentTextItemDiscusionLeader: String = "Toelichting keuze",
@@ -129,15 +138,11 @@ data class String(
     val asignmentItemRound3: String = "Licht jouw \n" +
                                         "keuze toe",
 
-
-
     /** ItemAction */
     val roundTextItemAction: String = "Ronde 4 van 4",
     val questionLeiderItemAction: String = "Wat gaan de \ndeelnemers\nanders doen?",
     val questionDeelnemersItemAction: String = "Wat gaan je \nanders doen?",
     val discriptionImageItemAction: String = "Afbeelding van mensen die praten",
-
-
 
     /** ItemDiscusionLeader */
     val textDefaultItemDiscusionUser: String = "Wacht tot iemand de beurt krijgt",

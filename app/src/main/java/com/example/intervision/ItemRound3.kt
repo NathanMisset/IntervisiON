@@ -38,7 +38,7 @@ import com.example.intervision.ui.spacing
 
 class ItemRound3 {
     @Composable
-    fun Component() {
+    fun Screen() {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
@@ -77,7 +77,7 @@ class ItemRound3 {
         }
     }
     @Composable
-    fun ComponentParticipant() {
+    fun ScreenUser() {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
@@ -119,7 +119,7 @@ class ItemRound3 {
 
 @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
 @Composable
-fun VoteThirdComponent() {
+fun ItemRound3Preview() {
     IntervisionBaseTheme {
         Column(
             modifier = Modifier

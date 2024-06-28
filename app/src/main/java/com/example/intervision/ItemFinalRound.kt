@@ -38,7 +38,7 @@ import com.example.intervision.ui.spacing
 
 class ItemFinalRound {
     @Composable
-    fun Component() {
+    fun Screen() {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
@@ -70,7 +70,7 @@ class ItemFinalRound {
     }
     /** Composables */
     @Composable
-    fun ComponentParticipant() {
+    fun ScreenUser() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -103,7 +103,7 @@ class ItemFinalRound {
 }
 
 @Preview(device = "spec:width=1080px,height=2280px,dpi=400") @Composable
-fun FinalTest() {
+fun ItemFinalRoundPreview() {
     IntervisionBaseTheme {
         Column(
             modifier = Modifier

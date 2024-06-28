@@ -171,7 +171,7 @@ class FragmentHome {
 
             ) {
                 if (!voteResult!!){
-                    homeItemVote!!.Component()
+                    homeItemVote!!.Screen()
                 } else{
                     homeItemResult!!.Component()
                 }

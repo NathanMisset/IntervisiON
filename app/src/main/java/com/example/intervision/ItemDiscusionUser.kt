@@ -109,7 +109,7 @@ class ItemDiscusionUser(
 
     /** Composables */
     @Composable
-    fun Component() {
+    fun Screen() {
         Column (
             modifier = Modifier
                 .fillMaxWidth()
@@ -170,7 +170,7 @@ class ItemDiscusionUser(
  *
  */
 @Preview(device = "spec:width=1080px,height=2280px,dpi=400") @Composable
-fun VoteUserComponent() {
+fun ItemDiscusionUserPreview() {
     IntervisionBaseTheme {
         Column(
             modifier = Modifier

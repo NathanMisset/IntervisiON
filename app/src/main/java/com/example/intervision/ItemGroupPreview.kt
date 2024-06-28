@@ -138,7 +138,7 @@ class ItemGroupPreview : ComponentActivity() {
 
     /** Composables */
     @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true) @Composable
-    fun Component() {
+    fun Screen() {
         IntervisionBaseTheme {
             Column(
                 modifier = Modifier

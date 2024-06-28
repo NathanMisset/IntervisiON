@@ -38,7 +38,7 @@ import com.example.intervision.ui.spacing
 
 class ItemRoundsExplained  {
     @Composable
-    fun Component() {
+    fun Screen() {
         IntervisionBaseTheme {
             Column(
                 modifier = Modifier
@@ -77,7 +77,7 @@ class ItemRoundsExplained  {
     }
 
     @Composable
-    fun ComponentParticipant() {
+    fun ScreenUser() {
         IntervisionBaseTheme {
             Column {
                 Text(
@@ -117,7 +117,7 @@ class ItemRoundsExplained  {
     }
 }
 @PreviewFontScale @Composable
-fun TestComponent() {
+fun ItemRoundsExplainedPreview() {
     IntervisionBaseTheme {
         Column(
             modifier = Modifier

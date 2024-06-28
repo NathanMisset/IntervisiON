@@ -174,7 +174,7 @@ class HomeItemVote {
 
     /** Composables */
     @Composable
-    fun Component() {
+    fun Screen() {
         IntervisionBaseTheme {
             when {
                 openAlertDialog.value -> {

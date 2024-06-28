@@ -180,7 +180,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemRoundsExplained().ComponentParticipant()
+                ItemRoundsExplained().ScreenUser()
             }
         }
     }
@@ -196,7 +196,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemDiscusionUser!!.Component()
+                itemDiscusionUser!!.Screen()
             }
         }
     }
@@ -216,7 +216,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemFinalRound!!.ComponentParticipant()
+                itemFinalRound!!.ScreenUser()
                 Text(text = ComposableUiString.wachtTekstIntervisie)
             }
         }
