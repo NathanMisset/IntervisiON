@@ -327,7 +327,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemThirdRound().Component()
+                ItemRound3().Component()
                 DefaultButtonRow()
             }
         }

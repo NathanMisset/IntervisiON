@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import androidx.compose.foundation.Image
@@ -15,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,7 +29,14 @@ import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
-class ItemThirdRound {
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item is the 3th round and consiste of a title and an image
+ *
+ */
+
+class ItemRound3 {
     @Composable
     fun Component() {
         Column (
@@ -34,14 +46,13 @@ class ItemThirdRound {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(
-                text = "Ronde 3 van 4",
+                text = ComposableUiString.roundTextItemRound3,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Licht jouw \n" +
-                        "keuze toe",
+                text = ComposableUiString.asignmentItemRound3,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -74,14 +85,13 @@ class ItemThirdRound {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(
-                text = "Ronde 3 van 4",
+                text = ComposableUiString.roundTextItemRound3,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Licht jouw \n" +
-                        "keuze toe",
+                text = ComposableUiString.asignmentItemRound3,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -126,14 +136,13 @@ fun VoteThirdComponent() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Text(
-                    text = "Ronde 3 van 4",
+                    text = ComposableUiString.roundTextItemRound3,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = "Licht jouw \n" +
-                            "keuze toe",
+                    text = ComposableUiString.asignmentItemRound3,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
