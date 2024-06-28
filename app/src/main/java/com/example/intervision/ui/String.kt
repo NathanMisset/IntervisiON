@@ -139,6 +139,16 @@ data class String(
     /** ItemGroupPreview */
     val sdsadaItemDiscusionUser: String = "Deelnemen",
 
+    /** ItemRoundsExplained */
+    val titleItemRoundsExplained: String = "Introductie ronde",
+    val underTitleItemRoundsExplained: String = "Introductie",
+    val headerItemRoundsExplained: String = "Uitleg",
+    val contentItemRoundsExplained: String = "\n 1. In de eerste ronden introduceert U (de groupsleider) de stelling en ziet iedereen het resultaat van het stemmen" +
+            "\n 2. In de tweede ronden geef je spelers de mogelijkheid hun keuze te onderbouwen" +
+            "\n 3. In de derde ronde is het ruimte voor discussie" +
+            "\n 4. In de vierde ronde vraagt u de spelers wat ze anders gaan doen" +
+            "\n 5. In de vijfde ronden wordt het spel beeindigt",
+
     /** ItemFinalRound */
     val headerItemFinalRound: String = "Afronding",
     val buttonTextItemFinalRound: String = "Sessie Voorbij",

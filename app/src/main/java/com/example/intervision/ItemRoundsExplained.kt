@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import androidx.compose.foundation.background
@@ -19,8 +25,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
+
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item show the introduction round
+ *
+ */
 
 class ItemRoundsExplained  {
     @Composable
@@ -33,14 +47,14 @@ class ItemRoundsExplained  {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Introductie ronde",
+                    text = ComposableUiString.titleItemRoundsExplained,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
             }
             Text(
-                text = "Uitleg",
+                text = ComposableUiString.headerItemRoundsExplained,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp,
@@ -56,12 +70,7 @@ class ItemRoundsExplained  {
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    text =
-                    "\n 1. In de eerste ronden introduceert U (de groupsleider) de stelling en ziet iedereen het resultaat van het stemmen" +
-                            "\n 2. In de tweede ronden geef je spelers de mogelijkheid hun keuze te onderbouwen" +
-                            "\n 3. In de derde ronde is het ruimte voor discussie" +
-                            "\n 4. In de vierde ronde vraagt u de spelers wat ze anders gaan doen" +
-                            "\n 5. In de vijfde ronden wordt het spel beeindigt"
+                    text = ComposableUiString.contentItemRoundsExplained
                 )
             }
         }
@@ -72,20 +81,20 @@ class ItemRoundsExplained  {
         IntervisionBaseTheme {
             Column {
                 Text(
-                    text = "Introductie ronde",
+                    text = ComposableUiString.titleItemRoundsExplained,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = "Introductie",
+                    text = ComposableUiString.underTitleItemRoundsExplained,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
                 )
             }
             Text(
-                text = "Uitleg",
+                text = ComposableUiString.headerItemRoundsExplained,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp,
@@ -100,21 +109,14 @@ class ItemRoundsExplained  {
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState()),
             ) {
-
                 Text(
-                    text =
-                    "\n 1. In de eerste ronden introduceert de groupsleider de stelling en kunt u het resultaat van het stemmen zien" +
-                            "\n 2. In de tweede ronden krijgt u en de ander spelers de beurt om uw keuze te onderbouwen" +
-                            "\n 3. In de derde ronde is het ruimte voor discussie" +
-                            "\n 4. In de vierde ronde wordt gevraagt wat u van af nu ander gaat proberen te doen" +
-                            "\n 5. In de vijfde ronden wordt het spel beeindigt"
+                    text = ComposableUiString.contentItemRoundsExplained
                 )
             }
         }
     }
 }
-@PreviewFontScale
-@Composable
+@PreviewFontScale @Composable
 fun TestComponent() {
     IntervisionBaseTheme {
         Column(
@@ -132,14 +134,14 @@ fun TestComponent() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Introductie ronde",
+                    text = ComposableUiString.titleItemRoundsExplained,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
             }
             Text(
-                text = "Uitleg",
+                text = ComposableUiString.headerItemRoundsExplained,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp,
@@ -155,12 +157,7 @@ fun TestComponent() {
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    text =
-                    "\n 1. In de eerste ronden introduceert U (de groupsleider) de stelling en ziet iedereen het resultaat van het stemmen" +
-                            "\n\n 2. In de tweede ronden geef je spelers de mogelijkheid hun keuze te onderbouwen" +
-                            "\n\n 3. In de derde ronde is het ruimte voor discussie" +
-                            "\n\n 4. In de vierde ronde vraagt u de spelers wat ze anders gaan doen" +
-                            "\n\n 5. In de vijfde ronden wordt het spel beeindigt"
+                    text = ComposableUiString.contentItemRoundsExplained
                 )
             }
         }
