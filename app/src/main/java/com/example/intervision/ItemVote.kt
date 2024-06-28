@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.firestore.FirebaseFirestore
@@ -133,7 +134,7 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                 Image(
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     painter = painterResource(id = R.drawable.image_quotations_72x72),
-                    contentDescription = stringResource(id = R.string.content_1)
+                    contentDescription = ComposableUiString.buttonTextItemFinalRound
                 )
                 Text(text = thesisString.value)
                 Row(
@@ -200,7 +201,7 @@ fun VoteTestComponent() {
                 Image(
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     painter = painterResource(id = R.drawable.image_quotations_72x72),
-                    contentDescription = stringResource(id = R.string.content_1)
+                    contentDescription = ComposableUiString.buttonTextItemFinalRound
                 )
                 Text(text = "Ga ik de bezwaarmaker bellen?\nIk bel NIET als de bezwaarmaker een advocaat heeft ingeschakeld")
                 Row(

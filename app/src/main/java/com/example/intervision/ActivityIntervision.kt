@@ -48,7 +48,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
         itemFinalRound = ItemFinalRound()
         itemVote = ItemVote(firestore!!, thesesID)
         itemVote!!.init()
-        itemDiscusionUser = ItemDiscusionUser(storage!!, firestore!!, partisipantsIdS!!)
+        itemDiscusionUser = ItemDiscusionUser(firestore!!, partisipantsIdS!!)
         itemDiscusionUser!!.init()
         initConnection()
     }

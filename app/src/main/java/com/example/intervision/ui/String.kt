@@ -136,7 +136,9 @@ data class String(
     val text2ItemDiscusionUser: String = "Licht jouw keuze toe",
     val previewtextItemDiscusionUser: String = "userTurnText.value",
 
-
+    /** ItemFinalRound */
+    val headerItemFinalRound: String = "Afronding",
+    val buttonTextItemFinalRound: String = "Sessie Voorbij",
 
     /** Settings */
     val acountLabelSettings: String = "Acount",

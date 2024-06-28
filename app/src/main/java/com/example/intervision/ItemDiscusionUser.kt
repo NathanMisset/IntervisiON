@@ -169,8 +169,7 @@ class ItemDiscusionUser(
  * These methode are outside the class so the preview can easier reach them
  *
  */
-@Preview(device = "spec:width=1080px,height=2280px,dpi=400")
-@Composable
+@Preview(device = "spec:width=1080px,height=2280px,dpi=400") @Composable
 fun VoteUserComponent() {
     IntervisionBaseTheme {
         Column(

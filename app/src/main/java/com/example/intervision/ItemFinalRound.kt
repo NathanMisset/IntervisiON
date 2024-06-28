@@ -1,11 +1,20 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
+
 package com.example.intervision
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,8 +24,17 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
+
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item displays the end screen with a button to go back to the navigation section
+ * Plan for the future is to be able to begin a new session
+ *
+ */
 
 class ItemFinalRound {
     @Composable
@@ -28,13 +46,13 @@ class ItemFinalRound {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(
-                text = "Afronding",
+                text = ComposableUiString.buttonTextItemFinalRound,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Sessie Voorbij",
+                text = ComposableUiString.headerItemFinalRound,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -50,22 +68,23 @@ class ItemFinalRound {
         ) {
         }
     }
+    /** Composables */
     @Composable
     fun ComponentParticipant() {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = spacing.large),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Text(
-                text = "Afronding",
+                text = ComposableUiString.buttonTextItemFinalRound,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = "Sessie Voorbij",
+                text = ComposableUiString.headerItemFinalRound,
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -83,8 +102,7 @@ class ItemFinalRound {
     }
 }
 
-@Preview(device = "spec:width=1080px,height=2280px,dpi=400")
-@Composable
+@Preview(device = "spec:width=1080px,height=2280px,dpi=400") @Composable
 fun FinalTest() {
     IntervisionBaseTheme {
         Column(
@@ -98,17 +116,18 @@ fun FinalTest() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .fillMaxHeight(0.5f)
                     .padding(horizontal = spacing.large),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Afronding",
+                    text = ComposableUiString.buttonTextItemFinalRound,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = "Sessie Voorbij",
+                    text = ComposableUiString.headerItemFinalRound,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
@@ -117,12 +136,36 @@ fun FinalTest() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.5f)
+                    .fillMaxHeight(0.4f)
                     .padding(horizontal = spacing.large),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
+                LastButtonRow()
             }
         }
     }
 }
+
+@Composable
+fun LastButtonRow(){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight(0.2f),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
+        Button(onClick = {
+
+        }) {
+            Text(text = "Terug")
+        }
+        Button(onClick = {
+
+        }) {
+            Text(text = "Sessie Beeindigen")
+        }
+    }
+}
+
+

@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
@@ -60,7 +61,7 @@ class ItemThirdRound {
                     .fillMaxSize(0.9f),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                 painter = painterResource(id = R.drawable.image_discussing_192x192),
-                contentDescription = stringResource(id = R.string.content_1)
+                contentDescription = ComposableUiString.buttonTextItemFinalRound
             )
         }
     }
@@ -100,7 +101,7 @@ class ItemThirdRound {
                     .fillMaxSize(0.9f),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                 painter = painterResource(id = R.drawable.image_discussing_192x192),
-                contentDescription = stringResource(id = R.string.content_1)
+                contentDescription =  ComposableUiString.buttonTextItemFinalRound
             )
         }
     }
@@ -152,7 +153,7 @@ fun VoteThirdComponent() {
                         .fillMaxSize(0.9f),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     painter = painterResource(id = R.drawable.image_discussing_192x192),
-                    contentDescription = stringResource(id = R.string.content_1)
+                    contentDescription = ComposableUiString.buttonTextItemFinalRound
                 )
             }
         }

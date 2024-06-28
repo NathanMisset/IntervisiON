@@ -16,7 +16,8 @@
             android:name=".ActivitySplash"
 
             android:exported="true"
-            android:label="@string/name_app">
+
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

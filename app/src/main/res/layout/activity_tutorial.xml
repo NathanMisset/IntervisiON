@@ -27,7 +27,7 @@
         android:layout_marginTop="44dp"
         android:background="#F1F1F6"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/prime_header"
+        android:text="prime_header"
         android:textColor="@color/yellow_100"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
