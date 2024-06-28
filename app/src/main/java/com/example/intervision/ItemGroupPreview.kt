@@ -1,3 +1,9 @@
+/**
+ * Copyright Lectoraat Legal Management van de Hogeschool van Amsterdam
+ *
+ * Gemaakt door Nathan Misset 2024
+ */
+
 package com.example.intervision
 
 import android.content.Intent
@@ -29,21 +35,35 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
+/**
+ *
+ * This item can be initiated as an object in an activity
+ * This item show all the users that are participating in a group
+ * This item is called mutiple times in FragmentGroups for every joinable group
+ *
+ */
+
 class ItemGroupPreview : ComponentActivity() {
+
+    /** Class Variables */
     private var participantsTextView: ArrayList<TextView>? = null
-    private var storage: FirebaseStorage? = null
-    private var db: FirebaseFirestore? = null
     private var participantsSiD: ArrayList<String>? = null
     private var leaderId: String? = null
-    private var user: FirebaseUser? = null
     private var sessionId: String? = null
     private var parent: ComponentActivity? = null
-    //Mutalbe Text
+
+    /** Firebase */
+    private var user: FirebaseUser? = null
+    private var storage: FirebaseStorage? = null
+    private var db: FirebaseFirestore? = null
+
+    /** Mutables */
     private var groupTitle: MutableState<String> = mutableStateOf("Eigne Collega's")
     private lateinit var userNames: MutableList<List<String>>
 
@@ -52,12 +72,14 @@ class ItemGroupPreview : ComponentActivity() {
         this.db = db
         this.user = user
         this.parent = parent
-        Log.d(TAG, data.toString())
-        leaderId = data["Leader Sid"] as String
+
         sessionId = docname
-        groupTitle = mutableStateOf(data["Group Name"]as String)
         participantsTextView = ArrayList()
+
+        leaderId = data["Leader Sid"] as String
         participantsSiD = data["Participant Sid"] as ArrayList<String>
+
+        groupTitle = mutableStateOf(data["Group Name"]as String)
         userNames = mutableStateListOf(
             listOf(
                 "Gebruiker 1",
@@ -69,7 +91,6 @@ class ItemGroupPreview : ComponentActivity() {
             ))
         userData()
     }
-
 
     private fun userData() {
         db!!.collection("User Data").whereIn("User UID", participantsSiD!!).get()
@@ -83,16 +104,13 @@ class ItemGroupPreview : ComponentActivity() {
                         list.add("Leeg")
                     }
                     userNames = mutableListOf(list)
-                    Log.d(TAG, "list $list")
-                    Log.d(TAG, "userNames $userNames")
-
                 } else {
                     Log.w(TAG, "Error getting documents.", task.exception)
                 }
             }
     }
+
     private fun checkIfLeader() {
-        Log.d(TAG, "leaderId " + leaderId + " userid " + user!!.uid)
         if (user!!.uid == leaderId) {
             toIntervisionLeader()
         } else {
@@ -102,8 +120,6 @@ class ItemGroupPreview : ComponentActivity() {
 
     private fun toIntervision() {
         val i = Intent(parent, ActivityWaitingRoom::class.java)
-        Log.d(TAG, "SessionId ")
-        Log.d(TAG, "SessionId $sessionId")
         i.putExtra("SessionID", sessionId)
         i.putExtra("Leader", false)
         parent!!.startActivity(i)
@@ -111,20 +127,17 @@ class ItemGroupPreview : ComponentActivity() {
 
     private fun toIntervisionLeader() {
         val i = Intent(parent, ActivityWaitingRoom::class.java)
-        Log.d(TAG, "SessionId ")
-        Log.d(TAG, "SessionId $sessionId")
         i.putExtra("SessionID", sessionId)
         i.putExtra("Leader", true)
         parent!!.startActivity(i)
     }
 
-
     companion object {
         private const val TAG = "GroupPreviewItem"
     }
 
-    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
-    @Composable
+    /** Composables */
+    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true) @Composable
     fun Component() {
         IntervisionBaseTheme {
             Column(
@@ -138,7 +151,6 @@ class ItemGroupPreview : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
-
                     ) {
                     Row(
                         modifier = Modifier
@@ -167,12 +179,11 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = "profile",
+                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                                 contentScale = ContentScale.Inside
                             )
                             Text(text = userNames[0][0])
                         }
-
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
@@ -185,10 +196,9 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = "profile",
+                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                             )
                             Text(text = userNames[0][1])
-
                         }
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
@@ -202,7 +212,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = "profile",
+                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                             )
                             Text(text = userNames[0][2])
                         }
@@ -225,12 +235,11 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = "profile",
+                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                                 contentScale = ContentScale.Inside
                             )
                             Text(text = userNames[0][3])
                         }
-
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
@@ -243,14 +252,10 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = "profile",
+                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                             )
                             Text(text = userNames[0][4])
                         }
-
-
-
-
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
@@ -263,7 +268,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = "profile",
+                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
                             )
                             Text(text = userNames[0][5])
                         }
@@ -275,7 +280,7 @@ class ItemGroupPreview : ComponentActivity() {
                         horizontalArrangement = Arrangement.SpaceAround
                     ) {
                         Button(onClick = { checkIfLeader() }) {
-                            Text(text = "Deelnemen")
+                            Text(text = ComposableUiString.sdsadaItemDiscusionUser)
                         }
                     }
                 }
