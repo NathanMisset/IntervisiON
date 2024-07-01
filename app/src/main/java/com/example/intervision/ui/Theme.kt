@@ -378,7 +378,6 @@ fun IntervisionBaseTheme(
             colorScheme = colorScheme,
             typography = Typography,
             content = content,
-
         )
     }
 

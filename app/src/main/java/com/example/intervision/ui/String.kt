@@ -23,7 +23,7 @@ data class String(
     val nextButtonApp: String = "Volgende",
     val descriptionIconApp: String = "App Icon",
 
-    /** App */
+    /** Login */
     val loginButtonLogin: String = "Login",
     val registerButtonLogin: String = "Registeren",
     val forgotPasswordButtonLogin: String = "Wachtwoord vergeten?",
@@ -31,7 +31,7 @@ data class String(
     val emailTextFieldLogin: String = "Email",
     val passwordTextFieldLogin: String = "Wachtwoord",
 
-    /** Navitation */
+    /** Navigtation */
     val homeLabelNavigation: String = "Home",
     val groupLabelNavigation: String = "Group",
     val profileLabelNavigation: String = "Profile",
@@ -80,6 +80,9 @@ data class String(
     val photo1DescriptionTutorial: String = "Voorbeeld van notificatie",
     val photo2DescriptionTutorial: String = "Voorbeeld van een stelling in de app",
     val photo3DescriptionTutorial: String = "foto van een teams gesprek op een scherm plus mobiel met de intervisie open",
+    val startButtonTutorial: String = "Beginnen",
+    val stepDescriptionTutorial: String = "Step ",
+    val stepNDescriotionTutorial: String = "Step Number",
 
     /** Waiting Room */
     val desciptionWaitingRoom: String = "Open nu de Teams vergadering op jouw desktop/laptop voordat de intervisie begint en zorg ervoor dat de verbinding technisch werkt!",
