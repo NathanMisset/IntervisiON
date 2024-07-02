@@ -19,9 +19,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -175,7 +178,6 @@ class ActivityRegister : ComponentActivity() {
         reload()
     }
 
-    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
     @Composable
     fun Screen() {
         val focusManager = LocalFocusManager.current
@@ -276,12 +278,30 @@ class ActivityRegister : ComponentActivity() {
                                 }
                             },
                             colors = SwitchDefaults.colors(
-                                checkedThumbColor = MaterialTheme.colorScheme.primary,
-                                checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
-                                uncheckedThumbColor = MaterialTheme.colorScheme.secondary,
-                                uncheckedTrackColor = MaterialTheme.colorScheme.secondaryContainer,
-                            )
+                                checkedThumbColor = MaterialTheme.colorScheme.tertiary,
+                                checkedTrackColor = MaterialTheme.colorScheme.tertiaryContainer,
+                                uncheckedThumbColor = MaterialTheme.colorScheme.error,
+                                uncheckedTrackColor = MaterialTheme.colorScheme.errorContainer,
+                            ),
+                            thumbContent = if (checked.value) {
+                                {
+                                    Icon(
+                                        imageVector = Icons.Filled.Check,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(SwitchDefaults.IconSize),
+                                    )
+                                }
+                            } else {
+                                {
+                                    Icon(
+                                        imageVector = Icons.Filled.Close,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(SwitchDefaults.IconSize),
+                                    )
+                                }
+                            }
                         )
+
                         Text(
                             text = ComposableUiString.toestemmingRegister
                         )
@@ -299,5 +319,141 @@ class ActivityRegister : ComponentActivity() {
         private const val TAG = "RegisterActivity"
 //        private const val EMAIL_PATTERN =
 //            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+    }
+}
+
+
+@Preview(showSystemUi = true, showBackground = true)
+@Composable
+fun preview() {
+    val focusManager = LocalFocusManager.current
+    var email by remember { mutableStateOf("") }
+    var voornaam by remember { mutableStateOf("") }
+    var werkfuntie by remember { mutableStateOf("") }
+    var wachtwoord by remember { mutableStateOf("") }
+    IntervisionBaseTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(0.8f)
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(text = ComposableUiString.registerRegister)
+                Column(
+                    modifier = Modifier
+                        .fillMaxHeight(0.4f)
+                        .fillMaxWidth()
+                        .background(color = MaterialTheme.colorScheme.background),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceAround
+                ) {
+                    TextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        label = { Text( text = ComposableUiString.emailLabelRegister )},
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Email,
+                            imeAction = ImeAction.Next),
+                        keyboardActions = KeyboardActions(
+                            onNext = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
+                    )
+                    TextField(
+                        value = voornaam,
+                        onValueChange = { voornaam = it },
+                        label = { Text(ComposableUiString.voornaamLabelRegister) },
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Sentences,
+                            imeAction = ImeAction.Next),
+                        keyboardActions = KeyboardActions(
+                            onNext = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
+                    )
+                    TextField(
+                        value = werkfuntie,
+                        onValueChange = { werkfuntie = it },
+                        label = { Text(ComposableUiString.werkfuntieLabelRegister) },
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Sentences,
+                            imeAction = ImeAction.Next),
+                        keyboardActions = KeyboardActions(
+                            onNext = { focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down) })
+                    )
+                    var passwordVisible by remember { mutableStateOf(false) }
+                    TextField(
+                        value = wachtwoord,
+                        onValueChange = { wachtwoord = it },
+                        label = { Text(ComposableUiString.wachtwoordLabelRegister) },
+                        singleLine = true,
+                        placeholder = { Text(ComposableUiString.wachtwoordLabelRegister) },
+                        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.None,
+                            imeAction = ImeAction.Next,
+                            keyboardType = KeyboardType.Password),
+                        keyboardActions = KeyboardActions(
+                            onNext = { focusManager.clearFocus() }),
+
+                        trailingIcon = {
+                            val image = if (passwordVisible)
+                                Icons.Filled.Visibility
+                            else Icons.Filled.VisibilityOff
+
+                            IconButton(onClick = {passwordVisible = !passwordVisible}){
+                                Icon(imageVector  = image, "description")
+                            }
+                        }
+                    )
+
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    var checked by remember { mutableStateOf(false) }
+                    Switch(
+                        checked = checked,
+                        onCheckedChange = {
+                            checked = it
+                        },
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = MaterialTheme.colorScheme.tertiary,
+                            checkedTrackColor = MaterialTheme.colorScheme.tertiaryContainer,
+                            uncheckedThumbColor = MaterialTheme.colorScheme.error,
+                            uncheckedTrackColor = MaterialTheme.colorScheme.errorContainer,
+                        ),
+                                thumbContent = if (checked) {
+                            {
+                                Icon(
+                                    imageVector = Icons.Filled.Check,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(SwitchDefaults.IconSize),
+                                )
+                            }
+                        } else {
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Close,
+                                            contentDescription = null,
+                                            modifier = Modifier.size(SwitchDefaults.IconSize),
+                                        )
+                                    }
+                        }
+                    )
+                    Text(
+                        text = ComposableUiString.toestemmingRegister
+                    )
+                }
+                Button(onClick = { }) {
+                    Text(text = ComposableUiString.finishRegister)
+                }
+
+            }
+        }
     }
 }
