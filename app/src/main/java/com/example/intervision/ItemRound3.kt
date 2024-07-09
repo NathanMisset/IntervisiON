@@ -21,11 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
@@ -46,13 +46,13 @@ class ItemRound3 {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(
-                text = ComposableUiString.roundTextItemRound3,
+                text = stringResource(R.string.roundTextItemRound3),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = ComposableUiString.asignmentItemRound3,
+                text = stringResource(R.string.assignmentItemRound3),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -72,7 +72,7 @@ class ItemRound3 {
                     .fillMaxSize(0.9f),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                 painter = painterResource(id = R.drawable.image_discussing_192x192),
-                contentDescription = ComposableUiString.buttonTextItemFinalRound
+                contentDescription = stringResource(R.string.buttonTextItemFinalRound)
             )
         }
     }
@@ -85,13 +85,13 @@ class ItemRound3 {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(
-                text = ComposableUiString.roundTextItemRound3,
+                text = stringResource(R.string.roundTextItemRound3),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = ComposableUiString.asignmentItemRound3,
+                text = stringResource(R.string.assignmentItemRound3),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -111,7 +111,7 @@ class ItemRound3 {
                     .fillMaxSize(0.9f),
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                 painter = painterResource(id = R.drawable.image_discussing_192x192),
-                contentDescription =  ComposableUiString.buttonTextItemFinalRound
+                contentDescription =  stringResource(R.string.buttonTextItemFinalRound)
             )
         }
     }
@@ -136,13 +136,13 @@ fun ItemRound3Preview() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Text(
-                    text = ComposableUiString.roundTextItemRound3,
+                    text = stringResource(R.string.roundTextItemRound3),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = ComposableUiString.asignmentItemRound3,
+                    text = stringResource(R.string.assignmentItemRound3),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
@@ -162,7 +162,7 @@ fun ItemRound3Preview() {
                         .fillMaxSize(0.9f),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     painter = painterResource(id = R.drawable.image_discussing_192x192),
-                    contentDescription = ComposableUiString.buttonTextItemFinalRound
+                    contentDescription = stringResource(R.string.buttonTextItemFinalRound)
                 )
             }
         }

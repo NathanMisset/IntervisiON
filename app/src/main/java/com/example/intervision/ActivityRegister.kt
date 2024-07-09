@@ -44,15 +44,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
-import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -90,31 +89,31 @@ class ActivityRegister : ComponentActivity() {
     private fun checkAllFields(): Boolean {
         var check = true
         if (voornaam.value.isEmpty()) {
-            val error = UiString.voornaamErrorRegister
+            val error = getString(R.string.firstnameErrorRegister)
             toast(error)
             check = false
         }
         if (werkfunctie.value.isEmpty()) {
-            val error = UiString.werkfuntieErrorRegister
+            val error = getString(R.string.workfunctionErrorRegister)
             toast(error)
             check = false
         }
         if (email.value.isEmpty()) {
-            val error = UiString.emailErrorRegister
+            val error = getString(R.string.emailErrorRegister)
             toast(error)
             check = false
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email.value).matches()) {
-            val error = UiString.emailFormatErrorRegister
+            val error = getString(R.string.emailFormatErrorRegister)
             toast(error)
             check = false
         }
         if (password.value.isEmpty()) {
-            val error = UiString.wachtwoordErrorRegister
+            val error = getString(R.string.passwordErrorRegister)
             toast(error)
             check = false
         } else if (password.value.length < 6) {
-            val error = UiString.wachtwoordLengtenErrorRegister
+            val error = getString(R.string.passwordLengtenErrorRegister)
             toast(error)
             check = false
         }
@@ -198,7 +197,7 @@ class ActivityRegister : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
-                    Text(text = ComposableUiString.registerRegister)
+                    Text(text = getString(R.string.registerRegister))
                     Column(
                         modifier = Modifier
                             .fillMaxHeight(0.4f)
@@ -210,7 +209,7 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = email.value,
                             onValueChange = { email.value = it },
-                            label = { Text(ComposableUiString.emailLabelRegister) },
+                            label = { Text(getString(R.string.emailLabelRegister)) },
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Email,
                                 imeAction = ImeAction.Next),
@@ -220,7 +219,7 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = voornaam.value,
                             onValueChange = { voornaam.value = it },
-                            label = { Text(ComposableUiString.voornaamLabelRegister) },
+                            label = { Text(getString(R.string.firstnameLabelRegister)) },
                             keyboardOptions = KeyboardOptions(
                                 capitalization = KeyboardCapitalization.Sentences,
                                 imeAction = ImeAction.Next),
@@ -230,7 +229,7 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = werkfunctie.value,
                             onValueChange = { werkfunctie.value = it },
-                            label = { Text(ComposableUiString.werkfuntieLabelRegister) },
+                            label = { Text(getString(R.string.workfunctionLabelRegister)) },
                             keyboardOptions = KeyboardOptions(
                                 capitalization = KeyboardCapitalization.Sentences,
                                 imeAction = ImeAction.Next),
@@ -241,13 +240,13 @@ class ActivityRegister : ComponentActivity() {
                         TextField(
                             value = password.value,
                             onValueChange = { password.value = it },
-                            label = { Text(ComposableUiString.wachtwoordLabelRegister) },
+                            label = { Text(getString(R.string.passwordLabelRegister)) },
                             singleLine = true,
-                            placeholder = { Text(ComposableUiString.wachtwoordLabelRegister) },
+                            placeholder = { Text(getString(R.string.passwordLabelRegister)) },
                             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                             keyboardOptions = KeyboardOptions(
                                 capitalization = KeyboardCapitalization.None,
-                                imeAction = ImeAction.Next,
+                                imeAction = ImeAction.Done,
                                 keyboardType = KeyboardType.Password),
                             keyboardActions = KeyboardActions(
                                 onNext = { focusManager.clearFocus() }),
@@ -257,7 +256,7 @@ class ActivityRegister : ComponentActivity() {
                                     Icons.Filled.Visibility
                                 else Icons.Filled.VisibilityOff
 
-                                val description = if (passwordVisible) ComposableUiString.wachtwoordOntzichbaarRegister else ComposableUiString.wachtwoordZichbaarLabelRegister
+                                val description = if (passwordVisible) getString(R.string.passwordHiddenRegister) else getString(R.string.passwordVisableLabelRegister)
 
                                 IconButton(onClick = {passwordVisible = !passwordVisible}){
                                     Icon(imageVector  = image, description)
@@ -303,11 +302,11 @@ class ActivityRegister : ComponentActivity() {
                         )
 
                         Text(
-                            text = ComposableUiString.toestemmingRegister
+                            text = getString(R.string.permissionRegister)
                         )
                     }
                     Button(onClick = { startRegister() }) {
-                        Text(text = ComposableUiString.finishRegister)
+                        Text(text = getString(R.string.finishRegister))
                     }
 
                 }
@@ -348,7 +347,7 @@ fun preview() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                Text(text = ComposableUiString.registerRegister)
+                Text(text = stringResource(R.string.registerRegister))
                 Column(
                     modifier = Modifier
                         .fillMaxHeight(0.4f)
@@ -360,7 +359,7 @@ fun preview() {
                     TextField(
                         value = email,
                         onValueChange = { email = it },
-                        label = { Text( text = ComposableUiString.emailLabelRegister )},
+                        label = { Text( text = stringResource(R.string.emailLabelRegister))},
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Email,
                             imeAction = ImeAction.Next),
@@ -370,7 +369,7 @@ fun preview() {
                     TextField(
                         value = voornaam,
                         onValueChange = { voornaam = it },
-                        label = { Text(ComposableUiString.voornaamLabelRegister) },
+                        label = { Text(stringResource(R.string.firstnameLabelRegister)) },
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.Sentences,
                             imeAction = ImeAction.Next),
@@ -380,7 +379,7 @@ fun preview() {
                     TextField(
                         value = werkfuntie,
                         onValueChange = { werkfuntie = it },
-                        label = { Text(ComposableUiString.werkfuntieLabelRegister) },
+                        label = { Text(stringResource(R.string.workfunctionLabelRegister)) },
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.Sentences,
                             imeAction = ImeAction.Next),
@@ -391,9 +390,9 @@ fun preview() {
                     TextField(
                         value = wachtwoord,
                         onValueChange = { wachtwoord = it },
-                        label = { Text(ComposableUiString.wachtwoordLabelRegister) },
+                        label = { Text(stringResource(R.string.passwordLabelRegister)) },
                         singleLine = true,
-                        placeholder = { Text(ComposableUiString.wachtwoordLabelRegister) },
+                        placeholder = { Text(stringResource(R.string.passwordLabelRegister)) },
                         visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                         keyboardOptions = KeyboardOptions(
                             capitalization = KeyboardCapitalization.None,
@@ -446,11 +445,11 @@ fun preview() {
                         }
                     )
                     Text(
-                        text = ComposableUiString.toestemmingRegister
+                        text = stringResource(R.string.permissionRegister)
                     )
                 }
                 Button(onClick = { }) {
-                    Text(text = ComposableUiString.finishRegister)
+                    Text(text = stringResource(R.string.finishRegister))
                 }
 
             }

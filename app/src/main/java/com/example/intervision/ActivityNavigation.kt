@@ -14,6 +14,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,16 +25,21 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -75,6 +81,8 @@ class ActivityNavigation : ComponentActivity() {
         storage = FirebaseStorage.getInstance()
         auth = FirebaseAuth.getInstance()
 
+
+
         /** Fragments */
         fragmentHome = FragmentHome()
         fragmentHome!!.init(user!!, db!!, this)
@@ -94,7 +102,6 @@ class ActivityNavigation : ComponentActivity() {
                 IntervisionBaseTheme {
                     Log.d("navigation", "setContent")
                     val navController = rememberNavController()
-
                     Scaffold(
                         bottomBar = { BottomAppBarWithNavigation(navController = navController) },
                     ) { paddingValues ->
@@ -117,12 +124,13 @@ class ActivityNavigation : ComponentActivity() {
         Handler().postDelayed({
             setContent {
                 IntervisionBaseTheme {
-                    Log.d(TAG, "setContent")
+                    Log.d("navigation", "setContent")
                     val navController = rememberNavController()
                     Scaffold(
                         bottomBar = { BottomAppBarWithNavigation(navController = navController) },
                     ) { paddingValues ->
                         paddingValues
+
                         NavHost(navController, startDestination = Screen.Home.route) {
                             composable(Screen.Home.route) { HomeScreen() }
                             composable(Screen.Group.route) { GroupScreen() }
@@ -134,47 +142,97 @@ class ActivityNavigation : ComponentActivity() {
         }, 1500)
     }
 
-    @Composable
-    fun BottomAppBarWithNavigation(navController: NavHostController) {
-        BottomAppBar {
-            Row (horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                NavigationItem(
-                    navController,
-                    Screen.Home,
-                    Icons.Default.Home,
-                    ComposableUiString.homeLabelNavigation
-                )
-                NavigationItem(
-                    navController,
-                    Screen.Group,
-                    Icons.Default.Group,
-                    ComposableUiString.groupLabelNavigation
-                )
-                NavigationItem(
-                    navController,
-                    Screen.Profile,
-                    Icons.Default.AccountCircle,
-                    ComposableUiString.profileLabelNavigation
-                )
+
+
+
+
+        @Composable
+        fun BottomAppBarWithNavigation(navController: NavHostController) {
+
+            val items = listOf(
+                BottomNavItem.Home,
+                BottomNavItem.Group,
+                BottomNavItem.Profile
+            )
+
+            NavigationBar {
+                items.forEach { item ->
+                    AddItem(
+                        screen = item,
+                        navController = navController
+                    )
+                }
             }
         }
+
+        @Composable
+        fun RowScope.AddItem(
+            screen: BottomNavItem,
+            navController: NavHostController
+        ) {
+            NavigationBarItem(
+                label = {
+                    Text(text = screen.title)
+                },
+
+                icon = {
+                    Icon(
+                        screen.icon,
+                        contentDescription = screen.title
+                    )
+                },
+
+                enabled = true,
+
+                selected = false,
+
+                alwaysShowLabel = true,
+
+                onClick = {
+
+                    navController.navigate(screen.screen.route)
+                          },
+
+
+                // Control all the colors of the icon
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    selectedTextColor = MaterialTheme.colorScheme.primaryContainer,
+                    unselectedIconColor = MaterialTheme.colorScheme.secondary,
+                    unselectedTextColor = MaterialTheme.colorScheme.secondaryContainer,
+                )
+            )
     }
 
-    @Composable
-    fun NavigationItem(
-        navController: NavHostController,
-        screen: Screen,
-        icon: ImageVector,
-        label: String
+
+    sealed class BottomNavItem(
+        var title: String,
+        var icon: ImageVector,
+        var screen: Screen
     ) {
-        IconButton(
-            onClick = { navController.navigate(screen.route) }
-        ) {
-            Icon(imageVector = icon, contentDescription = label)
-        }
+        object Home :
+            BottomNavItem(
+                "Home",
+                Icons.Default.Home,
+                Screen.Home
+            )
+
+        object Group :
+            BottomNavItem(
+                "Groep",
+                Icons.Default.Group,
+                Screen.Group
+            )
+
+
+        object Profile :
+            BottomNavItem(
+                "Profile",
+                Icons.Default.AccountCircle,
+                Screen.Profile
+            )
     }
+
 
     @Composable
     fun HomeScreen() {

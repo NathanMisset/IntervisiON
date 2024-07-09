@@ -31,14 +31,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
-import com.example.intervision.ui.UiString
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -171,15 +170,15 @@ class ActivityWaitingRoom : ComponentActivity() {
 
     private fun toIntervision() {
         val i = Intent(this, ActivityIntervision::class.java)
-        i.putExtra(UiString.intentPutExtraSessionIDWaitingRoom, sessionID)
-        i.putExtra(UiString.intentPutExtraSessionIDWaitingRoom, false)
+        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), sessionID)
+        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), false)
         this.startActivity(i)
     }
 
     private fun toIntervisionLeader() {
         val i = Intent(this, ActivityIntervisionLeader::class.java)
-        i.putExtra(UiString.intentPutExtraSessionIDWaitingRoom, sessionID)
-        i.putExtra(UiString.intentPutExtraSessionIDWaitingRoom, true)
+        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), sessionID)
+        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), true)
         this.startActivity(i)
     }
 
@@ -196,7 +195,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                Text(text = ComposableUiString.desciptionWaitingRoom)
+                Text(text = stringResource(R.string.descriptionWaitingRoom))
                 Text(text = groupName.value,
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
@@ -211,7 +210,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                     horizontalArrangement = Arrangement.SpaceAround) {
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
-                            , contentDescription = ComposableUiString.profile1ImageDescriptionWaitingRoom,
+                            , contentDescription = stringResource(R.string.descriptionWaitingRoom) + 1,
                             modifier = Modifier
                                 .padding(spacing.small))
                         Text(text = participantsNames[0][0],
@@ -221,7 +220,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                     }
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
-                            , contentDescription = ComposableUiString.profile2ImageDescriptionWaitingRoom,
+                            , contentDescription = stringResource(R.string.descriptionWaitingRoom) + 2,
                             modifier = Modifier
                                 .padding(spacing.small))
                         Text(text = participantsNames[0][1],
@@ -230,7 +229,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                     }
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
-                            , contentDescription = ComposableUiString.profile3ImageDescriptionWaitingRoom,
+                            , contentDescription = stringResource(R.string.descriptionWaitingRoom) + 3,
                             modifier = Modifier
                                 .padding(spacing.small))
                         Text(text = participantsNames[0][2],
@@ -248,7 +247,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                 horizontalArrangement = Arrangement.SpaceAround) {
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
-                            , contentDescription = ComposableUiString.profile4ImageDescriptionWaitingRoom,
+                            , contentDescription = stringResource(R.string.descriptionWaitingRoom) + 4,
                             modifier = Modifier
                                 .padding(spacing.small))
                         Text(text = participantsNames[0][3],
@@ -257,7 +256,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                     }
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
-                            , contentDescription = ComposableUiString.profile5ImageDescriptionWaitingRoom,
+                            , contentDescription = stringResource(R.string.descriptionWaitingRoom) + 5,
                             modifier = Modifier
                                 .padding(spacing.small))
                         Text(text = participantsNames[0][4],
@@ -266,7 +265,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                     }
                     ElevatedCard {
                         Image(painter = painterResource(id = R.drawable.temp_profile_picture_192x192)
-                            , contentDescription = ComposableUiString.profile6ImageDescriptionWaitingRoom,
+                            , contentDescription = stringResource(R.string.descriptionWaitingRoom) + 6,
                             modifier = Modifier
                                 .padding(spacing.small))
                         Text(text = participantsNames[0][5],
@@ -291,7 +290,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                                     end = spacing.medium
                                 )
                         ) {
-                            Text(text = ComposableUiString.startButtonWaitingRoom)
+                            Text(text = stringResource(R.string.startButtonWaitingRoom))
                         }
                     }
 
@@ -308,7 +307,7 @@ class ActivityWaitingRoom : ComponentActivity() {
                                 end = spacing.medium
                             )
                     ) {
-                        Text(text = ComposableUiString.leaveButtonWaitingRoom)
+                        Text(text = stringResource(R.string.leaveButtonWaitingRoom))
                     }
                 }
             }

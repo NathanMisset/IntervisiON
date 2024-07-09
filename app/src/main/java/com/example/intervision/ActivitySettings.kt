@@ -36,8 +36,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
@@ -148,13 +148,13 @@ class ActivitySettings : ComponentActivity() {
                     IconButton(onClick = {
                         backToProfile()
                     }) {
-                        Icon(Icons.Filled.Close, ComposableUiString.quitIconDescriptonSettings)
+                        Icon(Icons.Filled.Close, stringResource(R.string.quitIconDescriptonSettings))
                     }
-                    Text(text = ComposableUiString.acountLabelSettings)
+                    Text(text = stringResource(R.string.accountLabelSettings))
                     TextButton(onClick = {
                         updateUserSettings()
                     }) {
-                        Text(text = ComposableUiString.opslaanLabelSettings)
+                        Text(text = stringResource(R.string.saveLabelSettings))
                     }
                 }
                 Column(
@@ -169,7 +169,7 @@ class ActivitySettings : ComponentActivity() {
                     TextField(
                         value = email.value,
                         onValueChange = { email.value = it },
-                        label = { Text(ComposableUiString.emailTextFieldLogin) },
+                        label = { Text(stringResource(R.string.emailLabelSettings)) },
                         enabled = false,
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -185,7 +185,7 @@ class ActivitySettings : ComponentActivity() {
                     TextField(
                         value = name.value,
                         onValueChange = {name.value = it},
-                        label = { Text(ComposableUiString.voornaamLabelRegister) },
+                        label = { Text(stringResource(R.string.firstnameLabelSettings)) },
                         maxLines = 2,
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -202,7 +202,7 @@ class ActivitySettings : ComponentActivity() {
                     TextField(
                         value = job.value,
                         onValueChange = { job.value = it },
-                        label = { Text(ComposableUiString.werkfuntieLabelRegister) },
+                        label = { Text(stringResource(R.string.workfunctionLabelSettings)) },
                         colors = TextFieldDefaults.colors(
                             unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                             focusedIndicatorColor = Color.Transparent,

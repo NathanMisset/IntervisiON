@@ -19,13 +19,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
@@ -47,14 +47,14 @@ class ItemRoundsExplained  {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = ComposableUiString.titleItemRoundsExplained,
+                    text = stringResource(R.string.titleItemRoundsExplained),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
             }
             Text(
-                text = ComposableUiString.headerItemRoundsExplained,
+                text = stringResource(R.string.headerItemRoundsExplained),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp,
@@ -70,7 +70,7 @@ class ItemRoundsExplained  {
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    text = ComposableUiString.contentItemRoundsExplained
+                    text = stringResource(R.string.contentItemRoundsExplained)
                 )
             }
         }
@@ -81,20 +81,20 @@ class ItemRoundsExplained  {
         IntervisionBaseTheme {
             Column {
                 Text(
-                    text = ComposableUiString.titleItemRoundsExplained,
+                    text = stringResource(R.string.titleItemRoundsExplained),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = ComposableUiString.underTitleItemRoundsExplained,
+                    text = stringResource(R.string.underTitleItemRoundsExplained),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
                 )
             }
             Text(
-                text = ComposableUiString.headerItemRoundsExplained,
+                text = stringResource(R.string.headerItemRoundsExplained),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp,
@@ -110,7 +110,7 @@ class ItemRoundsExplained  {
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    text = ComposableUiString.contentItemRoundsExplained
+                    text = stringResource(R.string.contentItemRoundsExplained)
                 )
             }
         }
@@ -134,14 +134,14 @@ fun ItemRoundsExplainedPreview() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = ComposableUiString.titleItemRoundsExplained,
+                    text = stringResource(R.string.titleItemRoundsExplained),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
             }
             Text(
-                text = ComposableUiString.headerItemRoundsExplained,
+                text = stringResource(R.string.headerItemRoundsExplained),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp,
@@ -157,7 +157,7 @@ fun ItemRoundsExplainedPreview() {
                     .verticalScroll(rememberScrollState()),
             ) {
                 Text(
-                    text = ComposableUiString.contentItemRoundsExplained
+                    text = stringResource(R.string.contentItemRoundsExplained)
                 )
             }
         }

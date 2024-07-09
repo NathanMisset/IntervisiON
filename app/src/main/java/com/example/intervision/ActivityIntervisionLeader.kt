@@ -217,13 +217,13 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 val newval = currentRound!! - 1
                 myRef!!.setValue(newval.toString())
             }) {
-                Text(text = "Terug")
+                Text(text = getString(R.string.backButtonApp))
             }
             Button(onClick = {
                 val newval = currentRound!! + 1
                 myRef!!.setValue(newval.toString())
             }) {
-                Text(text = "Volgende")
+                Text(text = getString(R.string.nextButtonApp))
             }
         }
     }
@@ -239,7 +239,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 val newval = currentRound!! + 1
                 myRef!!.setValue(newval.toString())
             }) {
-                Text(text = "Volgende")
+                Text(text = getString(R.string.nextButtonApp))
             }
         }
     }
@@ -255,13 +255,13 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 val newval = currentRound!! - 1
                 myRef!!.setValue(newval.toString())
             }) {
-                Text(text = "Terug")
+                Text(text = getString(R.string.backButtonApp))
             }
             Button(onClick = {
                 val newval = 'S'
                 myRef!!.setValue(newval.toString())
             }) {
-                Text(text = "Sessie Beeindigen")
+                Text(text = getString(R.string.buttonTextItemFinalRound))
             }
         }
     }
@@ -378,7 +378,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 Button(onClick = {
                     toHome()
                     }) {
-                    Text(text = "Terug naar Home")
+                    Text(text = getString(R.string.backHomeIntervisionLeader))
                 }
             }
         }

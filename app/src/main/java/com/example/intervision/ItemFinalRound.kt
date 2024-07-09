@@ -20,11 +20,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 
@@ -46,13 +46,13 @@ class ItemFinalRound {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(
-                text = ComposableUiString.buttonTextItemFinalRound,
+                text = stringResource(R.string.buttonTextItemFinalRound),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = ComposableUiString.headerItemFinalRound,
+                text = stringResource(R.string.headerItemFinalRound),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -78,13 +78,13 @@ class ItemFinalRound {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = ComposableUiString.buttonTextItemFinalRound,
+                text = stringResource(R.string.buttonTextItemFinalRound),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = ComposableUiString.headerItemFinalRound,
+                text = stringResource(R.string.headerItemFinalRound),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -121,13 +121,13 @@ fun ItemFinalRoundPreview() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = ComposableUiString.buttonTextItemFinalRound,
+                    text = stringResource(R.string.buttonTextItemFinalRound),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = ComposableUiString.headerItemFinalRound,
+                    text = stringResource(R.string.headerItemFinalRound),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
@@ -158,12 +158,12 @@ fun LastButtonRow(){
         Button(onClick = {
 
         }) {
-            Text(text = "Terug")
+            Text(text = stringResource(R.string.backButtonApp))
         }
         Button(onClick = {
 
         }) {
-            Text(text = "Sessie Beeindigen")
+            Text(text = stringResource(R.string.buttonTextItemFinalRound))
         }
     }
 }

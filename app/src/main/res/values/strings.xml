@@ -1,3 +1,178 @@
 <resources>
+    /** App */
+    <string name="nameApp">Intervisie voor bezwaarbehandelaars</string>
+    <string name="languageCodeApp">nl</string>
+    <string name="deviceIdApp" translatable="false">id:Motorola Moto G8 Plus</string>
+    <string name="quitButtonApp">Sluit</string>
+    <string name="saveButtonApp">Opgeslagen</string>
+    <string name="backButtonApp">Terug</string>
+    <string name="nextButtonApp">Volgende</string>
+
+    /** Login */
+    <string name="descriptionIconApp">App Icoon</string>
+    <string name="loginButtonLogin">Login</string>
+    <string name="registerButtonLogin">Registeren</string>
+    <string name="forgotPasswordButtonLogin">Wachtwoord vergeten?</string>
+    <string name="creditsButtonLogin">Credits</string>
+    <string name="emailTextFieldLogin">Email</string>
+    <string name="passwordTextFieldLogin">Wachtwoord</string>
+
+    /** Navigtation */
+    <string name="homeLabelNavigation">Home</string>
+    <string name="groupLabelNavigation">Groep</string>
+    <string name="profileLabelNavigation">Profiel</string>
+    <string name="tutorialIconLabelNavigation">Vraagteken</string>
+    <string name="tutorialLabelNavigation">Handleiding</string>
+
+    /** Register */
+    <string name="firstnameErrorRegister">Voornaam is verplicht</string>
+    <string name="workfunctionErrorRegister">Werkfunctie is verplicht</string>
+    <string name="emailErrorRegister">Email is verplicht</string>
+    <string name="emailFormatErrorRegister">Email format niet juist</string>
+    <string name="passwordErrorRegister">Wachtwoord is verplicht</string>
+    <string name="passwordLengtenErrorRegister">Wachtwoord is verplicht</string>
+    <string name="firstnameLabelRegister">Voornaam *</string>
+    <string name="workfunctionLabelRegister">Werkfunctie *</string>
+    <string name="emailLabelRegister">Email *</string>
+    <string name="passwordLabelRegister">Wachtwoord *</string>
+    <string name="passwordVisableLabelRegister">Toon wachtwoord</string>
+    <string name="passwordHiddenRegister">Verberg wachtwoord</string>
+    <string name="registerRegister">Registreer</string>
+    <string name="permissionRegister">Ik verleen toestemming voor het anoniem bewaren van mijn stemmen op de stellingen ten behoeve van onderzoeksdoeleinden van het lectoraat Legal Management</string>
+    <string name="finishRegister">Registreer</string>
+
+    /** Reset password */
+    <string name="sendLabelResetPassword">Verzenden</string>
+    <string name="contentPassword">Vul je email in. Als de email gelinked is aan een account krijgt u een mail met een link om wachtwoord te reseten.</string>
+
+    /** Credits */
+    <string name="makerContentCredits">Gemaakt door Nathan Misset student HBO-ICT Game Development aan de Hogeschool van Amsterdam in 2024</string>
+    <string name="instructionContentCredits">In opdracht van het Lectoraat Legal Management van de Hogeschool van Amsterdam</string>
+    <string name="ideaContentCredits">Idee gebaseerd op Dielemma game van de Irasmus Universiteit en het Beterbezwaarspel van het lectoraat legal Managment</string>
+    <string name="designContentCredits">Gebaseerd op het design van Raquel de Romas student Communicatie en Multimedia Design aan de Hogeschool van Amsterdam</string>
+
+    /** Intervisie */
+    <string name="waitTextIntervisie">Wacht tot de leider een beslissing maakt</string>
+
+    /** Tutorial */
+    <string name="primeHeaderTutorial">HOE WERKT DE APP?</string>
+    <string name="header1Tutorial">1. Elke maand een nieuwe stelling</string>
+    <string name="header2Tutorial">2. Eens of Oneens?</string>
+    <string name="header3Tutorial">3. Online intervisie</string>
+    <string name="content1Tutorial">Elke eerste maandag van de maand om 16:00 ontvang je een stelling van de app met betrekking tot een bezwaarprocedure.</string>
+    <string name="content2Tutorial">Na het openen van de stelling geef je aan of je het eens of oneens ben met de stelling. Optioneel: Iedereen mag nieuwe stellingen in de app toevoegen"</string>
+    <string name="content3Tutorial">Na het stemmen heb je de optie om een online intervisie te houden over de desbetreffende stelling samen met jouw collega’s of andere juridische experts binnen of buiten jouw regio via Microsoft Teams. Wij zorgen ervoor dat jij direct een Teams-uitnodiging ontvangt na het deelnemen aan een intervisie.</string>
+    <string name="photo1DescriptionTutorial">Voorbeeld van notificatie</string>
+    <string name="photo2DescriptionTutorial">Voorbeeld van een stelling in de app</string>
+    <string name="photo3DescriptionTutorial">Foto van een teams gesprek op een scherm plus mobiel met de intervisie open</string>
+    <string name="startButtonTutorial">Beginnen</string>
+    <string name="stepDescriptionTutorial">Stap</string>
+    <string name="stepNDescriotionTutorial">Stap nummer</string>
+
+    /** Waiting Room */
+    <string name="descriptionWaitingRoom">Open nu de Teams vergadering op jouw desktop/laptop voordat de intervisie begint en zorg ervoor dat de verbinding technisch werkt!</string>
+    <string name="startButtonWaitingRoom">Start</string>
+    <string name="leaveButtonWaitingRoom">Verlaten</string>
+    <string name="intentPutExtraSessionIDWaitingRoom">SessieID</string>
+    <string name="intentPutExtraLeaderWaitingRoom">Leider</string>
+    <string name="profileImageDescriptionWaitingRoom">Profiel Foto</string>
+
+    /** FragmentHome */
+    <string name="tutorialIconFragmentGroup">Handleiding Icon</string>
+
+    /** FragmentGroup */
+    <string name="makeGroupFragmentGroup">Maak groep</string>
+    <string name="joinGroupFragmentGroup">Deelnemen</string>
+
+    /** FragmentProfile */
+    <string name="settingsDescriptionProfileGroup">Instellingen</string>
+    <string name="thesis1HomeItemResult">Ga ik de bezwaarmaker bellen?</string>
+    <string name="thesis2HomeItemResult">Ik bel NIET als de bzwaarmaker een advocaat heeft ingeschakkelt</string>
+    <string name="againstHomeItemResult">Tegen:</string>
+    <string name="infavourHomeItemResult">Voor:</string>
+    <string name="circelAgainstHomeItemResult">Circel Donkergroen</string>
+    <string name="circelInfavourHomeItemResult">Circel Geel</string>
+
+    /** HomeItemResult */
+    <string name="text1HomeItemVote">Stem en zie hoe andere gestemt hebben.</string>
+    <string name="againstHomeItemVote">Tegen</string>
+    <string name="infavourHomeItemVote">Voor</string>
+    <string name="exampleIconHomeItemVote">Voorbeeld Icoon</string>
+    <string name="yesHomeItemVote">Ja</string>
+    <string name="noHomeItemVote">Nee</string>
+    <string name="votedTextHomeItemVote">Je hebt gestemt</string>
+    <string name="votedTextQuestionHomeItemVote">Wil je direct een intervisie groep maken?</string>
+    <string name="againstIconItemVote">Tegen circel icoon</string>
+    <string name="InfavourIconItemVote">Voor circel icoon</string>
+    <string name="fillInItemVote">Voor circel icoon</string>
+
+    /** ItemVote */
+    <string name="roundTextItemVote">Ronde 1 van 4</string>
+    <string name="titleTextItemVote">Stellingen en resultaat</string>
+    <string name="assignmentItemVote">Voer een gesprek over de stelling</string>
+    <string name="exampleThesisItemVote">Ga ik de bezwaarmaker bellen? Ik bel NIET als de bezwaarmaker een advocaat heeft ingeschakeld</string>
+    <string name="exampleVoteresultItemVote" translatable="false">1</string>
+
+    /** ItemDiscusionLeader */
+    <string name="roundTextItemDiscusionLeader">Ronde 2 van 4</string>
+    <string name="assignmentTextItemDiscusionLeader">Toelichting keuze</string>
+    <string name="instructionItemDiscusionLeader">Tik de persoon die het woord mag.</string>
+    <string name="imageDesciptionItemDiscusionLeader">Profiel</string>
+    <string name="fillInItemDiscusionLeader">Gebruikersnaam</string>
+
+    /** ItemRound3 */
+    <string name="roundTextItemRound3">Ronde 3 van 4</string>
+    <string name="assignmentItemRound3">Licht jouw keuze toe</string>
+
+    /** ItemAction */
+    <string name="roundTextItemAction">Ronde 4 van 4</string>
+    <string name="questionLeaderItemAction">Wat gaan de deelnemers anders doen?</string>
+    <string name="questionParticipantItemAction">Wat gaan je anders doen?</string>
+    <string name="discriptionImageItemAction">Afbeelding van mensen die praten</string>
+
+    /** ItemDiscusionuser */
+    <string name="textDefaultItemDiscusionUser">Wacht tot iemand de beurt krijgt</string>
+    <string name="text1ItemDiscusionUser">is aan de beurt</string>
+    <string name="text2ItemDiscusionUser">Licht jouw keuze toe</string>
+    <string name="previewtextItemDiscusionUser" translatable="false">userTurnTaxt.value</string>
+
+    /** ItemRoundsExplained */
+    <string name="titleItemRoundsExplained">Introductie ronde</string>
+    <string name="underTitleItemRoundsExplained">Introductie</string>
+    <string name="headerItemRoundsExplained">Uitleg</string>
+    <string name="contentItemRoundsExplained">1. In de eerste ronden introduceert U (de groupsleider) de stelling en ziet iedereen het resultaat van het stemmen 2. In de tweede ronden geef je spelers de mogelijkheid hun keuze te onderbouwen 3. In de derde ronde is het ruimte voor discussie 4. In de vierde ronde vraagt u de spelers wat ze anders gaan doen 5. In de vijfde ronden wordt het spel beeindigt</string>
+
+    /** ItemFinalRound */
+    <string name="headerItemFinalRound">Afronding</string>
+    <string name="buttonTextItemFinalRound">Sessie Voorbij</string>
+
+    /** Settings */
+    <string name="accountLabelSettings">Account</string>
+    <string name="saveLabelSettings">Opslaan</string>
+    <string name="quitIconDescriptonSettings">Sluiten kruis</string>
+    <string name="backHomeIntervisionLeader">Terug naar Home</string>
+    <string name="firstnameLabelSettings">Voornaam</string>
+    <string name="workfunctionLabelSettings">Werkfunctie</string>
+    <string name="emailLabelSettings">Email</string>
+
+    /** MakeGroup */
+    <string name="groupMakeGroup">Groep</string>
+    <string name="contactMakeGroup">Contacten</string>
+    <string name="thesisMakeGroup">Stelling</string>
+    <string name="participantMakeGroup">Deelnemers</string>
+    <string name="groupIconDescriptionMakeGroup">Groep Icoon</string>
+    <string name="contactIconDescriptionMakeGroup">Contacten Icoon</string>
+    <string name="thesisIconDescriptionMakeGroup">Stelling Icoon</string>
+    <string name="leaderMakeGroup">Leider: </string>
+    <string name="groupNameMakeGroup">Groep naam</string>
+    <string name="chosenThesisMakeGroup">Gekozen stelling</string>
+    <string name="makeGroupMakeGroup">Groep maken</string>
+    <string name="theisIconDescriptionMakeGroup">Stelling icoon</string>
+    <string name="removeIconDescriptionMakeGroup">Verwijder Icoon</string>
+    <string name="addIconDescriptionMakeGroup">Toevoegen Icoon</string>
+    <string name="groupNameExplanationMakeGroup">Type de naam die je de groep wil noemen.</string>
+    <string name="thesisExplanationMakeGroup">Zoek naar  een stelling en selecteer het.</string>
+    <string name="groupNameErrorMakeGroup">Groepsnaam verplicht</string>
+    <string name="thesisErrorMakeGroup">Stelling verplicht</string>
 
 </resources>

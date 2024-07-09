@@ -30,9 +30,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -104,7 +104,7 @@ class FragmentGroups : ComponentActivity() {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = "Group")
+                Text(text = stringResource(R.string.groupMakeGroup))
             }
             Column(
             modifier = Modifier
@@ -125,7 +125,7 @@ class FragmentGroups : ComponentActivity() {
                     modifier = Modifier
                         .defaultMinSize(minHeight = 10.dp),
                 ) {
-                    Text(text = ComposableUiString.maakGroupFragmentGroup)
+                    Text(text = stringResource(R.string.makeGroupFragmentGroup))
                 }
             }
         }
@@ -151,7 +151,7 @@ fun FragmentGroupPreview() {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = ComposableUiString.groupLabelNavigation)
+                Text(text = stringResource(R.string.groupLabelNavigation))
             }
             Column(
                 modifier = Modifier
@@ -170,11 +170,9 @@ fun FragmentGroupPreview() {
                 Button(
                     onClick = { },
                     modifier = Modifier
-
-//                        .fillMaxHeight()
                         .defaultMinSize(minHeight = 10.dp),
                 ) {
-                    Text(text = ComposableUiString.maakGroupFragmentGroup)
+                    Text(text = stringResource(R.string.makeGroupFragmentGroup))
                 }
             }
         }

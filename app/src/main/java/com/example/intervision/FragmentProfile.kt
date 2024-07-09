@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -24,8 +25,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.intervision.ui.ComposableUiString
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -98,11 +99,11 @@ class FragmentProfile : ComponentActivity() {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = ComposableUiString.profileLabelNavigation)
-                IconButton(
+                Text(text = stringResource(R.string.profileLabelNavigation))
+                FilledTonalIconButton(
                     onClick = { toSettings() }
                 ) {
-                    Icon(imageVector = Icons.Default.Settings, contentDescription = ComposableUiString.settingsDescriptionProfileGroup)
+                    Icon(imageVector = Icons.Default.Settings, contentDescription = stringResource(R.string.settingsDescriptionProfileGroup))
                 }
             }
             Column(

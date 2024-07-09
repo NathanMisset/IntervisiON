@@ -28,12 +28,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
@@ -103,13 +103,13 @@ class ItemDiscusionLeader(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = ComposableUiString.roundTextItemDiscusionLeader,
+                text = stringResource(R.string.roundTextItemDiscusionLeader),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 20.sp
             )
             Text(
-                text = ComposableUiString.asgnimentTextItemDiscusionLeader,
+                text = stringResource(R.string.assignmentTextItemDiscusionLeader),
                 fontWeight = FontWeight.Bold,
                 fontStyle = FontStyle.Italic,
                 fontSize = 30.sp
@@ -125,7 +125,7 @@ class ItemDiscusionLeader(
         ) {
             Card {
                 Text(
-                    text = ComposableUiString.instructeItemDiscusionLeader,
+                    text = stringResource(R.string.instructionItemDiscusionLeader),
                     modifier = Modifier
                         .padding(spacing.large)
                 )
@@ -148,7 +148,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                        contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                         contentScale = ContentScale.Inside
                     )
                     Text(
@@ -168,7 +168,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                        contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                     )
                     Text(
                         text = userNames[0][1],
@@ -187,7 +187,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                        contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                     )
                     Text(
                         text = userNames[0][2],
@@ -213,7 +213,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                        contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                         contentScale = ContentScale.Inside
                     )
                     Text(
@@ -233,7 +233,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                        contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                     )
                     Text(
                         text = userNames[0][4],
@@ -252,7 +252,7 @@ class ItemDiscusionLeader(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                        contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                        contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                     )
                     Text(
                         text = userNames[0][5],
@@ -326,13 +326,13 @@ fun ItemDiscusuionLeaderPreview() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = ComposableUiString.roundTextItemDiscusionLeader,
+                    text = stringResource(R.string.roundTextItemDiscusionLeader),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = ComposableUiString.asgnimentTextItemDiscusionLeader,
+                    text = stringResource(R.string.assignmentTextItemDiscusionLeader),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
@@ -348,7 +348,7 @@ fun ItemDiscusuionLeaderPreview() {
             ) {
                 Card{
                     Text(
-                        text = ComposableUiString.instructeItemDiscusionLeader,
+                        text = stringResource(R.string.instructionItemDiscusionLeader),
                         modifier = Modifier
                             .padding(spacing.large)
                     )
@@ -372,11 +372,11 @@ fun ItemDiscusuionLeaderPreview() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                            contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                             contentScale = ContentScale.Inside
                         )
                         Text(
-                            text = "userNames[0][0]",
+                            text = stringResource(R.string.fillInItemDiscusionLeader),
                             fontSize = 10.sp
                         )
                     }
@@ -393,10 +393,10 @@ fun ItemDiscusuionLeaderPreview() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                            contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                         )
                         Text(
-                            text = "userNames[0][1]",
+                            text = stringResource(R.string.fillInItemDiscusionLeader),
                             fontSize = 10.sp
                         )
                     }
@@ -413,10 +413,10 @@ fun ItemDiscusuionLeaderPreview() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                            contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                         )
                         Text(
-                            text = "userNames[0][2]",
+                            text = stringResource(R.string.fillInItemDiscusionLeader),
                             fontSize = 10.sp
                         )
                     }
@@ -440,12 +440,12 @@ fun ItemDiscusuionLeaderPreview() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                            contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                             contentScale = ContentScale.Inside
 
                         )
                         Text(
-                            text = "userNames[0][3]",
+                            text = stringResource(R.string.fillInItemDiscusionLeader),
                             fontSize = 10.sp
                         )
                     }
@@ -462,10 +462,10 @@ fun ItemDiscusuionLeaderPreview() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                            contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                         )
                         Text(
-                            text = "userNames[0][4]",
+                            text = stringResource(R.string.fillInItemDiscusionLeader),
                             fontSize = 10.sp
                         )
                     }
@@ -482,10 +482,10 @@ fun ItemDiscusuionLeaderPreview() {
                     ) {
                         Image(
                             painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                            contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                            contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                         )
                         Text(
-                            text = "userNames[0][5]",
+                            text = stringResource(R.string.fillInItemDiscusionLeader),
                             fontSize = 10.sp
                         )
                     }

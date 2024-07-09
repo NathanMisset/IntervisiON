@@ -32,10 +32,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -82,7 +82,7 @@ class ItemGroupPreview : ComponentActivity() {
         groupTitle = mutableStateOf(data["Group Name"]as String)
         userNames = mutableStateListOf(
             listOf(
-                "Gebruiker 1",
+                "Gebruiker  1",
                 "Gebruiker 2",
                 "Gebruiker 3",
                 "Gebruiker 4",
@@ -179,7 +179,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                                contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                                 contentScale = ContentScale.Inside
                             )
                             Text(text = userNames[0][0])
@@ -196,7 +196,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                                contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                             )
                             Text(text = userNames[0][1])
                         }
@@ -212,7 +212,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                                contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                             )
                             Text(text = userNames[0][2])
                         }
@@ -235,7 +235,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                                contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                                 contentScale = ContentScale.Inside
                             )
                             Text(text = userNames[0][3])
@@ -252,7 +252,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                                contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                             )
                             Text(text = userNames[0][4])
                         }
@@ -268,7 +268,7 @@ class ItemGroupPreview : ComponentActivity() {
                         ) {
                             Image(
                                 painter = painterResource(id = R.drawable.profile_picture_blue_192x192),
-                                contentDescription = ComposableUiString.imageDesciptionItemDiscusionLeader,
+                                contentDescription = stringResource(R.string.imageDesciptionItemDiscusionLeader),
                             )
                             Text(text = userNames[0][5])
                         }
@@ -280,7 +280,7 @@ class ItemGroupPreview : ComponentActivity() {
                         horizontalArrangement = Arrangement.SpaceAround
                     ) {
                         Button(onClick = { checkIfLeader() }) {
-                            Text(text = ComposableUiString.sdsadaItemDiscusionUser)
+                            Text(text = stringResource(R.string.joinGroupFragmentGroup))
                         }
                     }
                 }

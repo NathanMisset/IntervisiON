@@ -38,12 +38,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
-import com.example.intervision.ui.UiString
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
@@ -58,11 +57,35 @@ import com.google.accompanist.pager.rememberPagerState
 
 class ActivityTutorial : ComponentActivity() {
 
-    /** Class variables */
-
-    /** Firebase */
-
     /** Initialisation */
+    data class OnboardingPage(
+        val background: Color,
+        var title: String,
+        val stepNumber: Int,
+        @DrawableRes val image: Int
+    )
+
+    private val onboardPages = listOf(
+        OnboardingPage(
+            background = Color(0xFFFFC40A),
+            title = "",
+            stepNumber = 1,
+            image = R.drawable.image4
+        ),
+        OnboardingPage(
+            background = Color(0xFF004B51),
+            title = "",
+            stepNumber = 2,
+            image = R.drawable.image5
+        ),
+        OnboardingPage(
+            background = Color(0xFF2E492E),
+            title = "",
+            stepNumber = 3,
+            image = R.drawable.image6
+        ),
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -73,6 +96,13 @@ class ActivityTutorial : ComponentActivity() {
                 OnboardingUI()
             }
         }
+        prepStrings()
+    }
+
+    private fun prepStrings(){
+        onboardPages[0].title = getString(R.string.content1Tutorial)
+        onboardPages[1].title = getString(R.string.content2Tutorial)
+        onboardPages[2].title = getString(R.string.content3Tutorial)
     }
 
     private fun toNavigation() {
@@ -80,37 +110,7 @@ class ActivityTutorial : ComponentActivity() {
         startActivity(i)
     }
 
-    data class OnboardingPage(
-        val background: Color,
-        val title: String,
-        val stepNumber: Int,
-        @DrawableRes val image: Int
-    )
-
-    private val onboardPages = listOf(
-        OnboardingPage(
-            background = Color(0xFFFFC40A),
-            title = UiString.content1Tutorial,
-            stepNumber = 1,
-            image = R.drawable.image4
-        ),
-        OnboardingPage(
-            background = Color(0xFF004B51),
-            title = UiString.content2Tutorial,
-            stepNumber = 2,
-            image = R.drawable.image5
-        ),
-        OnboardingPage(
-            background = Color(0xFF2E492E),
-            title = UiString.content3Tutorial,
-            stepNumber = 3,
-            image = R.drawable.image6
-        ),
-    )
-
-    @Preview
-    @OptIn(ExperimentalPagerApi::class, ExperimentalPagerApi::class)
-    @Composable
+    @Preview @OptIn(ExperimentalPagerApi::class, ExperimentalPagerApi::class) @Composable
     fun OnboardingUI() {
         IntervisionBaseTheme {
             val pagerState = rememberPagerState(pageCount = 3)
@@ -145,7 +145,7 @@ class ActivityTutorial : ComponentActivity() {
                         )
                     ) {
                         Text(
-                            text = ComposableUiString.startButtonTutorial,
+                            text = stringResource(R.string.startButtonTutorial),
                             style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
                             textAlign = TextAlign.Center
                         )
@@ -167,7 +167,7 @@ class ActivityTutorial : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Image(
-                    painter = painterResource(id = page.image), contentDescription = ComposableUiString.stepNDescriotionTutorial,
+                    painter = painterResource(id = page.image), contentDescription = stringResource(R.string.stepNDescriotionTutorial),
                     modifier = Modifier.size(300.dp)
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -179,7 +179,7 @@ class ActivityTutorial : ComponentActivity() {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth(),
-                        text = ComposableUiString.stepDescriptionTutorial + page.stepNumber.toString(),
+                        text = stringResource(R.string.stepDescriptionTutorial) + page.stepNumber.toString(),
                         style = MaterialTheme.typography.bodySmall.copy(color = Color.White),
                         textAlign = TextAlign.Center
                     )

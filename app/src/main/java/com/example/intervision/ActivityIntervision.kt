@@ -18,7 +18,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -217,7 +216,7 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 verticalArrangement = Arrangement.SpaceAround
             ) {
                 itemFinalRound!!.ScreenUser()
-                Text(text = ComposableUiString.wachtTekstIntervisie)
+                Text(text = getString(R.string.waitTextIntervisie))
             }
         }
     }

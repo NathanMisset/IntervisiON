@@ -25,10 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.activity.compose.setContent
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
-import com.example.intervision.ui.UiString
 import com.google.firebase.auth.FirebaseAuth
 
 /**
@@ -60,7 +59,7 @@ open class ActivityResetPassword : ComponentActivity() {
     }
 
     private fun resetPassword() {
-        auth!!.setLanguageCode(UiString.taalCodeApp)
+        auth!!.setLanguageCode(getString(R.string.languageCodeApp))
         auth!!.sendPasswordResetEmail(email.value)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -94,23 +93,23 @@ open class ActivityResetPassword : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceAround
                 ) {
-                    Text(text = ComposableUiString.forgotPasswordButtonLogin,
+                    Text(text = stringResource(R.string.forgotPasswordButtonLogin),
                         fontSize = 20.sp)
                     Text(
-                        text = ComposableUiString.contentResetPassword,
+                        text = stringResource(R.string.contentPassword),
                         softWrap = true
                     )
                     TextField(value = email.value,
                         onValueChange = { email.value = it },
-                        label = { Text(ComposableUiString.emailTextFieldLogin) }
+                        label = { Text(stringResource(R.string.emailTextFieldLogin)) }
                     )
                     if (sendButtonState.value) {
                         Button(onClick = { resetPassword() }) {
-                            Text(text = ComposableUiString.verzendenLabelResetPassword)
+                            Text(text = stringResource(R.string.sendLabelResetPassword))
                         }
                     } else {
                         Button(onClick = { toLogin() }) {
-                            Text(text = ComposableUiString.backButtonApp)
+                            Text(text = stringResource(R.string.backButtonApp))
                         }
                     }
                 }

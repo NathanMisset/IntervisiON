@@ -25,12 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.firestore.FirebaseFirestore
@@ -108,19 +108,19 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Text(
-                    text = ComposableUiString.roundTextItemVote,
+                    text = stringResource(R.string.roundTextItemVote),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = ComposableUiString.titleTextItemVote,
+                    text = stringResource(R.string.titleTextItemVote),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
                 )
                 Text(
-                    text = ComposableUiString.asignmentItemVote,
+                    text = stringResource(R.string.assignmentItemVote),
                 )
             }
             Column(
@@ -134,7 +134,7 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                 Image(
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     painter = painterResource(id = R.drawable.image_quotations_72x72),
-                    contentDescription = ComposableUiString.buttonTextItemFinalRound
+                    contentDescription = stringResource(R.string.buttonTextItemFinalRound)
                 )
                 Text(text = thesisString.value)
                 Row(
@@ -143,8 +143,8 @@ class ItemVote(private var firestore: FirebaseFirestore, private var stellingID:
                         .defaultMinSize(50.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = ComposableUiString.voorHomeItemResult + inFavourVoteCount.value)
-                    Text(text = ComposableUiString.tegenHomeItemResult + againtVoteCount.value)
+                    Text(text = stringResource(R.string.infavourHomeItemVote) + inFavourVoteCount.value)
+                    Text(text = stringResource(R.string.againstHomeItemVote) + againtVoteCount.value)
                 }
             }
         }
@@ -178,19 +178,19 @@ fun ItemVotePreview() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Text(
-                    text = ComposableUiString.roundTextItemVote,
+                    text = stringResource(R.string.roundTextItemVote),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
                 )
                 Text(
-                    text = ComposableUiString.titleTextItemVote,
+                    text = stringResource(R.string.titleTextItemVote),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 30.sp
                 )
                 Text(
-                    text = ComposableUiString.asignmentItemVote,
+                    text = stringResource(R.string.assignmentItemVote),
                 )
             }
             Column(
@@ -204,16 +204,16 @@ fun ItemVotePreview() {
                 Image(
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.primary),
                     painter = painterResource(id = R.drawable.image_quotations_72x72),
-                    contentDescription = ComposableUiString.buttonTextItemFinalRound
+                    contentDescription = stringResource(R.string.buttonTextItemFinalRound)
                 )
-                Text(text = ComposableUiString.exampleThesisItemVote)
+                Text(text = stringResource(R.string.exampleThesisItemVote))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Text(text = ComposableUiString.exampleVoteresultItemVote)
-                    Text(text = ComposableUiString.exampleVoteresultItemVote)
+                    Text(text = stringResource(R.string.exampleVoteresultItemVote))
+                    Text(text = stringResource(R.string.exampleVoteresultItemVote))
                 }
             }
         }

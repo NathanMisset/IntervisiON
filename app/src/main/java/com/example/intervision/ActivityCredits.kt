@@ -30,7 +30,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 
 /**
@@ -70,7 +69,7 @@ class ActivityCredits: ComponentActivity()  {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.main_icon),
-                    contentDescription = ComposableUiString.descriptionIconApp,
+                    contentDescription = getString(R.string.nameApp),
                     Modifier
                         .fillMaxWidth()
                 )
@@ -80,19 +79,19 @@ class ActivityCredits: ComponentActivity()  {
                         .fillMaxHeight(0.8f)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    Text(text = ComposableUiString.makerContentCredits,
+                    Text(text = getString(R.string.makerContentCredits),
                         modifier = Modifier.padding(10.dp),
                         textAlign = TextAlign.Justify
                     )
-                    Text(text = ComposableUiString.opdrachtContentCredits,
+                    Text(text = getString(R.string.instructionContentCredits),
                         modifier = Modifier.padding(10.dp),
                         textAlign = TextAlign.Justify
                     )
-                    Text(text = ComposableUiString.ideeContentCredits,
+                    Text(text = getString(R.string.ideaContentCredits),
                         modifier = Modifier.padding(10.dp),
                         textAlign = TextAlign.Justify
                     )
-                    Text(text = ComposableUiString.designContentCredits,
+                    Text(text = getString(R.string.ideaContentCredits),
                         modifier = Modifier.padding(10.dp),
                         textAlign = TextAlign.Justify
                     )
@@ -107,7 +106,7 @@ class ActivityCredits: ComponentActivity()  {
                         .fillMaxWidth()
                         .defaultMinSize(minHeight = 50.dp)
                 ) {
-                    Text(text = ComposableUiString.backButtonApp)
+                    Text(text = getString(R.string.backButtonApp))
                 }
             }
         }

@@ -31,11 +31,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.customColor1ContainerLightMediumContrast
 import com.example.intervision.ui.primaryLightMediumContrast
@@ -155,15 +155,15 @@ class HomeItemResult {
                         modifier = Modifier.fillMaxWidth()
                         .defaultMinSize(50.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly) {
-                        Text(text = "Tegen:",
+                        Text(text = stringResource(R.string.againstHomeItemResult),
                             fontSize = 13.sp)
                         Icon(imageVector = Icons.Default.Circle,
-                            contentDescription ="Circle",
+                            contentDescription = stringResource(R.string.againstIconItemVote),
                             tint = MaterialTheme.colorScheme.secondary)
-                        Text(text = "Voor:",
+                        Text(text = stringResource(R.string.infavourHomeItemResult),
                             fontSize = 13.sp)
                         Icon(imageVector = Icons.Default.Circle,
-                            contentDescription ="Circle",
+                            contentDescription = stringResource(R.string.InfavourIconItemVote),
                             tint = MaterialTheme.colorScheme.primary)
                     }
                 }
@@ -223,11 +223,12 @@ fun Component() {
         2.00F -> 480.dp
         else -> 400.dp
     }
-    val entries: MutableList<PieChartEntry> = mutableListOf(
-        PieChartEntry(Color.Yellow, (1f / 2f)),
-        PieChartEntry(Color.Cyan, (1f / 2f))
-    )
+
     IntervisionBaseTheme {
+        val entries: MutableList<PieChartEntry> = mutableListOf(
+            PieChartEntry(MaterialTheme.colorScheme.secondary, (1f / 2f)),
+            PieChartEntry(MaterialTheme.colorScheme.primary, (1f / 2f))
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -241,11 +242,11 @@ fun Component() {
                 ) {
                 Column(Modifier
                     .padding(16.dp)) {
-                    Text(text = ComposableUiString.stelling1HomeItemResult,
+                    Text(text = stringResource(R.string.thesis1HomeItemResult),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         lineHeight = 30.sp)
-                    Text(text = ComposableUiString.stelling2HomeItemResult,
+                    Text(text = stringResource(R.string.thesis2HomeItemResult),
                         fontSize = 13.sp ,
                         lineHeight = 15.sp,
                         minLines = 1,
@@ -261,15 +262,15 @@ fun Component() {
                 }
                 Row(modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly) {
-                    Text(text = ComposableUiString.tegenHomeItemResult,
+                    Text(text = stringResource(R.string.againstHomeItemResult),
                         fontSize = 13.sp)
                     Icon(imageVector = Icons.Default.Circle,
-                        contentDescription = ComposableUiString.circelTegenHomeItemResult,
+                        contentDescription = stringResource(R.string.circelAgainstHomeItemResult),
                         tint = MaterialTheme.colorScheme.secondary)
-                    Text(text = ComposableUiString.voorHomeItemResult,
+                    Text(text = stringResource(R.string.infavourHomeItemResult),
                         fontSize = 13.sp)
                     Icon(imageVector = Icons.Default.Circle,
-                        contentDescription = ComposableUiString.circelVoorHomeItemResult,
+                        contentDescription = stringResource(R.string.circelInfavourHomeItemResult),
                         tint = MaterialTheme.colorScheme.primary)
                 }
             }

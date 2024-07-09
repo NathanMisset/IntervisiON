@@ -9,29 +9,39 @@ package com.example.intervision
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Tab
-import androidx.compose.material.TabRow
-import androidx.compose.material.TabRowDefaults
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Contacts
-import androidx.compose.material.icons.filled.Group
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.SupervisedUserCircle
 import androidx.compose.material.icons.filled.Topic
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -43,25 +53,37 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.intervision.ui.IntervisionBaseTheme
+import com.example.intervision.ui.Spacing
+import com.example.intervision.ui.spacing
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.select
+import java.util.Locale
 
 /**
  *
@@ -84,10 +106,11 @@ class ActivityMakeGroup : ComponentActivity() {
     private lateinit var selectedDateText: MutableState<String>
     private lateinit var selectedUser: MutableList<String>
     private lateinit var selectedUserID: MutableList<String>
-    private lateinit var selectedThesis: MutableList<String>
-    private lateinit var selectedThesisID: MutableList<String>
+    private var selectedThesis: MutableState<String> = mutableStateOf("")
+    private var selectedThesisID: MutableState<String> = mutableStateOf("")
     private var groupName: MutableState<String> = mutableStateOf("")
     private var participants = ArrayList<String?>()
+
 
     /** Firebase */
     private var user: FirebaseAuth? = null
@@ -95,9 +118,10 @@ class ActivityMakeGroup : ComponentActivity() {
     private var fireStoreDatabase: FirebaseFirestore? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "Start")
         super.onCreate(savedInstanceState)
         setContent {
-            TopAppBar()
+            GroupNameScreen()
         }
 
         /** Firebase */
@@ -116,8 +140,6 @@ class ActivityMakeGroup : ComponentActivity() {
         thesis = ArrayList()
 
         selectedUser = mutableStateListOf()
-        selectedThesis = mutableStateListOf()
-        selectedThesisID = mutableStateListOf()
 
         selectedDate = mutableStateOf(0)
         selectedDateText = mutableStateOf("Datum")
@@ -147,7 +169,7 @@ class ActivityMakeGroup : ComponentActivity() {
                 }
             }
     }
-    
+
     private fun getThesis() {
         fireStoreDatabase!!.collection("Theses")
             .limit(1)
@@ -171,12 +193,14 @@ class ActivityMakeGroup : ComponentActivity() {
      *
      */
     private fun makeGroup() {
+        Log.d(TAG, "Make Group")
         val session: MutableMap<String, Any?> = HashMap()
         session["Leader Sid"] = user!!.uid
         session["Participant Sid"] = selectedUserID
         session["Group Name"] = groupName.value
         session["ThesisID"] = selectedThesisID
         session["DataInMili"] = selectedDate.value.toString()
+        Log.d(TAG, session.toString())
         fireStoreDatabase!!.collection("Sessions")
             .add(session)
             .addOnSuccessListener { documentReference ->
@@ -185,6 +209,7 @@ class ActivityMakeGroup : ComponentActivity() {
                 val myRef = database.getReference(documentReference.id)
                 myRef.setValue("W")
                 toHome()
+                Log.d(TAG, "Succes adding document")
             }
             .addOnFailureListener { e -> Log.w(TAG, "Error adding document", e) }
     }
@@ -199,19 +224,8 @@ class ActivityMakeGroup : ComponentActivity() {
         selectedUserID.removeAt(id)
     }
 
-    private fun addThesis(id: String, name: String) {
-        if(selectedThesis.size > 0) {
-            selectedThesis[0] = name
-            selectedThesisID[0] = id
-        } else{
-            selectedThesis.add(name)
-            selectedThesisID.add(id)
-        }
-    }
 
     private fun removeThesis(id: Int) {
-        selectedThesis.removeAt(id)
-        selectedThesisID.removeAt(id)
     }
 
     private fun toHome() {
@@ -226,263 +240,114 @@ class ActivityMakeGroup : ComponentActivity() {
         finish()
     }
 
-    private val tabRowItems = listOf(
-        TabRowItem(
-            title = "Groep",
-            screen = { NameAndOverviewScreen() },
-            icon = Icons.Default.Group,
-        ),
-        TabRowItem(
-            title = "Contacten",
-            screen = { ContactScreen() },
-            icon = Icons.Default.Contacts,
-        ),
-        TabRowItem(
-            title = "Stellingen",
-            screen = { ThesesScreen() },
-            icon = Icons.Default.Topic,
-        ),
-    )
+    private fun toThesisSelection() {
+        setContent {
+            TheisScreen()
+        }
+    }
 
-    data class TabRowItem(
-        val title: String,
-        val icon: ImageVector,
-        val screen: @Composable () -> Unit,
-        )
+    private fun toGroupNameSelection() {
+        setContent {
+            GroupNameScreen()
+        }
+    }
+
+    private fun toParticipantSelection() {
+        setContent {
+
+        }
+    }
+
+    private fun checkGroupName(): Boolean {
+        var check = true
+        if (groupName.value.isEmpty()) {
+            val error = getString(R.string.groupNameErrorMakeGroup)
+            toast(error)
+            check = false
+        }
+        // after all validation return true.
+        return check
+    }
+    private fun checkThesisID(): Boolean {
+        var check = true
+        if (selectedThesisID.value.isEmpty()) {
+            val error = getString(R.string.thesisErrorMakeGroup)
+            toast(error)
+            check = false
+        }
+        // after all validation return true.
+        return check
+    }
+
+    private fun toast(message: String) {
+        Toast.makeText(
+            this@ActivityMakeGroup, message,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
 
     /** Composables */
-    @OptIn(ExperimentalPagerApi::class)
-    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true)
     @Composable
-    fun TopAppBar() {
-        val pagerState = rememberPagerState(3)
-        val coroutineScope = rememberCoroutineScope()
-
+    //@Preview(showSystemUi = true, showBackground = true)
+    fun GroupNameScreen() {
+        val focusManager = LocalFocusManager.current
         IntervisionBaseTheme {
             Column(
                 modifier = Modifier
-                    .padding(10.dp)
+                    .fillMaxHeight()
                     .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                TabRow(
-                    modifier = Modifier.fillMaxWidth(),
-                    selectedTabIndex = pagerState.currentPage,
-                    backgroundColor = MaterialTheme.colorScheme.primaryContainer,
-                    indicator = { tabPositions ->
-                        TabRowDefaults.Indicator(
-                            Modifier.pagerTabIndicatorOffset(pagerState, tabPositions),
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                    },
-                ) {
-                    tabRowItems.forEachIndexed { index, item ->
-                        Tab(
-                            selected = pagerState.currentPage == index,
-                            onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
-                            icon = {
-                                Icon(imageVector = item.icon, contentDescription = "")
-                            },
-                            text = {
-                                Text(
-                                    text = item.title,
-                                    maxLines = 2,
-                                    overflow = TextOverflow.Ellipsis,
-                                )
-                            }
-                        )
-                    }
-                }
-                HorizontalPager(
-                    modifier = Modifier.fillMaxWidth(),
-
-                    state = pagerState,
-                ) {
-                    tabRowItems[pagerState.currentPage].screen()
-                }
-            }
-        }
-    }
-
-    @Composable
-    fun NameAndOverviewScreen() {
-        Column(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .padding(10.dp),
-            verticalArrangement = Arrangement.Top
-        ) {
-            Text(
-                text = "Leider: " + leaderName.value,
-                modifier = Modifier.padding(top = 20.dp),
-            )
-            TextField(
-                value = groupName.value,
-                onValueChange = { groupName.value = it },
-                label = { Text("Groeps Naam") },
-                colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent
-                ),
-                modifier = Modifier
-                    .defaultMinSize(minHeight = 50.dp)
-                    .padding(top = 20.dp)
-                    .fillMaxWidth()
-            )
-            Text(
-                modifier = Modifier.padding(top = 20.dp),
-                text = "Gekozen stelling"
-            )
-            HorizontalDivider()
-            LazyColumn(modifier = Modifier
-                .fillMaxHeight(0.20f)
-                .fillMaxWidth()
-                .padding(10.dp),
-                verticalArrangement = Arrangement.Top) {
-                items(selectedThesis.size) { i ->
-                    ElevatedCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .padding(top = 10.dp, bottom = 10.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .defaultMinSize(minHeight = 50.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Contacts,
-                                contentDescription = "User",
-                                Modifier.padding(10.dp)
-                            )
-                            Text(
-                                fontSize = 10.sp,
-                                text = selectedThesis[i],
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .fillMaxWidth(0.6f),
-                                textAlign = TextAlign.Justify
-                            )
-                            IconButton(onClick = { removeThesis(i) })
-                            {
-                                Icon(
-                                    imageVector = Icons.Default.Remove,
-                                    tint = MaterialTheme.colorScheme.errorContainer,
-                                    contentDescription = "User",
-                                )
-                            }
-                        }
-
-                    }
-                }
-            }
-            Text(
-                modifier = Modifier.padding(top = 20.dp),
-                text = "Participanten"
-            )
-            HorizontalDivider()
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxHeight(0.60f)
-                    .fillMaxWidth()
-                    .padding(10.dp),
-                verticalArrangement = Arrangement.Top,
-
-                ) {
-                items(selectedUser.size) { i ->
-                    ElevatedCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxHeight()
-                            .padding(top = 10.dp, bottom = 10.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .defaultMinSize(minHeight = 60.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Contacts,
-                                contentDescription = "User",
-                                Modifier.padding(10.dp)
-                            )
-                            Text(
-                                text = selectedUser[i],
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .fillMaxWidth(0.6f),
-                                textAlign = TextAlign.Justify
-                            )
-                            IconButton(onClick = { removeUserFromList(i) }) {
-                                Icon(
-                                    imageVector = Icons.Default.Remove,
-                                    tint = MaterialTheme.colorScheme.errorContainer,
-                                    contentDescription = "User",
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-            Column (modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-                horizontalAlignment = Alignment.CenterHorizontally){
-                Button(onClick = {
-                    makeGroup()
-                },
-                    modifier = Modifier.defaultMinSize(minHeight = 50.dp)) {
-                    Text(text = "Maak groep")
-                }
-            }
-        }
-    }
-
-    @Composable
-    fun ContactScreen() {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .padding(10.dp),
-            verticalArrangement = Arrangement.Top
-        ) {
-            items(users!!.size) { i ->
-                ElevatedCard(
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
                         .fillMaxHeight()
-                        .padding(top = 10.dp, bottom = 10.dp)
+                        .fillMaxWidth(0.8f)
+                        .background(color = MaterialTheme.colorScheme.background),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
                 ) {
+                    Text(
+                        modifier = Modifier.padding(bottom = spacing.medium),
+                        text = getString(R.string.groupNameExplanationMakeGroup)
+                    )
+                    TextField(
+                        value = groupName.value,
+                        onValueChange = { groupName.value = it },
+                        label = { Text(text = getString(R.string.groupNameMakeGroup)) },
+                        colors = TextFieldDefaults.colors(
+                            unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                            disabledIndicatorColor = Color.Transparent
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            capitalization = KeyboardCapitalization.Sentences,
+                            keyboardType = KeyboardType.Text,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onNext = { focusManager.moveFocus(FocusDirection.Down) }),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier
+                            .defaultMinSize(minHeight = 50.dp)
+                            .fillMaxWidth()
+                            .padding(bottom = spacing.medium)
+                    )
                     Row(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .defaultMinSize(minHeight = 80.dp),
-                        verticalAlignment = Alignment.CenterVertically,
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.2f),
+
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        Icon(
-                            imageVector = Icons.Default.SupervisedUserCircle,
-                            contentDescription = "User",
-                            Modifier.padding(10.dp)
-                        )
-                        Text(
-                            text = users!![i],
-                            Modifier.padding(10.dp)
-                        )
-                        IconButton(onClick = { addUserToList(uIDs!![i]!!, users!![i]) }) {
-                            Icon(
-                                imageVector = Icons.Default.Add,
-                                tint = MaterialTheme.colorScheme.tertiaryContainer,
-                                contentDescription = "User",
-                            )
+                        Button(onClick = {
+                            if (checkGroupName()) {
+                                toThesisSelection()
+                            }
+                        }) {
+                            Text(text = getString(R.string.nextButtonApp))
                         }
                     }
                 }
@@ -491,49 +356,171 @@ class ActivityMakeGroup : ComponentActivity() {
     }
 
     @Composable
-    fun ThesesScreen() {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .padding(10.dp),
-            verticalArrangement = Arrangement.Top
-        ) {
-            items(thesis.size) { i ->
-                ElevatedCard(
+    //@Preview(showSystemUi = true, showBackground = true)
+    fun TheisScreen() {
+        val navController = rememberNavController()
+        val focusManager = LocalFocusManager.current
+        IntervisionBaseTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                var selectedThesis = remember { mutableStateOf("") }
+                Text(
+                    text = "Groep stelling:",
+                    modifier = Modifier
+                        .padding(bottom = spacing.medium, top = spacing.medium)
+                        .fillMaxWidth(0.8f),
+                )
+                Text(
+                    text = selectedThesis.value,
+                    modifier = Modifier
+                        .padding(bottom = spacing.medium)
+                        .fillMaxWidth(0.8f),
+                    )
+                HorizontalDivider(thickness = 2.dp,
+                    modifier = Modifier.fillMaxWidth(0.8f)
+                        .padding(bottom = spacing.large))
+                Text(
+                    modifier = Modifier.padding(bottom = spacing.medium),
+                    text = getString(R.string.thesisExplanationMakeGroup)
+                )
+                val textState = remember { mutableStateOf(TextFieldValue("")) }
+
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    SearchView(textState)
+                    ThesisList(navController = navController, state = textState, selectedString = selectedThesis)
+                }
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(top = 10.dp, bottom = 10.dp)
+                        .fillMaxHeight(0.2f),
+                    horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .defaultMinSize(minHeight = 140.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Topic,
-                            contentDescription = "User",
-                            Modifier.padding(10.dp)
-                        )
-                        Text(
-                            text = thesis[i],
-                            modifier = Modifier
-                                .padding(10.dp)
-                                .fillMaxWidth(0.6f),
-                            textAlign = TextAlign.Justify
-                        )
-                        IconButton(onClick = { addThesis(thesisID[i],thesis[i]) }) {
-                            Icon(
-                                imageVector = Icons.Default.Add,
-                                tint = MaterialTheme.colorScheme.tertiaryContainer,
-                                contentDescription = "User",
-                            )
+                    Button(onClick = {
+                        toGroupNameSelection()
+                    }) {
+                        Text(text = getString(R.string.backButtonApp))
+                    }
+                    Button(onClick = {
+                        if(checkThesisID()){
+                            toParticipantSelection()
                         }
+                    }) {
+                        Text(text = getString(R.string.nextButtonApp))
                     }
                 }
+            }
+        }
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun SearchView(state: MutableState<TextFieldValue>) {
+        TextField(
+            value = state.value,
+            onValueChange = { value ->
+                state.value = value
+            },
+            modifier = Modifier
+                .fillMaxWidth(0.8f)
+                .padding(10.dp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 18.sp),
+
+            leadingIcon = {
+                Icon(
+                    Icons.Default.Search,
+                    contentDescription = "",
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .size(24.dp)
+                )
+            },
+
+            trailingIcon = {
+                if (state.value != TextFieldValue("")) {
+                    IconButton(
+                        onClick = {
+                            state.value =
+                                TextFieldValue("") // Remove text from TextField when you press the 'X' icon
+                        }
+                    ) {
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = "",
+                            modifier = Modifier
+                                .padding(15.dp)
+                                .size(24.dp)
+                        )
+                    }
+                }
+            },
+            singleLine = true,
+            shape = RoundedCornerShape(10.dp), // The TextFiled has rounded corners top left and right by default
+            colors = TextFieldDefaults.textFieldColors(
+                cursorColor = Color.Black,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent
+            )
+        )
+    }
+
+    @Composable
+    fun ThesisListItem(thesisText: String, onItemClick: (String) -> Unit) {
+        Row(
+            modifier = Modifier
+                .clickable(onClick = { onItemClick(thesisText) })
+                .background(MaterialTheme.colorScheme.primaryContainer)
+                .height(57.dp)
+                .fillMaxWidth()
+                .padding(PaddingValues(8.dp, 16.dp)),
+        ) {
+            Text(text = thesisText, fontSize = 18.sp, color = Color.Black)
+        }
+    }
+
+    @Composable
+    fun ThesisList(navController: NavController, state: MutableState<TextFieldValue>, selectedString: MutableState<String>) {
+        val thesisies = thesis
+        val empty = ArrayList<String>()
+        var filteredThesisies: ArrayList<String>
+        LazyColumn(modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)) {
+            val searchedText = state.value.text
+            filteredThesisies = if (searchedText.isEmpty()) {
+                empty
+            } else {
+                var nInList = 0
+                val resultList = ArrayList<String>()
+                for (thesis in thesisies) {
+                    if (thesis.lowercase(Locale.getDefault())
+                            .contains(searchedText.lowercase(Locale.getDefault()))
+                    ) {
+                        resultList.add(thesis + "-" + thesisID[nInList])
+                    }
+                    nInList++
+                }
+                resultList
+            }
+            items(filteredThesisies) { filteredThesis ->
+                ThesisListItem(
+                    thesisText = filteredThesis.split("-")[0],
+                    onItemClick = { selected ->
+                        selectedString.value = selected
+                        state.value = TextFieldValue()
+                        selectedThesis.value = filteredThesis.split("-")[0]
+                        selectedThesisID.value = filteredThesis.split("-")[1]
+                    }
+                )
             }
         }
     }

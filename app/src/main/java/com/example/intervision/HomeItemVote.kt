@@ -31,11 +31,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
-import com.example.intervision.ui.ComposableUiString
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -184,8 +184,8 @@ class HomeItemVote {
                             toMakeGroup()
                             openAlertDialog.value = false
                         },
-                        dialogTitle = ComposableUiString.votedTextHomeItemVote,
-                        dialogText = ComposableUiString.votedTextQuestionHomeItemVote,
+                        dialogTitle = stringResource(R.string.votedTextHomeItemVote),
+                        dialogText = stringResource(R.string.votedTextQuestionHomeItemVote),
                         icon = Icons.Default.HowToVote
                     )
                 }
@@ -203,7 +203,7 @@ class HomeItemVote {
                         .padding(20.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = ComposableUiString.text1HomeItemVote)
+                    Text(text = stringResource(R.string.text1HomeItemVote))
                 }
                 Column(
                     modifier = Modifier
@@ -234,12 +234,12 @@ class HomeItemVote {
                         Log.d(TAG, "User tapped the disAgree vote button")
                         saveDisAgreed()
                     }) {
-                        Text(text = ComposableUiString.onEensHomeItemVote)
+                        Text(text = stringResource(R.string.againstHomeItemVote))
                     }
                     Button(onClick = {
                         saveAgreed()
                     }) {
-                        Text(text = ComposableUiString.eensHomeItemVote)
+                        Text(text = stringResource(R.string.infavourHomeItemVote))
                     }
                 }
             }
@@ -266,7 +266,7 @@ fun AlertDialog(
 ) {
     AlertDialog(
         icon = {
-            Icon(icon, contentDescription = ComposableUiString.exampleIconHomeItemVote)
+            Icon(icon, contentDescription = stringResource(R.string.exampleIconHomeItemVote))
         },
         title = {
             Text(text = dialogTitle)
@@ -283,7 +283,7 @@ fun AlertDialog(
                     onConfirmation()
                 }
             ) {
-                Text(ComposableUiString.jaHomeItemVote)
+                Text(stringResource(R.string.yesHomeItemVote))
             }
         },
         dismissButton = {
@@ -292,7 +292,7 @@ fun AlertDialog(
                     onDismissRequest()
                 }
             ) {
-                Text(ComposableUiString.neeHomeItemVote)
+                Text(stringResource(R.string.noHomeItemVote))
             }
         }
     )
@@ -321,7 +321,7 @@ fun HomeItemVotePreview() {
                         .padding(20.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(text = ComposableUiString.text1HomeItemVote)
+                    Text(text = stringResource(R.string.text1HomeItemVote))
 
                 }
                 Column(
@@ -331,12 +331,12 @@ fun HomeItemVotePreview() {
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = "question.value",
+                        text = stringResource(R.string.fillInItemVote),
                         fontWeight = FontWeight.Bold,
                         fontStyle = FontStyle.Italic
                     )
                     Text(
-                        text = "statement.value",
+                        text = stringResource(R.string.fillInItemVote),
                         modifier = Modifier
                             .padding(top = 10.dp)
                     )
@@ -355,12 +355,12 @@ fun HomeItemVotePreview() {
                         Log.d("BUTTONS", "User tapped the disAgree vote button")
 
                     }) {
-                        Text(text = ComposableUiString.onEensHomeItemVote)
+                        Text(text = stringResource(R.string.againstHomeItemVote))
                     }
                     Button(onClick = {
 
                     }) {
-                        Text(text = ComposableUiString.eensHomeItemVote)
+                        Text(text = stringResource(R.string.infavourHomeItemVote))
                     }
                 }
             }

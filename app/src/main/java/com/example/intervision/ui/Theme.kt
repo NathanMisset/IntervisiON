@@ -373,7 +373,7 @@ fun IntervisionBaseTheme(
         }
     }
 
-    CompositionLocalProvider(LocalSpacing provides Spacing(), LocalString provides String()) {
+    CompositionLocalProvider(LocalSpacing provides Spacing()) {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = Typography,
