@@ -52,7 +52,8 @@ open class ActivityIntervisionLeader : ComponentActivity() {
 
     /** Items */
     protected var itemVote: ItemVote? = null
-    private var itemElborateChose: ItemDiscusionLeader? = null
+    private var itemRounde3: ItemDiscusionLeader? = null
+    private var itemRounde4: ItemDiscusionLeader? = null
     protected var itemFinalRound: ItemFinalRound? = null
 
     /** Firebase */
@@ -68,6 +69,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sessionID = intent.extras!!.getString("SessionID")
+        Log.w(TAG, "sessionID $sessionID")
         init()
     }
 
@@ -77,12 +79,16 @@ open class ActivityIntervisionLeader : ComponentActivity() {
     }
 
     private fun initVar(){
+
+
         //firebase
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
         user = FirebaseAuth.getInstance()
         database =
             FirebaseDatabase.getInstance(firebaseURL)
+        Log.w(TAG, "database$database")
+        Log.w(TAG, "sessionID: " + sessionID!!)
         myRef = database!!.getReference(sessionID!!)
         // Items
         currentRound = 0
@@ -109,8 +115,10 @@ open class ActivityIntervisionLeader : ComponentActivity() {
         itemFinalRound = ItemFinalRound()
         itemVote = ItemVote(firestore!!, thesesID)
         itemVote!!.init()
-        itemElborateChose = ItemDiscusionLeader(this, user!!, firestore!!, partisipantsIdS!!)
-        itemElborateChose!!.init()
+        itemRounde3 = ItemDiscusionLeader(this, user!!, firestore!!, partisipantsIdS!!, 2)
+        itemRounde3!!.init()
+        itemRounde4 = ItemDiscusionLeader(this, user!!, firestore!!, partisipantsIdS!!, 3)
+        itemRounde4!!.init()
         initConnection()
     }
 
@@ -310,7 +318,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemElborateChose!!.Screen()
+                itemRounde3!!.Screen()
                 DefaultButtonRow()
             }
         }
@@ -327,7 +335,7 @@ open class ActivityIntervisionLeader : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                ItemRound3().Screen()
+                itemRounde4!!.Screen()
                 DefaultButtonRow()
             }
         }

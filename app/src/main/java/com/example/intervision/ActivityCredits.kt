@@ -28,7 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.intervision.ui.IntervisionBaseTheme
 
@@ -55,7 +55,7 @@ class ActivityCredits: ComponentActivity()  {
     }
 
     /** Composables */
-    @PreviewFontScale @Composable
+    @Composable
     fun Screen() {
         IntervisionBaseTheme {
             Column(
@@ -114,5 +114,64 @@ class ActivityCredits: ComponentActivity()  {
 
     companion object {
         private const val TAG = "CreditsActivity"
+    }
+}
+
+/** Composables */
+@Preview
+@Composable
+fun Screen() {
+    IntervisionBaseTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background)
+                .padding(30.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.main_icon),
+                contentDescription = "dasda",
+                Modifier
+                    .fillMaxWidth()
+            )
+
+            Column (
+                modifier = Modifier
+                    .fillMaxHeight(0.8f)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                Text(text = "asd",
+                    modifier = Modifier.padding(10.dp),
+                    textAlign = TextAlign.Justify
+                )
+                Text(text = "asdasda",
+                    modifier = Modifier.padding(10.dp),
+                    textAlign = TextAlign.Justify
+                )
+                Text(text = "asda",
+                    modifier = Modifier.padding(10.dp),
+                    textAlign = TextAlign.Justify
+                )
+                Text(text = "sdasdas",
+                    modifier = Modifier.padding(10.dp),
+                    textAlign = TextAlign.Justify
+                )
+            }
+
+            OutlinedButton(
+                onClick = {
+
+                },
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .fillMaxWidth()
+                    .defaultMinSize(minHeight = 50.dp)
+            ) {
+                Text(text = "sad")
+            }
+        }
     }
 }

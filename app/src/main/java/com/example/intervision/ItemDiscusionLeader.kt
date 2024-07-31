@@ -52,7 +52,8 @@ class ItemDiscusionLeader(
     var parent: ActivityIntervisionLeader,
     val user: FirebaseAuth,
     private val db: FirebaseFirestore,
-    private var uIdList: ArrayList<String>?
+    private var uIdList: ArrayList<String>?,
+    private val roundNUmber: Int?
 ) {
 
     /** Class Variables */
@@ -102,18 +103,36 @@ class ItemDiscusionLeader(
                 .padding(horizontal = spacing.large),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = stringResource(R.string.roundTextItemDiscusionLeader),
-                fontWeight = FontWeight.Bold,
-                fontStyle = FontStyle.Italic,
-                fontSize = 20.sp
-            )
-            Text(
-                text = stringResource(R.string.assignmentTextItemDiscusionLeader),
-                fontWeight = FontWeight.Bold,
-                fontStyle = FontStyle.Italic,
-                fontSize = 30.sp
-            )
+            if(roundNUmber == 3){
+                Text(
+                    text = stringResource(R.string.roundTextItemRound3),
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+            } else{
+                Text(
+                    text = stringResource(R.string.roundTextItemDiscusionLeader),
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+            }
+            if(roundNUmber == 3){
+                Text(
+                    text = stringResource(R.string.assignmentItemRound3),
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+            } else {
+                Text(
+                    text = stringResource(R.string.text2ItemDiscusionUser),
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+            }
         }
         Column(
             modifier = Modifier

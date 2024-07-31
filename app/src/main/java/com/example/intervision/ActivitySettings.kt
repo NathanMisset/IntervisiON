@@ -32,11 +32,15 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
@@ -220,5 +224,108 @@ class ActivitySettings : ComponentActivity() {
 
     companion object {
         private const val TAG = "SettingsActivity"
+    }
+}
+
+@Composable
+@Preview
+fun PreviewScreen(){
+    IntervisionBaseTheme {
+        Column (
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background)
+                .padding(spacing.small),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween,
+
+            ) {
+            Row(
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxSize()
+                    .weight(0.1f)
+                    .background(color = MaterialTheme.colorScheme.background),
+
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(onClick = {
+
+                }) {
+                    Icon(Icons.Filled.Close, "Text")
+                }
+                Text(text = "Text")
+                TextButton(onClick = {
+
+                }) {
+                    Text(text = "Text")
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .fillMaxSize()
+                    .weight(0.9f),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+
+                var text by remember { mutableStateOf("Hello") }
+
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text("Label") },
+                    enabled = false,
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier.padding(20.dp)
+                        .fillMaxWidth()
+
+                )
+
+
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text("Label") },
+                    maxLines = 2,
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .fillMaxWidth()
+                )
+
+
+
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text("Label") },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    ),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier.padding(20.dp)
+                        .fillMaxWidth()
+                )
+            }
+        }
     }
 }

@@ -51,10 +51,12 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -529,3 +531,188 @@ class ActivityMakeGroup : ComponentActivity() {
         private const val TAG = "MakeGroupActivity"
     }
 }
+
+
+
+//Previews
+
+@Composable
+@Preview()
+fun PreviewGroupNameScreen() {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth(0.8f)
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    modifier = Modifier.padding(bottom = spacing.medium),
+                    text = "dasdasd"
+                )
+                var text by remember { mutableStateOf("Hello") }
+
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text("Label") },
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .defaultMinSize(minHeight = 50.dp)
+                        .fillMaxWidth()
+                        .padding(bottom = spacing.medium)
+                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.2f),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(onClick = {  }) {
+                        Text(text = "Next")
+                    }
+                }
+            }
+        }
+}
+
+
+@Composable
+@Preview()
+fun PreviewTheisScreen() {
+    val navController = rememberNavController()
+    val focusManager = LocalFocusManager.current
+    IntervisionBaseTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            var selectedThesis = remember { mutableStateOf("") }
+            Text(
+                text = "Groep stelling:",
+                modifier = Modifier
+                    .padding(bottom = spacing.medium, top = spacing.medium)
+                    .fillMaxWidth(0.8f),
+            )
+            Text(
+                text = selectedThesis.value,
+                modifier = Modifier
+                    .padding(bottom = spacing.medium)
+                    .fillMaxWidth(0.8f),
+            )
+            HorizontalDivider(thickness = 2.dp,
+                modifier = Modifier.fillMaxWidth(0.8f)
+                    .padding(bottom = spacing.large))
+            Text(
+                modifier = Modifier.padding(bottom = spacing.medium),
+                text = "tesda"
+            )
+            val textState = remember { mutableStateOf(TextFieldValue("")) }
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                SearchView(textState)
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(0.2f),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Button(onClick = {
+
+                }) {
+                    Text(text = "Terug")
+                }
+                Button(onClick = {
+
+                }) {
+                    Text(text = "Volgende")
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchView(state: MutableState<TextFieldValue>) {
+    TextField(
+        value = state.value,
+        onValueChange = { value ->
+            state.value = value
+        },
+        modifier = Modifier
+            .fillMaxWidth(0.8f)
+            .padding(10.dp),
+        textStyle = TextStyle(color = Color.Black, fontSize = 18.sp),
+
+        leadingIcon = {
+            Icon(
+                Icons.Default.Search,
+                contentDescription = "",
+                modifier = Modifier
+                    .padding(20.dp)
+                    .size(24.dp)
+            )
+        },
+
+        trailingIcon = {
+            if (state.value != TextFieldValue("")) {
+                IconButton(
+                    onClick = {
+                        state.value =
+                            TextFieldValue("") // Remove text from TextField when you press the 'X' icon
+                    }
+                ) {
+                    Icon(
+                        Icons.Default.Close,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .size(24.dp)
+                    )
+                }
+            }
+        },
+        singleLine = true,
+        shape = RoundedCornerShape(10.dp), // The TextFiled has rounded corners top left and right by default
+        colors = TextFieldDefaults.textFieldColors(
+            cursorColor = Color.Black,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        )
+    )
+}
+
+@Composable
+fun ThesisListItem(thesisText: String, onItemClick: (String) -> Unit) {
+    Row(
+        modifier = Modifier
+            .clickable(onClick = { onItemClick(thesisText) })
+            .background(MaterialTheme.colorScheme.primaryContainer)
+            .height(57.dp)
+            .fillMaxWidth()
+            .padding(PaddingValues(8.dp, 16.dp)),
+    ) {
+        Text(text = thesisText, fontSize = 18.sp, color = Color.Black)
+    }
+}
+
+

@@ -137,7 +137,7 @@ class ItemGroupPreview : ComponentActivity() {
     }
 
     /** Composables */
-    @Preview(device = "id:Motorola Moto G8 Plus", showSystemUi = true, showBackground = true) @Composable
+    @Composable
     fun Screen() {
         IntervisionBaseTheme {
             Column(
@@ -288,6 +288,139 @@ class ItemGroupPreview : ComponentActivity() {
         }
     }
 }
+
+/** Composables */
+@Preview(showSystemUi = true, showBackground = true) @Composable
+fun PreviewItemGroupPreview() {
+    IntervisionBaseTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(0.3f)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Text(text = "TExt",
+                        textAlign = TextAlign.Justify)
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable { }
+                            .background(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp),
+                    ) {
+
+                        Text(text = "TExt")
+                    }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable { }
+                            .background(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp),
+                    ) {
+
+                        Text(text = "TExt")
+                    }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable { }
+                            .background(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp),
+                    ) {
+
+                        Text(text = "TExt")
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable { }
+                            .background(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp),
+                    ) {
+
+                        Text(text = "TExt")
+                    }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable { }
+                            .background(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp),
+                    ) {
+
+                        Text(text = "TExt")
+                    }
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clickable { }
+                            .background(
+                                MaterialTheme.colorScheme.primaryContainer,
+                                shape = RoundedCornerShape(15.dp)
+                            )
+                            .padding(10.dp),
+                    ) {
+
+                        Text(text = "TExt")
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp, bottom = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+                    Button(onClick = {  }) {
+                        Text(text = "TExt")
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 
 

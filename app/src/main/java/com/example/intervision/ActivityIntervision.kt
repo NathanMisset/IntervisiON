@@ -36,7 +36,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 class ActivityIntervision : ActivityIntervisionLeader() {
 
     /** Class variables */
-    private var itemDiscusionUser: ItemDiscusionUser? = null
+    private var itemDiscusionUser3: ItemDiscusionUser? = null
+    private var itemDiscusionUser4: ItemDiscusionUser? = null
 
     /**
      *
@@ -47,8 +48,10 @@ class ActivityIntervision : ActivityIntervisionLeader() {
         itemFinalRound = ItemFinalRound()
         itemVote = ItemVote(firestore!!, thesesID)
         itemVote!!.init()
-        itemDiscusionUser = ItemDiscusionUser(firestore!!, partisipantsIdS!!)
-        itemDiscusionUser!!.init()
+        itemDiscusionUser3 = ItemDiscusionUser(firestore!!, partisipantsIdS!!, 2)
+        itemDiscusionUser3!!.init()
+        itemDiscusionUser4 = ItemDiscusionUser(firestore!!, partisipantsIdS!!, 3)
+        itemDiscusionUser4!!.init()
         initConnection()
     }
 
@@ -96,7 +99,8 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                     }
 
                     if (value.length > 1) {
-                        itemDiscusionUser!!.giveTurn(value[1])
+                        itemDiscusionUser3!!.giveTurn(value[1])
+                        itemDiscusionUser4!!.giveTurn(value[1])
                     }
 
                 }
@@ -185,6 +189,38 @@ class ActivityIntervision : ActivityIntervisionLeader() {
     }
 
     @Composable
+    override fun Round2() {
+        IntervisionBaseTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                itemVote!!.Screen()
+            }
+        }
+    }
+
+    @Composable
+    override fun Round3() {
+        IntervisionBaseTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                itemDiscusionUser3!!.Screen()
+            }
+        }
+    }
+
+    @Composable
     override fun Round4(){
         IntervisionBaseTheme {
             Column(
@@ -195,14 +231,25 @@ class ActivityIntervision : ActivityIntervisionLeader() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceAround
             ) {
-                itemDiscusionUser!!.Screen()
+                itemDiscusionUser4!!.Screen()
             }
         }
     }
 
     @Composable
     override fun Round5() {
-        /** TODO  Implement Fifth Round*/
+        IntervisionBaseTheme {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(color = MaterialTheme.colorScheme.background),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                ItemAction().Component()
+            }
+        }
     }
     @Composable
     override fun SessionEnd() {

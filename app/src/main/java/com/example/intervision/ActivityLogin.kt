@@ -52,9 +52,11 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ActivityLogin.Companion.TAG
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -163,7 +165,7 @@ class ActivityLogin : ComponentActivity() {
 
 
     /** Composables */
-    @PreviewFontScale @Composable
+    @Composable
     fun Screen() {
         val focusManager = LocalFocusManager.current
         IntervisionBaseTheme {
@@ -319,4 +321,152 @@ class ActivityLogin : ComponentActivity() {
 }
 
 
+@Preview
+@Composable
+fun Preview() {
+    val focusManager = LocalFocusManager.current
+    IntervisionBaseTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
+
+        ) {
+            Column (
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly
+            ){
+                Image(
+                    painter = painterResource(id = R.drawable.main_icon),
+                    contentDescription = "dsadasda",
+                    Modifier
+                        .fillMaxWidth()
+                )
+                Text(
+                    "Login",
+                    fontSize = 30.sp,
+                    fontWeight = Bold,
+                )
+            }
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .fillMaxHeight(0.3f),
+            )
+            {
+                var text by remember { mutableStateOf("Hello") }
+                TextField(
+                    value = text,
+                    onValueChange = { text = it },
+                    label = { Text("dasda") },
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    ),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
+                    keyboardActions = KeyboardActions(
+                        onNext = { focusManager.moveFocus(FocusDirection.Down) }),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .defaultMinSize(minHeight = 50.dp)
+                        .fillMaxWidth()
+                )
+
+                var rememberPasswordVisibility by remember { mutableStateOf(false) }
+                var text1 by remember { mutableStateOf("Hello") }
+                TextField(
+                    value = text1,
+                    onValueChange = { text1 = it },
+                    label = { Text("dasda") },
+                    singleLine = true,
+                    visualTransformation = if (rememberPasswordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+                    colors = TextFieldDefaults.colors(
+                        unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent
+                    ),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onNext = { }),
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier
+                        .defaultMinSize(minHeight = 50.dp)
+                        .fillMaxWidth(),
+                    trailingIcon = {
+                        val image = if (rememberPasswordVisibility)
+                            Icons.Filled.Visibility
+                        else Icons.Filled.VisibilityOff
+
+                        val description =
+                            if (rememberPasswordVisibility) "Wachtwoord verbergen" else "Wachtwoord laten zien"
+
+                        IconButton(onClick = { rememberPasswordVisibility = !rememberPasswordVisibility }) {
+                            Icon(imageVector = image, description)
+                        }
+                    }
+                )
+            }
+            Button(
+                onClick = {
+
+                },
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .defaultMinSize(minHeight = 50.dp)
+            ) {
+                Text(
+                    text = "dsada",
+                )
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier
+                    .fillMaxWidth(0.8f)
+                    .fillMaxHeight(0.50f),
+            ) {
+                OutlinedButton(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 50.dp)
+                ) {
+                    Text(text = "sadad")
+                }
+                OutlinedButton(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 50.dp)
+                ) {
+                    Text(text = "asdada")
+                }
+                TextButton(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 50.dp)
+                ) {
+                    Text(text = "dsadad")
+                }
+            }
+        }
+    }
+}
 

@@ -144,7 +144,7 @@ fun ActionRoundTest() {
                     text = stringResource(R.string.questionParticipantItemAction),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
-                    fontSize = 30.sp
+                    fontSize = 20.sp
                 )
             }
             Column(

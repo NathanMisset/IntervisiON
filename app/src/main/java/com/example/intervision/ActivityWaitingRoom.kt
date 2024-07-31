@@ -37,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.intervision.ActivityIntervisionLeader.Companion
 import com.example.intervision.ui.IntervisionBaseTheme
 import com.example.intervision.ui.spacing
 import com.google.firebase.auth.FirebaseAuth
@@ -74,8 +75,10 @@ class ActivityWaitingRoom : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         sessionID = intent.extras!!.getString("SessionID")
         leader = intent.extras!!.getBoolean("Leader")
+        Log.w(TAG, "sessionID $sessionID")
         init()
     }
 
@@ -170,19 +173,20 @@ class ActivityWaitingRoom : ComponentActivity() {
 
     private fun toIntervision() {
         val i = Intent(this, ActivityIntervision::class.java)
-        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), sessionID)
-        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), false)
+        Log.w(TAG, "SessionID $sessionID")
+        i.putExtra("SessionID", sessionID)
+        i.putExtra("Leader", false)
         this.startActivity(i)
     }
 
     private fun toIntervisionLeader() {
         val i = Intent(this, ActivityIntervisionLeader::class.java)
-        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), sessionID)
-        i.putExtra(getString(R.string.intentPutExtraSessionIDWaitingRoom), true)
+        Log.w(TAG, "SessionID $sessionID")
+        i.putExtra("SessionID", sessionID)
+        i.putExtra("Leader", true)
         this.startActivity(i)
     }
 
-    @Preview(device = "spec:width=1080px,height=2280px,dpi=400")
     @Composable
     fun Screen() {
         IntervisionBaseTheme {
@@ -316,5 +320,102 @@ class ActivityWaitingRoom : ComponentActivity() {
 
     companion object {
         private const val TAG = "WaitingRoomActivity"
+    }
+}
+
+@Preview
+@Composable
+fun PreviewWaitingRoom() {
+    IntervisionBaseTheme {
+        Column (
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.background)
+                .padding(spacing.medium),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            Text(text = "Text")
+            Text(text = "Text",
+                fontWeight = FontWeight.Bold,
+                fontStyle = FontStyle.Italic,
+                fontSize = 20.sp)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = spacing.small,
+                        vertical = spacing.default
+                    ),
+                horizontalArrangement = Arrangement.SpaceAround) {
+                ElevatedCard {
+
+                    Text(text = "Text",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(spacing.small))
+                }
+                ElevatedCard {
+
+                    Text(text = "Text",
+                        modifier = Modifier
+                            .padding(spacing.small))
+                }
+                ElevatedCard {
+
+                    Text(text = "Text",
+                        modifier = Modifier
+                            .padding(spacing.small))
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = spacing.small,
+                        vertical = spacing.default
+                    ),
+                horizontalArrangement = Arrangement.SpaceAround) {
+                ElevatedCard {
+
+                    Text(text = "Text",
+                        modifier = Modifier
+                            .padding(spacing.small))
+                }
+                ElevatedCard {
+
+                    Text(text = "Text",
+                        modifier = Modifier
+                            .padding(spacing.small))
+                }
+                ElevatedCard {
+
+                    Text(text = "Text",
+                        modifier = Modifier
+                            .padding(spacing.small),
+                    )
+                }
+            }
+            Column(verticalArrangement = Arrangement.SpaceEvenly){
+
+
+                Button(onClick = { },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            top = spacing.default,
+                            bottom = spacing.default,
+                            start = spacing.medium,
+                            end = spacing.medium
+                        )
+                ) {
+                    Text(text = "Text")
+                }
+            }
+        }
     }
 }

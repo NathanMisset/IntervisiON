@@ -45,12 +45,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ItemDiscusionUser(
         val firestore: FirebaseFirestore,
-        private val partisipantsIdS: ArrayList<String>?
+        private val partisipantsIdS: ArrayList<String>?,
+        private val roundNUmber: Int?
 ) {
 
     /** Class Variables */
     private var userNames: ArrayList<String>? = null
     private lateinit var userTurnText: MutableState<String>
+
 
     fun init() {
         userTurnText = mutableStateOf("Test")
@@ -99,6 +101,8 @@ class ItemDiscusionUser(
         }
     }
 
+
+
     private fun switchTurn(i: Int) {
         userTurnText = mutableStateOf(userNames!![i] + "is aan de beurt")
     }
@@ -116,18 +120,36 @@ class ItemDiscusionUser(
                         .padding(horizontal = spacing.large),
                 horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
+            if(roundNUmber == 3){
+                Text(
+                    text = stringResource(R.string.roundTextItemRound3),
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+            } else{
+                Text(
                     text = stringResource(R.string.roundTextItemDiscusionLeader),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
                     fontSize = 20.sp
-            )
-            Text(
+                )
+            }
+            if(roundNUmber == 3){
+                Text(
+                    text = stringResource(R.string.assignmentItemRound3),
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    fontSize = 20.sp
+                )
+            } else {
+                Text(
                     text = stringResource(R.string.text2ItemDiscusionUser),
                     fontWeight = FontWeight.Bold,
                     fontStyle = FontStyle.Italic,
-                    fontSize = 30.sp
-            )
+                    fontSize = 20.sp
+                )
+            }
         }
         Column (modifier = Modifier
                 .fillMaxWidth()
