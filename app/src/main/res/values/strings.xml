@@ -88,15 +88,15 @@
     <string name="settingsDescriptionProfileGroup">Instellingen</string>
     <string name="thesis1HomeItemResult">Ga ik de bezwaarmaker bellen?</string>
     <string name="thesis2HomeItemResult">Ik bel NIET als de bzwaarmaker een advocaat heeft ingeschakkelt</string>
-    <string name="againstHomeItemResult">Tegen:</string>
-    <string name="infavourHomeItemResult">Voor:</string>
+    <string name="againstHomeItemResult">"Tegen: "</string>
+    <string name="infavourHomeItemResult">"Voor: "</string>
     <string name="circelAgainstHomeItemResult">Circel Donkergroen</string>
     <string name="circelInfavourHomeItemResult">Circel Geel</string>
 
     /** HomeItemResult */
     <string name="text1HomeItemVote">Stem en zie hoe andere gestemt hebben.</string>
-    <string name="againstHomeItemVote">Tegen</string>
-    <string name="infavourHomeItemVote">Voor</string>
+    <string name="againstHomeItemVote">"Tegen "</string>
+    <string name="infavourHomeItemVote">"Voor "</string>
     <string name="exampleIconHomeItemVote">Voorbeeld Icoon</string>
     <string name="yesHomeItemVote">Ja</string>
     <string name="noHomeItemVote">Nee</string>
@@ -140,7 +140,7 @@
     <string name="titleItemRoundsExplained">Introductie ronde</string>
     <string name="underTitleItemRoundsExplained">Introductie</string>
     <string name="headerItemRoundsExplained">Uitleg</string>
-    <string name="contentItemRoundsExplained">1. In de eerste ronden introduceert U (de groupsleider) de stelling en ziet iedereen het resultaat van het stemmen 2. In de tweede ronden geef je spelers de mogelijkheid hun keuze te onderbouwen 3. In de derde ronde is het ruimte voor discussie 4. In de vierde ronde vraagt u de spelers wat ze anders gaan doen 5. In de vijfde ronden wordt het spel beeindigt</string>
+    <string name="contentItemRoundsExplained">1. In de 1st ronde introduceert U (de groupsleider) de stelling en ziet iedereen het resultaat van het stemmen.\n\n2. In de 2de ronde geef je spelers de mogelijkheid hun keuze te onderbouwen.\n\n3. In de 3de ronde is het ruimte voor discussie.\n\n4. In de 4de ronde vraagt u de spelers wat ze anders gaan doen.\n\n5. In de 5de ronde wordt het spel beeindigt.</string>
 
     /** ItemFinalRound */
     <string name="headerItemFinalRound">Afronding</string>

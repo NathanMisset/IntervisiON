@@ -61,13 +61,13 @@
     <string name="settingsDescriptionProfileGroup">settings</string>
     <string name="thesis1HomeItemResult">Wil jou call the objector?</string>
     <string name="thesis2HomeItemResult">I wil NOT call the objector.</string>
-    <string name="againstHomeItemResult">Against:</string>
-    <string name="infavourHomeItemResult">Infavour:</string>
+    <string name="againstHomeItemResult">"Against: "</string>
+    <string name="infavourHomeItemResult">"Infavour: "</string>
     <string name="circelAgainstHomeItemResult">Circle Darkgreen</string>
     <string name="circelInfavourHomeItemResult">Circle Yellow</string>
     <string name="text1HomeItemVote">Vote and see hwo others voted.</string>
-    <string name="againstHomeItemVote">Against</string>
-    <string name="infavourHomeItemVote">Infavour</string>
+    <string name="againstHomeItemVote">"Against "</string>
+    <string name="infavourHomeItemVote">"Infavour "</string>
     <string name="exampleIconHomeItemVote">Example Icon</string>
     <string name="yesHomeItemVote">Yes</string>
     <string name="noHomeItemVote">No</string>
