@@ -71,6 +71,9 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("androidx.wear.compose:compose-material:1.3.0")
 
+    implementation("androidx.compose.ui:ui-test:1.6.8")
+    implementation("androidx.compose.ui:ui-test-junit4:1.6.8")
+    implementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("androidx.compose.material3:material3:1.3.0-alpha03")
 
 
