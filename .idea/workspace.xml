@@ -11,25 +11,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="??">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="7131e730-e56f-4a62-a647-743e5d1667b9" name="Changes" comment="Fixed Layout Topbar naviagion&#10;Fixed Session">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityCredits.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityCredits.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervision.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervisionLeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityIntervisionLeader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityLogin.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityLogin.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMakeGroup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityMakeGroup.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySettings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivitySettings.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityWaitingRoom.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ActivityWaitingRoom.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentGroups.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentGroups.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentHome.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentHome.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentProfile.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/FragmentProfile.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionLeader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionLeader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemDiscusionUser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemGroupPreview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/intervision/ItemGroupPreview.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
@@ -553,7 +537,31 @@
       <option name="project" value="LOCAL" />
       <updated>1710339390769</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Onderhoud">
+      <option name="closed" value="true" />
+      <created>1722431051165</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1722431051165</updated>
+    </task>
+    <task id="LOCAL-00011" summary="String.xml Aanpassingen">
+      <option name="closed" value="true" />
+      <created>1722431081020</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722431081020</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed Layout Topbar naviagion&#10;Fixed Session">
+      <option name="closed" value="true" />
+      <created>1722431119733</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722431119733</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -572,6 +580,9 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Test2" />
     <MESSAGE value="13/03/2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="13/03/2024" />
+    <MESSAGE value="Onderhoud" />
+    <MESSAGE value="String.xml Aanpassingen" />
+    <MESSAGE value="Fixed Layout Topbar naviagion&#10;Fixed Session" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Layout Topbar naviagion&#10;Fixed Session" />
   </component>
 </project>

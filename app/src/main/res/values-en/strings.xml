@@ -102,7 +102,7 @@
     <string name="saveLabelSettings">Save</string>
     <string name="quitIconDescriptonSettings">Close cross</string>
     <string name="backHomeIntervisionLeader">Back to Home</string>
-    <string name="groupMakeGroup">Group</string>
+    <string name="groupMakeGroup">Group name</string>
     <string name="groupIconDescriptionMakeGroup">Group Icon</string>
     <string name="contactIconDescriptionMakeGroup">Contact Icon</string>
     <string name="thesisIconDescriptionMakeGroup">Thesis Icon</string>
@@ -129,4 +129,6 @@
     <string name="groupNameErrorMakeGroup">Group name Required</string>
     <string name="thesisExplanationMakeGroup">Search a thesis and select it.</string>
     <string name="thesisErrorMakeGroup">Thesis Required</string>
+    <string name="participantExplainedMakeGroup">Search users and add them to your group.</string>
+    <string name="groupsizeErrorMakeGroup">Select atleast 1 participant.</string>
 </resources>

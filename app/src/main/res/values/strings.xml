@@ -156,7 +156,7 @@
     <string name="emailLabelSettings">Email</string>
 
     /** MakeGroup */
-    <string name="groupMakeGroup">Groep</string>
+    <string name="groupMakeGroup">Groep naam</string>
     <string name="contactMakeGroup">Contacten</string>
     <string name="thesisMakeGroup">Stelling</string>
     <string name="participantMakeGroup">Deelnemers</string>
@@ -174,5 +174,7 @@
     <string name="thesisExplanationMakeGroup">Zoek naar  een stelling en selecteer het.</string>
     <string name="groupNameErrorMakeGroup">Groepsnaam verplicht</string>
     <string name="thesisErrorMakeGroup">Stelling verplicht</string>
+    <string name="participantExplainedMakeGroup">Zoek gebruikers en voeg ze toe aan je uw groep.</string>
+    <string name="groupsizeErrorMakeGroup">Selecteer tenminsten 1 deelnemer.</string>
 
 </resources>
